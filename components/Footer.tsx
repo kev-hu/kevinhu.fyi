@@ -18,15 +18,19 @@ export default function Footer() {
         className="flex-col items-center md:flex-row md:justify-between md:items-center"
       >
         {/* Left: identity */}
-        <span
+        <a
+          href="/"
+          className="footer-link"
           style={{
             fontFamily: "var(--font-body), sans-serif",
             fontSize: "1rem",
             color: "rgba(20, 20, 20, 0.6)",
+            textDecoration: "none",
+            transition: "color 150ms",
           }}
         >
           kevinhu.fyi
-        </span>
+        </a>
 
         {/* Right: external links */}
         <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>

@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Button from "./Button";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isProjectDetail = pathname.startsWith("/projects/");
 
   const navLinks = [
     { label: "Projects", href: "#projects" },
@@ -51,9 +54,9 @@ export default function Nav() {
           Kevin Hu
         </a>
 
-        {/* Right: desktop links (hidden below md) */}
+        {/* Right: desktop links (hidden below md, hidden on project detail pages) */}
         <nav className="hidden md:flex" style={{ alignItems: "center", gap: "32px" }}>
-          {navLinks.map(({ label, href }) => (
+          {!isProjectDetail && navLinks.map(({ label, href }) => (
             <a
               key={label}
               href={href}
@@ -159,7 +162,7 @@ export default function Nav() {
           }}
           className="px-6"
         >
-          {navLinks.map(({ label, href }) => (
+          {!isProjectDetail && navLinks.map(({ label, href }) => (
             <a
               key={label}
               href={href}
