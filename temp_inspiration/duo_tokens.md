@@ -208,7 +208,7 @@
     },
     "fontBody": {
       "value": "'Nunito', 'DIN Rounded', system-ui, sans-serif",
-      "description": "DIN Next Rounded substitute - sentence case"
+      "description": "DIN Next Rounded substitute"
     },
     "fontDisplay": {
       "value": "'Nunito', 'DIN Rounded', -apple-system, BlinkMacSystemFont, sans-serif",
@@ -216,3 +216,4 @@
     }
   }
 }
+

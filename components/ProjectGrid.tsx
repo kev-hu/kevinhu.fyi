@@ -17,12 +17,10 @@ export default function ProjectGrid({
       style={{
         paddingTop: "80px",
         paddingBottom: "80px",
-        paddingLeft: "clamp(24px, 4vw, 48px)",
-        paddingRight: "clamp(24px, 4vw, 48px)",
       }}
     >
       {/* ── Centered content wrapper ─────────────────────────────────────── */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }} className="px-6 lg:px-12">
 
         {/* ── Section heading ──────────────────────────────────────────────── */}
         <div style={{ marginBottom: "48px" }}>

@@ -1,10 +1,35 @@
+import Image from "next/image";
 import type { Project } from "@/lib/projects";
 
 export function ProjectHeader({ project }: { project: Project }) {
-  const { title, subtitle, tags, metrics } = project;
+  const { title, subtitle, tags, metrics, thumbnail } = project;
 
   return (
     <header>
+      {/* Banner image */}
+      {thumbnail && (
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            aspectRatio: "3 / 1",
+            borderRadius: "var(--radius-card)",
+            border: "2px solid var(--color-foreground)",
+            boxShadow: "var(--shadow-brutal)",
+            overflow: "hidden",
+            marginBottom: "32px",
+          }}
+        >
+          <Image
+            src={thumbnail}
+            alt={`${title} banner`}
+            fill
+            style={{ objectFit: "cover" }}
+            priority
+          />
+        </div>
+      )}
+
       {/* Title */}
       <h1
         style={{

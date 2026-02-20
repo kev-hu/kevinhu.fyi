@@ -1,7 +1,5 @@
 import Button from "@/components/Button";
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function ContactSection() {
   return (
     <section
@@ -9,86 +7,80 @@ export default function ContactSection() {
       style={{
         paddingTop: "80px",
         paddingBottom: "80px",
-        paddingLeft: "clamp(24px, 4vw, 48px)",
-        paddingRight: "clamp(24px, 4vw, 48px)",
       }}
     >
-      {/* ── Centered content wrapper ─────────────────────────────────────── */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }} className="px-6 lg:px-12">
 
-        {/* ── Section heading ──────────────────────────────────────────────── */}
-        <div style={{ marginBottom: "48px" }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-display), sans-serif",
-              fontSize: "2.25rem",
-              fontWeight: 700,
-              color: "var(--color-foreground)",
-              margin: "0 0 12px 0",
-              lineHeight: 1.15,
-            }}
-          >
-            Let&apos;s Work Together
-          </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-body), sans-serif",
-              fontSize: "1rem",
-              color: "var(--color-foreground)",
-              opacity: 0.6,
-              margin: 0,
-              lineHeight: 1.6,
-            }}
-          >
-            If you&apos;re interested in working with me, book a time that works for you.
-          </p>
-        </div>
-
-        {/* ── Cal.com embed placeholder ──────────────────────────────────────
-            TODO: Replace with Cal.com embed script
-        ────────────────────────────────────────────────────────────────────── */}
+        {/* ── Card ─────────────────────────────────────────────────────────── */}
         <div
           style={{
             background: "var(--color-card)",
             border: "2px solid var(--color-foreground)",
             borderRadius: "var(--radius-card)",
             boxShadow: "var(--shadow-brutal)",
-            padding: "32px",
+            padding: "clamp(40px, 6vw, 72px)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "16px",
+            gap: "24px",
             textAlign: "center",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
-          <span
+          {/* Subtle blue radial glow behind content */}
+          <div
             aria-hidden="true"
-            style={{ fontSize: "3rem", lineHeight: 1 }}
-          >
-            📅
-          </span>
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(ellipse at 50% 0%, rgba(28,176,246,0.10) 0%, transparent 65%)",
+              pointerEvents: "none",
+            }}
+          />
 
+          {/* Heading */}
+          <h2
+            style={{
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.02em",
+              lineHeight: 1.15,
+              color: "var(--color-foreground)",
+              margin: 0,
+            }}
+          >
+            Let&apos;s Work Together
+          </h2>
+
+          {/* Subtext */}
           <p
             style={{
               fontFamily: "var(--font-body), sans-serif",
-              fontSize: "1rem",
+              fontSize: "1.0625rem",
+              lineHeight: 1.6,
               color: "var(--color-foreground)",
-              opacity: 0.75,
+              opacity: 0.6,
+              maxWidth: "480px",
               margin: 0,
-              lineHeight: 1.5,
             }}
           >
-            Book a call via Cal.com
+            Whether you&apos;re building something new, need a technical advisor,
+            or just want to connect — grab 30 minutes on my calendar.
           </p>
 
-          <Button
-            href="https://cal.com/kevinhu"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="primary"
-          >
-            Open Calendar
-          </Button>
+          {/* CTA */}
+          <div style={{ marginTop: "8px" }}>
+            <Button
+              href="https://calendly.com/kevinqinhu/30min"
+              target="_blank"
+              variant="primary"
+            >
+              Book a 30-min Call
+            </Button>
+          </div>
         </div>
 
       </div>

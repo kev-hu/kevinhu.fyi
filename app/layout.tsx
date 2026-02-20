@@ -1,4 +1,4 @@
-import { Bricolage_Grotesque, Nunito } from "next/font/google";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
@@ -10,9 +10,9 @@ const displayFont = Bricolage_Grotesque({
   display: "swap",
 });
 
-const bodyFont = Nunito({
+const bodyFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-nunito",
+  variable: "--font-jakarta",
   display: "swap",
 });
 

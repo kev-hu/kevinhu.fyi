@@ -12,14 +12,12 @@ const TRAFFIC_LIGHTS = [
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ProjectCard({ project }: { project: ProjectMeta }) {
-  const { slug, title, subtitle, thumbnail, metrics, tags } = project;
-
-  // Show at most 2 metrics and up to all tags
-  const visibleMetrics = metrics.slice(0, 2);
+  const { slug, title, subtitle, thumbnail, tags } = project;
 
   return (
     <Link
       href={`/projects/${slug}`}
+      scroll={true}
       className="project-card"
       style={{
         display: "block",
@@ -68,8 +66,8 @@ export default function ProjectCard({ project }: { project: ProjectMeta }) {
         <span
           style={{
             marginLeft: "auto",
-            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-            fontSize: "0.75rem",
+            fontFamily: "var(--font-body), 'Plus Jakarta Sans', sans-serif",
+            fontSize: "0.875rem",
             color: "rgba(255, 255, 255, 0.75)",
             whiteSpace: "nowrap",
             overflow: "hidden",
@@ -152,33 +150,6 @@ export default function ProjectCard({ project }: { project: ProjectMeta }) {
         >
           {subtitle}
         </p>
-
-        {/* Metrics row */}
-        {visibleMetrics.length > 0 && (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-            {visibleMetrics.map((metric) => (
-              <span
-                key={metric.label}
-                style={{
-                  backgroundColor: "var(--color-secondary)",
-                  color: "#ffffff",
-                  borderRadius: "var(--radius-button)",
-                  padding: "4px 10px",
-                  fontFamily: "var(--font-body), sans-serif",
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <strong style={{ fontWeight: 700 }}>{metric.value}</strong>
-                <span style={{ fontWeight: 400, opacity: 0.85 }}>{metric.label}</span>
-              </span>
-            ))}
-          </div>
-        )}
 
         {/* Tags row */}
         {tags.length > 0 && (

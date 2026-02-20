@@ -28,11 +28,13 @@ export default function Nav() {
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "16px 24px",
+          paddingTop: "16px",
+          paddingBottom: "16px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
+        className="px-6 lg:px-12"
       >
         {/* Left: wordmark */}
         <a
@@ -75,9 +77,9 @@ export default function Nav() {
         </nav>
 
         {/* Right: hamburger button (visible below md) */}
+        <div className="md:hidden">
         <button
           type="button"
-          className="md:hidden"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
@@ -131,6 +133,7 @@ export default function Nav() {
             }}
           />
         </button>
+        </div>
       </div>
 
       {/* Mobile dropdown menu */}
@@ -148,11 +151,13 @@ export default function Nav() {
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
-            padding: "12px 24px 20px",
+            paddingTop: "12px",
+            paddingBottom: "20px",
             display: "flex",
             flexDirection: "column",
             gap: "16px",
           }}
+          className="px-6"
         >
           {navLinks.map(({ label, href }) => (
             <a

@@ -21,23 +21,23 @@ export default function Footer() {
         <span
           style={{
             fontFamily: "var(--font-body), sans-serif",
-            fontSize: "0.875rem",
+            fontSize: "1rem",
             color: "rgba(20, 20, 20, 0.6)",
           }}
         >
-          Kevin Hu · kevinhu.fyi
+          kevinhu.fyi
         </span>
 
         {/* Right: external links */}
         <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
           <a
-            href="https://www.linkedin.com/in/kevinhu88/"
+            href="https://www.linkedin.com/in/kevinqinhu/"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-link"
             style={{
               fontFamily: "var(--font-body), sans-serif",
-              fontSize: "0.875rem",
+              fontSize: "1rem",
               color: "rgba(20, 20, 20, 0.6)",
               textDecoration: "none",
               transition: "color 150ms",
@@ -46,11 +46,11 @@ export default function Footer() {
             LinkedIn
           </a>
           <a
-            href="mailto:kevin@kevinhu.fyi"
+            href="mailto:kevinqinhu@gmail.com"
             className="footer-link"
             style={{
               fontFamily: "var(--font-body), sans-serif",
-              fontSize: "0.875rem",
+              fontSize: "1rem",
               color: "rgba(20, 20, 20, 0.6)",
               textDecoration: "none",
               transition: "color 150ms",
