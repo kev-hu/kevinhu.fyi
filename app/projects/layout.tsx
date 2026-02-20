@@ -9,13 +9,27 @@ export default async function ProjectsLayout({
   const projects = getProjects();
 
   return (
-    <div className="projects-layout">
-      <aside className="projects-sidebar">
-        <div className="projects-sidebar-sticky">
+    <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
+      <aside
+        className="hidden lg:block"
+        style={{
+          width: "256px",
+          flexShrink: 0,
+          borderRight: "2px solid var(--color-muted)",
+        }}
+      >
+        <div
+          style={{
+            position: "sticky",
+            top: "65px",
+            height: "calc(100vh - 65px)",
+            overflowY: "auto",
+          }}
+        >
           <ProjectSidebar projects={projects} />
         </div>
       </aside>
-      <div className="projects-content-area">
+      <div style={{ flex: 1, minWidth: 0 }}>
         {children}
       </div>
     </div>

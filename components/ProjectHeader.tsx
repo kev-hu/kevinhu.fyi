@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Project } from "@/lib/projects";
 
 export function ProjectHeader({ project }: { project: Project }) {
@@ -6,24 +5,6 @@ export function ProjectHeader({ project }: { project: Project }) {
 
   return (
     <header>
-      {/* Back link */}
-      <Link
-        href="/#projects"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "4px",
-          fontFamily: "var(--font-body), sans-serif",
-          fontSize: "0.875rem",
-          color: "var(--color-primary)",
-          textDecoration: "none",
-          marginBottom: "24px",
-        }}
-        className="back-link"
-      >
-        ← Back to all projects
-      </Link>
-
       {/* Title */}
       <h1
         style={{

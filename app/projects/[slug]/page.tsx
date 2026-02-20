@@ -44,9 +44,9 @@ export default async function ProjectPage({
   const headings = extractHeadings(project.content);
 
   return (
-    <div className="project-page-inner">
+    <div style={{ display: "flex", gap: "48px", padding: "48px 32px", maxWidth: "1100px" }}>
       {/* Main article */}
-      <article className="project-article">
+      <article style={{ flex: 1, minWidth: 0 }}>
         <ProjectHeader project={project} />
         <div className="prose-content" style={{ marginTop: "40px" }}>
           <MDXRemote
@@ -61,8 +61,11 @@ export default async function ProjectPage({
       </article>
 
       {/* Right TOC — desktop only */}
-      <aside className="project-toc-right">
-        <div className="project-toc-sticky">
+      <aside
+        className="hidden lg:block"
+        style={{ width: "240px", flexShrink: 0 }}
+      >
+        <div style={{ position: "sticky", top: "89px" }}>
           <TableOfContents headings={headings} />
         </div>
       </aside>
