@@ -3,7 +3,7 @@
 @theme {
   /* Fonts — reference next/font CSS variables (set on <body> at runtime) */
   --font-display: var(--font-bricolage);
-  --font-body: var(--font-jakarta);
+  --font-body: var(--font-nunito);
 
   /* Colors */
   --color-background: #faf9f6;
@@ -36,7 +36,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-body), sans-serif;
+    font-family: var(--font-body), "DIN Rounded", system-ui, sans-serif;
   }
 
   h1, h2, h3, h4 {
