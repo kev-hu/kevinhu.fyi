@@ -92,6 +92,17 @@
     text-decoration: underline;
   }
 
+  /* Responsive show/hide — avoids Tailwind utility scanning discrepancies between
+     Turbopack (dev) and webpack/PostCSS (prod). Use instead of hidden lg:block. */
+  .desktop-only {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .desktop-only {
+      display: block;
+    }
+  }
+
   /* Project nav card hover lift */
   .project-nav-card:hover {
     transform: translateY(-3px);

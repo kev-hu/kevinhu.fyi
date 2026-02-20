@@ -62,7 +62,7 @@ export default async function ProjectPage({
 
       {/* Right TOC — desktop only */}
       <aside
-        className="hidden lg:block"
+        className="desktop-only"
         style={{ width: "240px", flexShrink: 0 }}
       >
         <div style={{ position: "sticky", top: "89px" }}>

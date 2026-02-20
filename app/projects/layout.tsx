@@ -11,7 +11,7 @@ export default async function ProjectsLayout({
   return (
     <div style={{ display: "flex", minHeight: "calc(100vh - 65px)" }}>
       <aside
-        className="hidden lg:block"
+        className="desktop-only"
         style={{
           width: "256px",
           flexShrink: 0,
