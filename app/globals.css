@@ -46,7 +46,7 @@
 
 @layer components {
   [data-btn-primary]:hover {
-    box-shadow: var(--shadow-brutal-primary-hover);
+    box-shadow: 0 2px 0 #1490cc;
     transform: translateY(2px);
   }
   [data-btn-primary]:active {
@@ -54,7 +54,7 @@
     transform: translateY(4px);
   }
   [data-btn-secondary]:hover {
-    box-shadow: var(--shadow-brutal-gray-hover);
+    box-shadow: 0 2px 0 #e5e5e5;
     transform: translateY(2px);
   }
   [data-btn-secondary]:active {

@@ -7,16 +7,16 @@ const variantStyles = {
     base: {
       backgroundColor: "var(--color-primary)",
       color: "#ffffff",
-      border: "2px solid var(--color-foreground)",
-      boxShadow: "var(--shadow-brutal-primary)",
+      border: "none",
+      boxShadow: "0 4px 0 #1490cc",
     },
   },
   secondary: {
     base: {
       backgroundColor: "var(--color-card)",
-      color: "var(--color-foreground)",
-      border: "2px solid var(--color-foreground)",
-      boxShadow: "var(--shadow-brutal-gray)",
+      color: "var(--color-primary)",
+      border: "2px solid var(--color-muted)",
+      boxShadow: "0 4px 0 #e5e5e5",
     },
   },
 } as const;
@@ -57,15 +57,9 @@ export default function Button({
   const sharedClassName = [
     // Layout
     "inline-flex items-center justify-center",
-    // Spacing
-    "px-6 py-3",
-    // Typography
-    "text-base font-bold leading-none",
-    // Transition (150 ms on all properties)
-    "transition-all duration-150",
     // Cursor
     "cursor-pointer select-none",
-    // Remove default outline; we rely on the border for focus-visible
+    // Remove default outline
     "outline-none",
     // Focus-visible ring for keyboard accessibility
     "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-primary)]",
@@ -75,10 +69,15 @@ export default function Button({
     .join(" ");
 
   const baseStyle: React.CSSProperties = {
-    // Custom tokens that Tailwind v4 can't resolve without explicit mapping
-    borderRadius: "var(--radius-button)",
+    borderRadius: "16px",
     fontFamily: "var(--font-display), sans-serif",
-    // Spread variant-specific base styles
+    fontSize: "0.9375rem",
+    fontWeight: 700,
+    letterSpacing: "0.03em",
+    textTransform: "uppercase",
+    padding: "14px 24px",
+    lineHeight: 1,
+    transition: "all 0.1s ease",
     ...styles.base,
   };
 
