@@ -4,13 +4,13 @@ import "./globals.css";
 
 const displayFont = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-bricolage",
   display: "swap",
 });
 
 const bodyFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-jakarta",
   display: "swap",
 });
 

@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  /* Fonts */
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
+  /* Fonts — reference next/font CSS variables (set on <body> at runtime) */
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-jakarta);
 
   /* Colors */
-  --color-background: #FAF9F6;
+  --color-background: #faf9f6;
   --color-foreground: #141414;
-  --color-primary: #1CB0F6;
-  --color-primary-hover: #1490CC;
-  --color-secondary: #22C55E;
-  --color-card: #FFFFFF;
-  --color-muted: #E5E5E5;
+  --color-primary: #1cb0f6;
+  --color-primary-hover: #1490cc;
+  --color-secondary: #22c55e;
+  --color-card: #ffffff;
+  --color-muted: #e5e5e5;
 
   /* Border radius */
   --radius-card: 16px;
@@ -20,12 +20,12 @@
   --radius-button: 6px;
 
   /* Shadows */
-  --shadow-brutal: 4px 4px 0px #141414;
-  --shadow-brutal-sm: 2px 2px 0px #141414;
-  --shadow-brutal-primary: 0 4px 0 #1490CC;
-  --shadow-brutal-primary-hover: 0 2px 0 #1490CC;
-  --shadow-brutal-gray: 0 4px 0 #C4C4C4;
-  --shadow-brutal-gray-hover: 0 2px 0 #C4C4C4;
+  --shadow-brutal: 4px 4px 0 #141414;
+  --shadow-brutal-sm: 2px 2px 0 #141414;
+  --shadow-brutal-primary: 0 4px 0 #1490cc;
+  --shadow-brutal-primary-hover: 0 2px 0 #1490cc;
+  --shadow-brutal-gray: 0 4px 0 #c4c4c4;
+  --shadow-brutal-gray-hover: 0 2px 0 #c4c4c4;
 }
 
 @layer base {
