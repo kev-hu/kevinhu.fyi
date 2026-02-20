@@ -1,8 +1,10 @@
 # kevinhu.fyi
 
-Personal portfolio site for Kevin Hu — MBA who codes. Built to showcase project case studies and drive consulting/advisory conversations.
+Personal portfolio site for Kevin Hu. Built to showcase project case studies and drive consulting/advisory conversations.
 
 Live at [kevinhu.fyi](https://kevinhu.fyi).
+
+![Demo](public/demo.png)
 
 ## Stack
 
