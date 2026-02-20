@@ -44,11 +44,11 @@ export default async function ProjectPage({
   const headings = extractHeadings(project.content);
 
   return (
-    <div style={{ display: "flex", gap: "48px", padding: "48px 32px", maxWidth: "1100px" }}>
+    <div style={{ display: "flex", gap: "48px", padding: "48px 32px" }}>
       {/* Main article */}
       <article style={{ flex: 1, minWidth: 0 }}>
         <ProjectHeader project={project} />
-        <div className="prose-content" style={{ marginTop: "40px" }}>
+        <div className="prose-content" style={{ marginTop: "40px", maxWidth: "720px" }}>
           <MDXRemote
             source={project.content}
             options={{
