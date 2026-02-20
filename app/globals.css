@@ -71,4 +71,10 @@
     border-color: var(--color-primary);
     color: var(--color-primary);
   }
+
+  /* ProjectCard hover lift */
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0 #141414;
+  }
 }
