@@ -4,7 +4,11 @@ Personal portfolio site for Kevin Hu. Built to showcase project case studies and
 
 Live at [kevinhu.fyi](https://kevinhu.fyi).
 
+<table><tr><td>
+
 ![Demo](public/demo.png)
+
+</td></tr></table>
 
 ## Stack
 
