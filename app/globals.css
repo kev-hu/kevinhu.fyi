@@ -65,4 +65,10 @@
   .footer-link:hover {
     color: var(--color-primary);
   }
+
+  /* Skills pill hover */
+  .skill-pill:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
 }
