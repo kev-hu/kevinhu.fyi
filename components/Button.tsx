@@ -10,14 +10,6 @@ const variantStyles = {
       border: "2px solid var(--color-foreground)",
       boxShadow: "var(--shadow-brutal-primary)",
     },
-    hover: {
-      boxShadow: "var(--shadow-brutal-primary-hover)",
-      transform: "translateY(2px)",
-    },
-    active: {
-      boxShadow: "none",
-      transform: "translateY(4px)",
-    },
   },
   secondary: {
     base: {
@@ -25,14 +17,6 @@ const variantStyles = {
       color: "var(--color-foreground)",
       border: "2px solid var(--color-foreground)",
       boxShadow: "var(--shadow-brutal-gray)",
-    },
-    hover: {
-      boxShadow: "var(--shadow-brutal-gray-hover)",
-      transform: "translateY(2px)",
-    },
-    active: {
-      boxShadow: "none",
-      transform: "translateY(4px)",
     },
   },
 } as const;
@@ -85,9 +69,6 @@ export default function Button({
     "outline-none",
     // Focus-visible ring for keyboard accessibility
     "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-primary)]",
-    // Hover state via Tailwind group / pseudo — we use CSS custom property tricks
-    // via a data-attribute approach so pure CSS handles the press-in.
-    "group",
     className,
   ]
     .filter(Boolean)
@@ -101,32 +82,9 @@ export default function Button({
     ...styles.base,
   };
 
-  // We inject the hover/active states via a <style> tag scoped to a unique
-  // data attribute so we stay purely declarative without a JS event handler.
-  // This avoids the limitations of Tailwind's inability to interpolate arbitrary
-  // CSS variable values inside pseudo-class utilities in all v4 configurations.
-  const dataAttr = `data-btn-${variant}`;
-
-  const pseudoCSS = `
-[${dataAttr}]:hover {
-  box-shadow: ${styles.hover.boxShadow};
-  transform: ${styles.hover.transform};
-}
-[${dataAttr}]:active {
-  box-shadow: ${styles.active.boxShadow};
-  transform: ${styles.active.transform};
-}
-`.trim();
-
-  const styleTag = (
-    <style
-      // Use dangerouslySetInnerHTML so React doesn't escape the CSS
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: pseudoCSS }}
-    />
-  );
-
-  const dataProps = { [dataAttr]: "" };
+  // Hover/active pseudo-class styles are defined in app/globals.css via
+  // data-attribute selectors ([data-btn-primary], [data-btn-secondary]).
+  const dataProps = { [`data-btn-${variant}`]: "" };
 
   if (props.href !== undefined) {
     const { href, ...anchorRest } =
@@ -134,18 +92,15 @@ export default function Button({
         React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
 
     return (
-      <>
-        {styleTag}
-        <a
-          href={href}
-          className={sharedClassName}
-          style={baseStyle}
-          {...dataProps}
-          {...anchorRest}
-        >
-          {children}
-        </a>
-      </>
+      <a
+        href={href}
+        className={sharedClassName}
+        style={baseStyle}
+        {...dataProps}
+        {...anchorRest}
+      >
+        {children}
+      </a>
     );
   }
 
@@ -153,17 +108,14 @@ export default function Button({
     props as ButtonBaseProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
   return (
-    <>
-      {styleTag}
-      <button
-        type="button"
-        className={sharedClassName}
-        style={baseStyle}
-        {...dataProps}
-        {...buttonRest}
-      >
-        {children}
-      </button>
-    </>
+    <button
+      type="button"
+      className={sharedClassName}
+      style={baseStyle}
+      {...dataProps}
+      {...buttonRest}
+    >
+      {children}
+    </button>
   );
 }

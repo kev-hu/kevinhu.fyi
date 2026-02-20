@@ -39,3 +39,22 @@
     font-family: var(--font-display), sans-serif;
   }
 }
+
+@layer components {
+  [data-btn-primary]:hover {
+    box-shadow: var(--shadow-brutal-primary-hover);
+    transform: translateY(2px);
+  }
+  [data-btn-primary]:active {
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+  [data-btn-secondary]:hover {
+    box-shadow: var(--shadow-brutal-gray-hover);
+    transform: translateY(2px);
+  }
+  [data-btn-secondary]:active {
+    box-shadow: none;
+    transform: translateY(4px);
+  }
+}
