@@ -29,6 +29,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -132,6 +136,16 @@
     }
     .project-toc-mobile {
       display: none;
+    }
+  }
+
+  /* Hero image — cap size on mobile so it doesn't dominate the viewport */
+  .hero-image-placeholder {
+    max-width: 280px !important;
+  }
+  @media (min-width: 1024px) {
+    .hero-image-placeholder {
+      max-width: 400px !important;
     }
   }
 

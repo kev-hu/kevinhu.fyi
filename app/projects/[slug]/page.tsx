@@ -20,7 +20,7 @@ export async function generateMetadata({
     const { slug } = await params;
     const project = getProjectBySlug(slug);
     return {
-      title: `${project.title} | Kevin Hu`,
+      title: project.title,
       description: project.description,
     };
   } catch {

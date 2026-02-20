@@ -17,8 +17,26 @@ const bodyFont = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Kevin Hu",
-  description: "MBA who codes. Enterprise software, data analytics, and 0→1 products.",
+  title: {
+    default: "Kevin Hu",
+    template: "%s | Kevin Hu",
+  },
+  description: "MBA who codes. Enterprise software, data analytics, and 0→1 products. Building AI, advising startups, creating content.",
+  keywords: ["Kevin Hu", "MBA", "AI", "enterprise software", "data analytics", "startups"],
+  authors: [{ name: "Kevin Hu", url: "https://kevinhu.fyi" }],
+  openGraph: {
+    type: "website",
+    url: "https://kevinhu.fyi",
+    title: "Kevin Hu",
+    description: "MBA who codes. Building AI, advising startups, creating content to promote AI literacy.",
+    siteName: "Kevin Hu",
+  },
+  twitter: {
+    card: "summary",
+    title: "Kevin Hu",
+    description: "MBA who codes. Building AI, advising startups, creating content.",
+  },
+  metadataBase: new URL("https://kevinhu.fyi"),
 };
 
 export default function RootLayout({

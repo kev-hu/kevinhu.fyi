@@ -3,6 +3,7 @@ import Button from "@/components/Button";
 export default function Hero() {
   return (
     <section
+      id="about"
       style={{
         background:
           "radial-gradient(ellipse at 70% 50%, rgba(28, 176, 246, 0.06) 0%, transparent 60%)",
@@ -83,7 +84,7 @@ export default function Hero() {
           </div>
 
           {/* ── Right column (~45%) ────────────────────────────────────────── */}
-          <div className="flex justify-center lg:justify-end lg:w-[45%]">
+          <div className="flex justify-center lg:justify-end lg:w-[45%] w-full">
             {/*
               Placeholder for the illustrated headshot.
               Replace this <div> with <Image> once /public/images/headshot.png exists:
@@ -99,6 +100,7 @@ export default function Hero() {
               />
             */}
             <div
+              className="hero-image-placeholder"
               style={{
                 width: "100%",
                 maxWidth: "400px",
