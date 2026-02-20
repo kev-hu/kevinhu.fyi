@@ -1,6 +1,8 @@
 import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 const displayFont = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -27,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
+        <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );
