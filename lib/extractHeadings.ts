@@ -3,7 +3,7 @@ export type Heading = { id: string; text: string; level: number };
 function toSlug(text: string): string {
   return text
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/[^a-z0-9_\s-]/g, "")
     .trim()
     .replace(/\s+/g, "-");
 }
