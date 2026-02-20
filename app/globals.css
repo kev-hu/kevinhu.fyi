@@ -3,7 +3,7 @@
 @theme {
   /* Fonts — reference next/font CSS variables (set on <body> at runtime) */
   --font-display: var(--font-bricolage);
-  --font-body: var(--font-nunito);
+  --font-body: var(--font-jakarta);
 
   /* Colors */
   --color-background: #faf9f6;
@@ -36,7 +36,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-body), "DIN Rounded", system-ui, sans-serif;
+    font-family: var(--font-body), system-ui, sans-serif;
   }
 
   h1, h2, h3, h4 {
@@ -102,40 +102,62 @@
     box-shadow: 4px 4px 0 #141414;
   }
 
-  /* Project page layout */
-  .project-body {
-    margin-top: 48px;
+  /* ── Projects layout (left sidebar + content + right TOC) ── */
+  .projects-layout {
     display: flex;
-    gap: 48px;
+    min-height: calc(100vh - 65px);
+    border-top: 2px solid var(--color-muted);
   }
-  .project-toc-sidebar {
+  .projects-sidebar {
     display: none;
     width: 256px;
+    flex-shrink: 0;
+    border-right: 2px solid var(--color-muted);
+  }
+  .projects-sidebar-sticky {
+    position: sticky;
+    top: 65px;
+    height: calc(100vh - 65px);
+    overflow-y: auto;
+  }
+  .projects-content-area {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Project page inner: article + right TOC */
+  .project-page-inner {
+    display: flex;
+    gap: 48px;
+    padding: 48px 32px;
+    max-width: 1100px;
+  }
+  .project-article {
+    flex: 1;
+    min-width: 0;
+  }
+  .project-toc-right {
+    display: none;
+    width: 240px;
     flex-shrink: 0;
   }
   .project-toc-sticky {
     position: sticky;
-    top: 96px;
+    top: 89px;
   }
-  .project-main {
-    flex: 1;
-    min-width: 0;
-  }
-  .project-toc-mobile {
-    display: block;
-    margin-bottom: 32px;
+
+  /* Sidebar hover */
+  .sidebar-item:hover {
+    color: var(--color-primary);
+    background-color: rgba(28, 176, 246, 0.04);
   }
 
   @media (min-width: 1024px) {
-    .project-page-container {
-      padding-left: 48px;
-      padding-right: 48px;
-    }
-    .project-toc-sidebar {
+    .projects-sidebar {
       display: block;
     }
-    .project-toc-mobile {
-      display: none;
+    .project-toc-right {
+      display: block;
     }
   }
 
