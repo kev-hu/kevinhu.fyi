@@ -47,16 +47,18 @@ export default async function ProjectPage({
     <div style={{ display: "flex", gap: "48px", padding: "48px 32px" }}>
       {/* Main article */}
       <article style={{ flex: 1, minWidth: 0 }}>
-        <ProjectHeader project={project} />
-        <div className="prose-content" style={{ marginTop: "40px", maxWidth: "720px" }}>
-          <MDXRemote
-            source={project.content}
-            options={{
-              mdxOptions: {
-                rehypePlugins: [rehypeSlug],
-              },
-            }}
-          />
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <ProjectHeader project={project} />
+          <div className="prose-content" style={{ marginTop: "40px" }}>
+            <MDXRemote
+              source={project.content}
+              options={{
+                mdxOptions: {
+                  rehypePlugins: [rehypeSlug],
+                },
+              }}
+            />
+          </div>
         </div>
       </article>
 
