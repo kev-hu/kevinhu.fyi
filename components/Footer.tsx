@@ -1,22 +1,4 @@
-"use client";
-
 export default function Footer() {
-  const linkStyle: React.CSSProperties = {
-    fontFamily: "var(--font-body), sans-serif",
-    fontSize: "0.875rem",
-    color: "rgba(20, 20, 20, 0.6)",
-    textDecoration: "none",
-    transition: "color 150ms",
-  };
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.currentTarget.style.color = "var(--color-primary)";
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.currentTarget.style.color = "rgba(20, 20, 20, 0.6)";
-  };
-
   return (
     <footer
       style={{
@@ -52,17 +34,27 @@ export default function Footer() {
             href="https://www.linkedin.com/in/kevinhu88/"
             target="_blank"
             rel="noopener noreferrer"
-            style={linkStyle}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            className="footer-link"
+            style={{
+              fontFamily: "var(--font-body), sans-serif",
+              fontSize: "0.875rem",
+              color: "rgba(20, 20, 20, 0.6)",
+              textDecoration: "none",
+              transition: "color 150ms",
+            }}
           >
             LinkedIn
           </a>
           <a
             href="mailto:kevin@kevinhu.fyi"
-            style={linkStyle}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            className="footer-link"
+            style={{
+              fontFamily: "var(--font-body), sans-serif",
+              fontSize: "0.875rem",
+              color: "rgba(20, 20, 20, 0.6)",
+              textDecoration: "none",
+              transition: "color 150ms",
+            }}
           >
             Email
           </a>

@@ -64,14 +64,6 @@ export default function Nav() {
                 textDecoration: "none",
                 transition: "color 150ms",
               }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--color-primary)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--color-foreground)")
-              }
             >
               {label}
             </a>
@@ -87,6 +79,8 @@ export default function Nav() {
           type="button"
           className="md:hidden"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
           onClick={() => setMenuOpen((prev) => !prev)}
           style={{
             display: "flex",
@@ -141,6 +135,7 @@ export default function Nav() {
 
       {/* Mobile dropdown menu */}
       <div
+        id="mobile-menu"
         className="md:hidden"
         style={{
           overflow: "hidden",
@@ -163,6 +158,7 @@ export default function Nav() {
             <a
               key={label}
               href={href}
+              className="nav-link"
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily: "var(--font-body), sans-serif",
@@ -172,14 +168,6 @@ export default function Nav() {
                 textDecoration: "none",
                 transition: "color 150ms",
               }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--color-primary)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color =
-                  "var(--color-foreground)")
-              }
             >
               {label}
             </a>

@@ -57,4 +57,12 @@
     box-shadow: none;
     transform: translateY(4px);
   }
+
+  /* Nav & Footer link hovers */
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+  .footer-link:hover {
+    color: var(--color-primary);
+  }
 }
