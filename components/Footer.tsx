@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer
@@ -18,7 +20,7 @@ export default function Footer() {
         className="flex-col items-center md:flex-row md:justify-between md:items-center"
       >
         {/* Left: identity */}
-        <a
+        <Link
           href="/"
           className="footer-link"
           style={{
@@ -30,7 +32,7 @@ export default function Footer() {
           }}
         >
           kevinhu.fyi
-        </a>
+        </Link>
 
         {/* Right: external links */}
         <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>

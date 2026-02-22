@@ -4,6 +4,7 @@ import rehypeSlug from "rehype-slug";
 import { extractHeadings } from "@/lib/extractHeadings";
 import { TableOfContents } from "@/components/TableOfContents";
 import { ProjectHeader } from "@/components/ProjectHeader";
+import ProjectCTA from "@/components/ProjectCTA";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -59,6 +60,7 @@ export default async function ProjectPage({
               }}
             />
           </div>
+          <ProjectCTA />
         </div>
       </article>
 

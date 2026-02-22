@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { getProjects } from "@/lib/projects";
 
 const displayFont = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -39,15 +40,17 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://kevinhu.fyi"),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const projects = getProjects();
+
   return (
     <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
       <body>
-        <Nav />
+        <Nav projects={projects} />
         {children}
         <Footer />
       </body>

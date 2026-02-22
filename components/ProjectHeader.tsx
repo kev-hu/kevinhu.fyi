@@ -88,69 +88,54 @@ export function ProjectHeader({ project }: { project: Project }) {
         </div>
       )}
 
-      {/* Metrics bar */}
+      {/* Metrics */}
       {metrics.length > 0 && (
         <div
           style={{
             display: "flex",
             flexWrap: "wrap",
-            alignItems: "center",
-            gap: "0",
-            padding: "20px 24px",
-            backgroundColor: "var(--color-card)",
-            border: "2px solid var(--color-foreground)",
-            borderRadius: "var(--radius-card)",
-            boxShadow: "var(--shadow-brutal-sm)",
+            gap: "10px",
           }}
         >
-          {metrics.map((metric, idx) => (
+          {metrics.map((metric) => (
             <div
               key={metric.label}
               style={{
-                display: "flex",
-                alignItems: "center",
-                flex: "1 1 auto",
+                flex: "1 1 120px",
+                minWidth: "100px",
+                padding: "16px 20px",
+                backgroundColor: "var(--color-card)",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-container)",
+                boxShadow: "var(--shadow-brutal-sm)",
+                textAlign: "center",
               }}
             >
-              <div style={{ textAlign: "center", padding: "0 24px" }}>
-                <div
-                  style={{
-                    fontFamily: "var(--font-display), sans-serif",
-                    fontSize: "2rem",
-                    fontWeight: 700,
-                    color: "var(--color-secondary)",
-                    lineHeight: 1.1,
-                  }}
-                >
-                  {metric.value}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-body), sans-serif",
-                    fontSize: "0.75rem",
-                    color: "var(--color-foreground)",
-                    opacity: 0.6,
-                    marginTop: "4px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    fontWeight: 500,
-                  }}
-                >
-                  {metric.label}
-                </div>
+              <div
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "1.75rem",
+                  fontWeight: 700,
+                  color: "var(--color-secondary)",
+                  lineHeight: 1.1,
+                }}
+              >
+                {metric.value}
               </div>
-
-              {/* Vertical divider (not after last item) */}
-              {idx < metrics.length - 1 && (
-                <div
-                  style={{
-                    width: "1px",
-                    height: "40px",
-                    backgroundColor: "var(--color-muted)",
-                    flexShrink: 0,
-                  }}
-                />
-              )}
+              <div
+                style={{
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.6875rem",
+                  color: "var(--color-foreground)",
+                  opacity: 0.6,
+                  marginTop: "4px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  fontWeight: 500,
+                }}
+              >
+                {metric.label}
+              </div>
             </div>
           ))}
         </div>
