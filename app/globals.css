@@ -323,6 +323,184 @@
   .marquee-enhanced-row-1 { animation: marquee-scroll 25s linear infinite; }
   .marquee-enhanced-row-2 { animation: marquee-scroll-reverse 30s linear infinite; }
 
+  /* ── Site Components (Phase 1) ─────────────────────────────────────── */
+
+  /* Window Card — macOS-style project card entrance */
+  @keyframes window-card-enter {
+    0%, 5%    { opacity: 0; transform: translateY(40px); }
+    18%, 70%  { opacity: 1; transform: translateY(0); }
+    85%, 100% { opacity: 0; transform: translateY(-12px); }
+  }
+  @keyframes window-dot-pop {
+    0%, 8%    { opacity: 0; transform: scale(0); }
+    18%, 72%  { opacity: 1; transform: scale(1); }
+    85%, 100% { opacity: 0; transform: scale(0.8); }
+  }
+  @keyframes window-thumb-reveal {
+    0%, 12%   { opacity: 0; transform: scale(1.05); }
+    25%, 70%  { opacity: 1; transform: scale(1); }
+    85%, 100% { opacity: 0; transform: scale(1.02); }
+  }
+  @keyframes window-body-reveal {
+    0%, 16%   { opacity: 0; transform: translateY(12px); }
+    28%, 70%  { opacity: 1; transform: translateY(0); }
+    85%, 100% { opacity: 0; transform: translateY(-6px); }
+  }
+  .window-card-enter  { animation: window-card-enter 7s ease infinite; }
+  .window-dot-1       { animation: window-dot-pop 7s ease 0.1s infinite; }
+  .window-dot-2       { animation: window-dot-pop 7s ease 0.2s infinite; }
+  .window-dot-3       { animation: window-dot-pop 7s ease 0.3s infinite; }
+  .window-thumb-reveal { animation: window-thumb-reveal 7s ease 0.3s infinite; }
+  .window-body-reveal  { animation: window-body-reveal 7s ease 0.4s infinite; }
+
+  /* Headshot Split — hero two-column entrance */
+  @keyframes hero-split-in {
+    0%, 5%    { opacity: 0; transform: translateY(20px); }
+    15%, 68%  { opacity: 1; transform: translateY(0); }
+    82%, 100% { opacity: 0; transform: translateY(-8px); }
+  }
+  @keyframes hero-split-photo-in {
+    0%, 8%    { opacity: 0; transform: scale(0.85); }
+    20%, 68%  { opacity: 1; transform: scale(1); }
+    82%, 100% { opacity: 0; transform: scale(0.95); }
+  }
+  @keyframes hero-split-bg-glow {
+    0%, 10%   { opacity: 0; }
+    20%, 70%  { opacity: 1; }
+    85%, 100% { opacity: 0; }
+  }
+  .hero-split-badge    { animation: hero-split-in 8s ease infinite; }
+  .hero-split-headline { animation: hero-split-in 8s ease 0.2s infinite; }
+  .hero-split-desc     { animation: hero-split-in 8s ease 0.4s infinite; }
+  .hero-split-buttons  { animation: hero-split-in 8s ease 0.6s infinite; }
+  .hero-split-photo    { animation: hero-split-photo-in 8s ease 0.3s infinite; }
+
+  /* Availability Badge — pill expand + text fade */
+  @keyframes avail-badge-enter {
+    0%, 5%    { opacity: 0; transform: scaleX(0); }
+    15%, 72%  { opacity: 1; transform: scaleX(1); }
+    85%, 100% { opacity: 0; transform: scaleX(0.9); }
+  }
+  @keyframes avail-badge-text-in {
+    0%, 18%   { opacity: 0; }
+    28%, 72%  { opacity: 1; }
+    85%, 100% { opacity: 0; }
+  }
+  .avail-badge-enter { animation: avail-badge-enter 5s ease infinite; }
+  .avail-badge-text  { animation: avail-badge-text-in 5s ease infinite; }
+
+  /* ── Content Template components ─────────────────────────────────────── */
+
+  /* Quote Block */
+  @keyframes quote-mark-in {
+    0%, 5%    { opacity: 0; transform: scale(0) rotate(-10deg); }
+    15%, 70%  { opacity: 0.15; transform: scale(1) rotate(0deg); }
+    85%, 100% { opacity: 0; transform: scale(0.9) rotate(0deg); }
+  }
+  @keyframes quote-text-in {
+    0%, 10%   { opacity: 0; transform: translateY(8px); }
+    25%, 70%  { opacity: 1; transform: translateY(0); }
+    85%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  @keyframes quote-rule-draw {
+    0%, 15%   { transform: scaleX(0); }
+    30%, 70%  { transform: scaleX(1); }
+    85%, 100% { transform: scaleX(0); }
+  }
+  @keyframes quote-attr-in {
+    0%, 25%   { opacity: 0; transform: translateY(12px); }
+    35%, 70%  { opacity: 1; transform: translateY(0); }
+    85%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  .quote-mark-enter {
+    animation: quote-mark-in 8s ease infinite;
+  }
+  .quote-text-enter {
+    animation: quote-text-in 8s ease infinite;
+  }
+  .quote-rule-draw {
+    animation: quote-rule-draw 8s ease infinite;
+    transform-origin: left;
+  }
+  .quote-attr-enter {
+    animation: quote-attr-in 8s ease infinite;
+  }
+
+  /* Split Comparison */
+  @keyframes split-enter-left {
+    0%, 5%    { opacity: 0; transform: translateX(-30px); }
+    18%, 70%  { opacity: 1; transform: translateX(0); }
+    85%, 100% { opacity: 0; transform: translateX(-10px); }
+  }
+  @keyframes split-enter-right {
+    0%, 5%    { opacity: 0; transform: translateX(30px); }
+    18%, 70%  { opacity: 1; transform: translateX(0); }
+    85%, 100% { opacity: 0; transform: translateX(10px); }
+  }
+  @keyframes split-bar-fill {
+    0%, 3%    { transform: scaleX(0); }
+    15%, 72%  { transform: scaleX(1); }
+    85%, 100% { transform: scaleX(0); }
+  }
+  @keyframes split-bullet-in {
+    0%, 15%   { opacity: 0; transform: translateY(6px); }
+    28%, 70%  { opacity: 1; transform: translateY(0); }
+    85%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  .split-left-enter {
+    animation: split-enter-left 7s ease infinite;
+  }
+  .split-right-enter {
+    animation: split-enter-right 7s ease infinite;
+  }
+  .split-bar-fill {
+    animation: split-bar-fill 7s ease infinite;
+    transform-origin: left;
+  }
+  .split-bullet-1 { animation: split-bullet-in 7s ease 0.3s infinite; }
+  .split-bullet-2 { animation: split-bullet-in 7s ease 0.45s infinite; }
+  .split-bullet-3 { animation: split-bullet-in 7s ease 0.6s infinite; }
+  .split-bullet-4 { animation: split-bullet-in 7s ease 0.6s infinite; }
+  .split-bullet-5 { animation: split-bullet-in 7s ease 0.75s infinite; }
+  .split-bullet-6 { animation: split-bullet-in 7s ease 0.9s infinite; }
+  @media (max-width: 767px) {
+    .split-responsive-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .split-left-panel {
+      border-right: none !important;
+      border-bottom: 2px solid #E5E5E5;
+    }
+  }
+
+  /* Social Card */
+  @keyframes social-slide-down {
+    0%, 3%    { transform: translateY(-100%); }
+    12%, 72%  { transform: translateY(0); }
+    85%, 100% { transform: translateY(-100%); }
+  }
+  @keyframes social-slide-up {
+    0%, 3%    { transform: translateY(100%); }
+    12%, 72%  { transform: translateY(0); }
+    85%, 100% { transform: translateY(100%); }
+  }
+  @keyframes social-content-in {
+    0%, 12%   { opacity: 0; transform: translateY(8px); }
+    22%, 72%  { opacity: 1; transform: translateY(0); }
+    85%, 100% { opacity: 0; }
+  }
+  .social-blue-enter {
+    animation: social-slide-down 7s ease infinite;
+  }
+  .social-white-enter {
+    animation: social-slide-up 7s ease infinite;
+  }
+  .social-content-1 { animation: social-content-in 7s ease 0.2s infinite; }
+  .social-content-2 { animation: social-content-in 7s ease 0.4s infinite; }
+  .social-content-3 { animation: social-content-in 7s ease 0.6s infinite; }
+  .social-content-4 { animation: social-content-in 7s ease 0.8s infinite; }
+  .social-content-5 { animation: social-content-in 7s ease 1.0s infinite; }
+
   /* Prose / MDX content styles */
   .prose-content h2 {
     font-family: var(--font-display);

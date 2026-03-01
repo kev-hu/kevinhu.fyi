@@ -2298,7 +2298,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Banner 5: The Marquee Strip (Enhanced) ─────────────────────── */}
-        <section style={{ ...sectionStyle, borderBottom: "none" }}>
+        <section style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Marquee Strip (Enhanced)</h2>
           <p style={sectionDescStyle}>
             Two-row marquee with opposing scroll directions. Text keywords
@@ -2520,6 +2520,1140 @@ export default function BrandKitPage() {
             row 1: marquee-scroll 25s linear infinite (left)<br />
             row 2: marquee-scroll-reverse 30s linear infinite (right)<br />
             blue background (#1CB0F6) with white text + semi-transparent badge pills
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            SITE COMPONENTS (PHASE 1)
+            ═══════════════════════════════════════════════════════════════════ */}
+        <section style={{ ...sectionStyle, borderBottom: "none", paddingBottom: "24px" }}>
+          <div
+            style={{
+              display: "inline-block",
+              backgroundColor: "#F59E0B",
+              color: "#ffffff",
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "0.8125rem",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              padding: "5px 14px",
+              borderRadius: "var(--radius-button)",
+              marginBottom: "16px",
+            }}
+          >
+            Phase 1
+          </div>
+          <h2
+            style={{
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+              color: "var(--color-foreground)",
+              margin: 0,
+              marginBottom: "12px",
+            }}
+          >
+            Site Components
+          </h2>
+          <p style={sectionDescStyle}>
+            Full-fidelity replicas of the site&apos;s key UI moments, animated
+            as looping CSS showcases. These are the building blocks visitors
+            actually see and interact with.
+          </p>
+        </section>
+
+        {/* ── Component 1: The Window Card ─────────────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Window Card</h2>
+          <p style={sectionDescStyle}>
+            The homepage&apos;s macOS-style project card — the site&apos;s most
+            distinctive visual element. Traffic-light dots, thumbnail with
+            accent bar, tags. Full entrance animation loops every 7 seconds.
+          </p>
+
+          <div
+            style={{
+              padding: "48px 24px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              className="window-card-enter"
+              style={{
+                maxWidth: "400px",
+                width: "100%",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                overflow: "hidden",
+                backgroundColor: "var(--color-card)",
+              }}
+            >
+              {/* Title bar */}
+              <div
+                style={{
+                  height: "36px",
+                  backgroundColor: "#141414",
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "0 12px",
+                  position: "relative",
+                }}
+              >
+                <div style={{ display: "flex", gap: "6px" }}>
+                  <span
+                    className="window-dot-1"
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      borderRadius: "50%",
+                      backgroundColor: "#FF5F57",
+                    }}
+                  />
+                  <span
+                    className="window-dot-2"
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      borderRadius: "50%",
+                      backgroundColor: "#FFBD2E",
+                    }}
+                  />
+                  <span
+                    className="window-dot-3"
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      borderRadius: "50%",
+                      backgroundColor: "#28C840",
+                    }}
+                  />
+                </div>
+                <span
+                  style={{
+                    position: "absolute",
+                    right: "12px",
+                    fontFamily: "monospace",
+                    fontSize: "0.75rem",
+                    color: "rgba(255,255,255,0.5)",
+                  }}
+                >
+                  project-demo.tsx
+                </span>
+              </div>
+
+              {/* Thumbnail */}
+              <div
+                className="window-thumb-reveal"
+                style={{
+                  height: "200px",
+                  backgroundColor: "rgba(28,176,246,0.08)",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    height: "4px",
+                    backgroundColor: "var(--color-primary)",
+                  }}
+                />
+              </div>
+
+              {/* Body */}
+              <div className="window-body-reveal" style={{ padding: "20px" }}>
+                <p
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.125rem",
+                    fontWeight: 700,
+                    color: "var(--color-foreground)",
+                    margin: 0,
+                  }}
+                >
+                  AI Growth Platform
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.8125rem",
+                    color: "var(--color-foreground)",
+                    opacity: 0.6,
+                    margin: 0,
+                    marginTop: "4px",
+                  }}
+                >
+                  ML-powered analytics for early-stage startups
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "6px",
+                    marginTop: "12px",
+                  }}
+                >
+                  {["React", "Python", "BigQuery", "Next.js"].map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        fontFamily: "var(--font-body), sans-serif",
+                        fontSize: "0.6875rem",
+                        fontWeight: 500,
+                        color: "var(--color-foreground)",
+                        border: "1px solid var(--color-muted)",
+                        borderRadius: "6px",
+                        padding: "4px 10px",
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            card: window-card-enter 7s ease infinite (translateY 40px → 0 → -12px)<br />
+            dots: window-dot-pop 7s ease, stagger 0.1s → 0.2s → 0.3s (scale 0 → 1)<br />
+            thumbnail: window-thumb-reveal 7s ease 0.3s (scale 1.05 → 1)<br />
+            body: window-body-reveal 7s ease 0.4s (translateY 12px → 0)
+          </div>
+        </section>
+
+        {/* ── Component 2: The Headshot Split ──────────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Headshot Split</h2>
+          <p style={sectionDescStyle}>
+            The hero section&apos;s two-column layout — the personal brand
+            introduction moment. Left column text staggers in, headshot scales
+            up, background glow fades in. Loops every 8 seconds.
+          </p>
+
+          <div
+            style={{
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              overflow: "hidden",
+              padding: "48px 40px",
+              backgroundColor: "var(--color-card)",
+              position: "relative",
+            }}
+          >
+            {/* Background glow */}
+            <div
+              className="hero-split-badge"
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "radial-gradient(ellipse at 60% 50%, rgba(28,176,246,0.06), transparent 70%)",
+                pointerEvents: "none",
+              }}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                gap: "40px",
+                flexWrap: "wrap",
+                position: "relative",
+              }}
+            >
+              {/* Left column */}
+              <div style={{ flex: "1.2", minWidth: "280px" }}>
+                <div className="hero-split-badge">
+                  <span
+                    style={{
+                      display: "inline-block",
+                      backgroundColor: "#22C55E",
+                      color: "#ffffff",
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "0.8125rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                      padding: "5px 14px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    Available for Work
+                  </span>
+                </div>
+
+                <h3
+                  className="hero-split-headline"
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+                    fontWeight: 800,
+                    letterSpacing: "-0.03em",
+                    color: "var(--color-foreground)",
+                    margin: 0,
+                    marginTop: "16px",
+                  }}
+                >
+                  Hello, I&apos;m Kevin{" "}
+                  <span role="img" aria-label="wave">
+                    {"👋"}
+                  </span>
+                </h3>
+
+                <p
+                  className="hero-split-desc"
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "1.0625rem",
+                    fontWeight: 400,
+                    color: "var(--color-foreground)",
+                    opacity: 0.6,
+                    lineHeight: 1.7,
+                    margin: 0,
+                    marginTop: "12px",
+                    maxWidth: "480px",
+                  }}
+                >
+                  MBA who codes. I help founders and teams ship products faster
+                  with AI, from strategy to production.
+                </p>
+
+                <div
+                  className="hero-split-buttons"
+                  style={{
+                    display: "flex",
+                    gap: "12px",
+                    marginTop: "24px",
+                  }}
+                >
+                  <Button variant="primary">Book a Call</Button>
+                  <Button variant="secondary">View Work</Button>
+                </div>
+              </div>
+
+              {/* Right column */}
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minWidth: "200px",
+                }}
+              >
+                <div
+                  className="hero-split-photo"
+                  style={{
+                    width: "240px",
+                    height: "240px",
+                    borderRadius: "50%",
+                    backgroundColor: "#E5E5E5",
+                    border: "3px solid var(--color-foreground)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "4rem",
+                      fontWeight: 800,
+                      color: "var(--color-primary)",
+                    }}
+                  >
+                    KH
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            text: hero-split-in 8s ease, stagger 0s → 0.2s → 0.4s → 0.6s<br />
+            photo: hero-split-photo-in 8s ease 0.3s (scale 0.85 → 1)<br />
+            bg glow: radial-gradient rgba(28,176,246,0.06) fades in with badge<br />
+            responsive: flex-wrap, photo order -1 on mobile (160px)
+          </div>
+        </section>
+
+        {/* ── Component 3: The Availability Badge ─────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Availability Badge</h2>
+          <p style={sectionDescStyle}>
+            The green pill with pulsing dot — a standalone animated
+            micro-component shown in three size variants. Badge expands from
+            center, dot pulses after reveal. Loops every 5 seconds.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "32px",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "48px 24px",
+            }}
+          >
+            {/* Small variant */}
+            <div style={{ textAlign: "center" }}>
+              <p
+                style={{
+                  ...tokenLabelStyle,
+                  marginBottom: "16px",
+                  fontSize: "0.75rem",
+                }}
+              >
+                Small
+              </p>
+              <div
+                className="avail-badge-enter"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  backgroundColor: "rgba(34,197,94,0.12)",
+                  border: "1.5px solid #22C55E",
+                  borderRadius: "100px",
+                  padding: "6px 14px",
+                }}
+              >
+                <span
+                  className="availability-dot"
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    backgroundColor: "#22C55E",
+                    display: "inline-block",
+                  }}
+                />
+                <span
+                  className="avail-badge-text"
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    color: "#15803d",
+                  }}
+                >
+                  Available for Projects
+                </span>
+              </div>
+            </div>
+
+            {/* Default variant */}
+            <div style={{ textAlign: "center" }}>
+              <p
+                style={{
+                  ...tokenLabelStyle,
+                  marginBottom: "16px",
+                  fontSize: "0.75rem",
+                }}
+              >
+                Default
+              </p>
+              <div
+                className="avail-badge-enter"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  backgroundColor: "rgba(34,197,94,0.12)",
+                  border: "1.5px solid #22C55E",
+                  borderRadius: "100px",
+                  padding: "8px 20px",
+                }}
+              >
+                <span
+                  className="availability-dot"
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "#22C55E",
+                    display: "inline-block",
+                  }}
+                />
+                <span
+                  className="avail-badge-text"
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.8125rem",
+                    fontWeight: 600,
+                    color: "#15803d",
+                  }}
+                >
+                  Available for Projects
+                </span>
+              </div>
+            </div>
+
+            {/* Large variant */}
+            <div style={{ textAlign: "center" }}>
+              <p
+                style={{
+                  ...tokenLabelStyle,
+                  marginBottom: "16px",
+                  fontSize: "0.75rem",
+                }}
+              >
+                Large
+              </p>
+              <div
+                className="avail-badge-enter"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  backgroundColor: "rgba(34,197,94,0.12)",
+                  border: "1.5px solid #22C55E",
+                  borderRadius: "100px",
+                  padding: "10px 24px",
+                }}
+              >
+                <span
+                  className="availability-dot"
+                  style={{
+                    width: "12px",
+                    height: "12px",
+                    borderRadius: "50%",
+                    backgroundColor: "#22C55E",
+                    display: "inline-block",
+                  }}
+                />
+                <span
+                  className="avail-badge-text"
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "0.9375rem",
+                    fontWeight: 600,
+                    color: "#15803d",
+                  }}
+                >
+                  Available for Projects
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            pill: avail-badge-enter 5s ease infinite (scaleX 0 → 1 from center)<br />
+            dot: pulse-dot 2s ease-in-out infinite (begins after pill expand)<br />
+            text: avail-badge-text-in 5s ease infinite (200ms delayed fade)<br />
+            variants: small (6px 14px), default (8px 20px), large (10px 24px)
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            CONTENT TEMPLATES
+            ═══════════════════════════════════════════════════════════════════ */}
+        <section style={{ ...sectionStyle, borderBottom: "none", paddingBottom: "24px" }}>
+          <div
+            style={{
+              display: "inline-block",
+              backgroundColor: "var(--color-primary)",
+              color: "#ffffff",
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "0.8125rem",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              padding: "5px 14px",
+              borderRadius: "var(--radius-button)",
+              marginBottom: "16px",
+            }}
+          >
+            Content Templates
+          </div>
+          <h2
+            style={{
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+              color: "var(--color-foreground)",
+              margin: 0,
+              marginBottom: "12px",
+            }}
+          >
+            Content Creation Components
+          </h2>
+          <p style={sectionDescStyle}>
+            Content-ready templates for social posts, pitch decks, and
+            video thumbnails. Each component is fully animated and uses
+            brand tokens for a consistent visual identity.
+          </p>
+        </section>
+
+        {/* ── The Quote Block ────────────────────────────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Quote Block</h2>
+          <p style={sectionDescStyle}>
+            A testimonial pull-quote card with an oversized decorative quotation
+            mark, animated entrance, and drawing horizontal rule. Attribution
+            slides up last. Loops every 8 seconds.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "48px 0",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "560px",
+                width: "100%",
+                background: "var(--color-card)",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                padding: "40px 36px",
+                position: "relative",
+                overflow: "hidden",
+              }}
+            >
+              {/* Large decorative quote mark */}
+              <span
+                className="quote-mark-enter"
+                style={{
+                  position: "absolute",
+                  top: "24px",
+                  left: "28px",
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "5rem",
+                  fontWeight: 800,
+                  color: "#1CB0F6",
+                  lineHeight: 1,
+                  opacity: 0.15,
+                  zIndex: 0,
+                }}
+              >
+                &ldquo;
+              </span>
+
+              {/* Quote text */}
+              <p
+                className="quote-text-enter"
+                style={{
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "1.25rem",
+                  fontWeight: 400,
+                  lineHeight: 1.7,
+                  color: "var(--color-foreground)",
+                  position: "relative",
+                  zIndex: 1,
+                  paddingTop: "32px",
+                  margin: 0,
+                }}
+              >
+                Kevin helped us ship our AI-powered CRM in 8 weeks &mdash; what
+                we estimated would take 6 months. His ability to bridge business
+                strategy and engineering execution is rare.
+              </p>
+
+              {/* Horizontal rule */}
+              <div
+                className="quote-rule-draw"
+                style={{
+                  height: "2px",
+                  background: "var(--color-muted)",
+                  margin: "24px 0",
+                }}
+              />
+
+              {/* Attribution row */}
+              <div
+                className="quote-attr-enter"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "14px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    backgroundColor: "#E5E5E5",
+                    border: "2px solid var(--color-foreground)",
+                    flexShrink: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.75rem",
+                    fontWeight: 700,
+                    color: "var(--color-foreground)",
+                  }}
+                >
+                  SL
+                </div>
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "0.9375rem",
+                      fontWeight: 700,
+                      color: "var(--color-foreground)",
+                    }}
+                  >
+                    Sarah Lin
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-body), sans-serif",
+                      fontSize: "0.8125rem",
+                      fontWeight: 400,
+                      color: "var(--color-foreground)",
+                      opacity: 0.5,
+                    }}
+                  >
+                    CTO, ScaleAI Ventures
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            animation: quote-mark-in / quote-text-in / quote-rule-draw / quote-attr-in<br />
+            duration: 8s ease infinite (looping)<br />
+            motion: quote mark scales 0&rarr;1 with rotation, text fades in, rule draws left&rarr;right, attribution slides up
+          </div>
+        </section>
+
+        {/* ── The Split Comparison ───────────────────────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Split Comparison</h2>
+          <p style={sectionDescStyle}>
+            A side-by-side Problem / Solution card with color-coded header bars,
+            staggered bullet reveals, and sliding panel entrances. Responsive:
+            stacks vertically on mobile. Loops every 7 seconds.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "48px 0",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "640px",
+                width: "100%",
+                background: "var(--color-card)",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                className="split-responsive-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                }}
+              >
+                {/* Left panel — Problem */}
+                <div
+                  className="split-left-enter split-left-panel"
+                  style={{
+                    borderRight: "2px solid var(--color-muted)",
+                  }}
+                >
+                  <div
+                    className="split-bar-fill"
+                    style={{
+                      height: "6px",
+                      backgroundColor: "#FF5F57",
+                      transformOrigin: "left",
+                    }}
+                  />
+                  <div style={{ padding: "28px 24px" }}>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-display), sans-serif",
+                        fontSize: "0.75rem",
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        color: "#FF5F57",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      Problem
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-display), sans-serif",
+                        fontSize: "1.125rem",
+                        fontWeight: 700,
+                        color: "var(--color-foreground)",
+                      }}
+                    >
+                      The Challenge
+                    </div>
+                    <div style={{ marginTop: "16px" }}>
+                      {["Manual data entry across 3 systems", "6-month estimated timeline", "No real-time analytics"].map(
+                        (text, i) => (
+                          <div
+                            key={i}
+                            className={`split-bullet-${i + 1}`}
+                            style={{
+                              display: "flex",
+                              alignItems: "flex-start",
+                              gap: "10px",
+                              marginBottom: "10px",
+                              fontFamily: "var(--font-body), sans-serif",
+                              fontSize: "0.875rem",
+                              color: "var(--color-foreground)",
+                              opacity: 0.6,
+                            }}
+                          >
+                            <span
+                              style={{
+                                width: "6px",
+                                height: "6px",
+                                borderRadius: "50%",
+                                backgroundColor: "#FF5F57",
+                                flexShrink: 0,
+                                marginTop: "7px",
+                              }}
+                            />
+                            {text}
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right panel — Solution */}
+                <div className="split-right-enter">
+                  <div
+                    className="split-bar-fill"
+                    style={{
+                      height: "6px",
+                      backgroundColor: "#22C55E",
+                      transformOrigin: "left",
+                    }}
+                  />
+                  <div style={{ padding: "28px 24px" }}>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-display), sans-serif",
+                        fontSize: "0.75rem",
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        color: "#22C55E",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      Solution
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-display), sans-serif",
+                        fontSize: "1.125rem",
+                        fontWeight: 700,
+                        color: "var(--color-foreground)",
+                      }}
+                    >
+                      The Result
+                    </div>
+                    <div style={{ marginTop: "16px" }}>
+                      {["Automated pipeline, zero manual input", "Shipped in 8 weeks", "Real-time dashboard with alerts"].map(
+                        (text, i) => (
+                          <div
+                            key={i}
+                            className={`split-bullet-${i + 4}`}
+                            style={{
+                              display: "flex",
+                              alignItems: "flex-start",
+                              gap: "10px",
+                              marginBottom: "10px",
+                              fontFamily: "var(--font-body), sans-serif",
+                              fontSize: "0.875rem",
+                              color: "var(--color-foreground)",
+                              opacity: 0.6,
+                            }}
+                          >
+                            <span
+                              style={{
+                                width: "6px",
+                                height: "6px",
+                                borderRadius: "50%",
+                                backgroundColor: "#22C55E",
+                                flexShrink: 0,
+                                marginTop: "7px",
+                              }}
+                            />
+                            {text}
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            animation: split-enter-left / split-enter-right / split-bar-fill / split-bullet-in<br />
+            duration: 7s ease infinite (looping)<br />
+            motion: panels slide in from sides, bars fill horizontally, bullets stagger 150ms<br />
+            responsive: stacks to single column below 768px
+          </div>
+        </section>
+
+        {/* ── The Social Card ────────────────────────────────────────────── */}
+        <section style={{ ...sectionStyle, borderBottom: "none" }}>
+          <h2 style={sectionTitleStyle}>The Social Card</h2>
+          <p style={sectionDescStyle}>
+            A 1200&times;630 social media post template (half-size preview) with a
+            blue/off-white split. Blue zone slides down, white zone slides up,
+            then content fades in with staggered timing. Loops every 7 seconds.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              padding: "48px 0",
+            }}
+          >
+            <div
+              style={{
+                aspectRatio: "1200 / 630",
+                maxWidth: "600px",
+                width: "100%",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {/* Top zone — Blue (40%) */}
+              <div
+                className="social-blue-enter"
+                style={{
+                  flex: "0 0 40%",
+                  backgroundColor: "#1CB0F6",
+                  padding: "32px 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <span
+                  className="social-content-1"
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "0.75rem",
+                    fontWeight: 700,
+                    color: "rgba(255,255,255,0.7)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  KEVIN HU
+                </span>
+                <span
+                  className="social-content-2"
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.5rem",
+                    fontWeight: 800,
+                    color: "#ffffff",
+                    letterSpacing: "-0.02em",
+                    marginTop: "8px",
+                  }}
+                >
+                  50+ Projects Shipped with AI
+                </span>
+              </div>
+
+              {/* Bottom zone — Off-white (60%) */}
+              <div
+                className="social-white-enter"
+                style={{
+                  flex: "0 0 60%",
+                  backgroundColor: "#FAF9F6",
+                  padding: "28px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <p
+                  className="social-content-3"
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.875rem",
+                    fontWeight: 400,
+                    color: "var(--color-foreground)",
+                    opacity: 0.7,
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  From enterprise platforms to AI agents &mdash; I help teams ship
+                  products that matter.
+                </p>
+
+                {/* Skill pills */}
+                <div
+                  className="social-content-4"
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "8px",
+                    marginTop: "16px",
+                  }}
+                >
+                  {["React", "AI/ML", "Next.js", "Python"].map((skill) => (
+                    <span
+                      key={skill}
+                      style={{
+                        fontFamily: "var(--font-body), sans-serif",
+                        fontSize: "0.6875rem",
+                        fontWeight: 600,
+                        color: "var(--color-foreground)",
+                        border: "1px solid var(--color-muted)",
+                        backgroundColor: "var(--color-card)",
+                        padding: "4px 10px",
+                        borderRadius: "var(--radius-button)",
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Availability badge */}
+                <div
+                  className="social-content-5"
+                  style={{
+                    marginTop: "16px",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    alignSelf: "flex-start",
+                    backgroundColor: "rgba(34,197,94,0.12)",
+                    border: "1px solid rgba(34,197,94,0.3)",
+                    borderRadius: "9999px",
+                    padding: "6px 14px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      backgroundColor: "#22C55E",
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: "var(--font-body), sans-serif",
+                      fontSize: "0.75rem",
+                      fontWeight: 600,
+                      color: "#15803d",
+                    }}
+                  >
+                    Available
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            animation: social-slide-down / social-slide-up / social-content-in<br />
+            duration: 7s ease infinite (looping)<br />
+            motion: blue zone slides from top, white zone slides from bottom, content staggers 0.2s&rarr;1.0s<br />
+            aspect-ratio: 1200/630 (standard OG image size, rendered at half scale)
           </div>
         </section>
       </div>
