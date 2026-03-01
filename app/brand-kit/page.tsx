@@ -1292,7 +1292,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── 6. Marquee / Ticker ──────────────────────────────────────────── */}
-        <section style={{ ...sectionStyle, borderBottom: "none" }}>
+        <section style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Marquee / Ticker</h2>
           <p style={sectionDescStyle}>
             Horizontal scrolling strip of brand keywords. Classic video
@@ -1386,6 +1386,1140 @@ export default function BrandKitPage() {
             animation: marquee-scroll 20s linear infinite<br />
             motion: translateX(0 → -50%) on duplicated track<br />
             dark background (#141414) with white text for contrast punch
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            BANNER COMPONENTS
+            ═══════════════════════════════════════════════════════════════════ */}
+        <section style={{ ...sectionStyle, borderBottom: "none", paddingBottom: "24px" }}>
+          <div
+            style={{
+              display: "inline-block",
+              backgroundColor: "var(--color-secondary)",
+              color: "#ffffff",
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "0.8125rem",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              padding: "5px 14px",
+              borderRadius: "var(--radius-button)",
+              marginBottom: "16px",
+            }}
+          >
+            Banner Components
+          </div>
+          <h2
+            style={{
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+              color: "var(--color-foreground)",
+              margin: 0,
+              marginBottom: "12px",
+            }}
+          >
+            Rich Banners
+          </h2>
+          <p style={sectionDescStyle}>
+            Composable, self-contained banner blocks that combine motion,
+            layout, and brand tokens into hero-ready sections. Drop these
+            into decks, landing pages, or social assets.
+          </p>
+        </section>
+
+        {/* ── Banner 1: The Terminal Card ────────────────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Terminal Card</h2>
+          <p style={sectionDescStyle}>
+            A macOS-style terminal window with typing animation and floating
+            skill badges. The tagline types itself in, followed by a fading
+            status line. Loops every 8 seconds.
+          </p>
+
+          <div
+            style={{
+              background: "var(--color-background)",
+              borderRadius: "var(--radius-card)",
+              minHeight: "400px",
+              padding: "48px 0",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              position: "relative",
+            }}
+          >
+            {/* Floating skill badges — desktop only */}
+            <div className="desktop-only">
+              <span
+                className="motion-float-1"
+                style={{
+                  position: "absolute",
+                  top: "24px",
+                  left: "40px",
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-button)",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  padding: "8px 14px",
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  color: "var(--color-foreground)",
+                }}
+              >
+                React
+              </span>
+              <span
+                className="motion-float-2"
+                style={{
+                  position: "absolute",
+                  top: "80px",
+                  right: "24px",
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-button)",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  padding: "8px 14px",
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  color: "var(--color-foreground)",
+                }}
+              >
+                AI/ML
+              </span>
+              <span
+                className="motion-float-3"
+                style={{
+                  position: "absolute",
+                  bottom: "80px",
+                  left: "20px",
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-button)",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  padding: "8px 14px",
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  color: "var(--color-foreground)",
+                }}
+              >
+                TypeScript
+              </span>
+              <span
+                className="motion-float-4"
+                style={{
+                  position: "absolute",
+                  top: "24px",
+                  right: "120px",
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-button)",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  padding: "8px 14px",
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  color: "var(--color-foreground)",
+                }}
+              >
+                Next.js
+              </span>
+              <span
+                className="motion-float-5"
+                style={{
+                  position: "absolute",
+                  bottom: "24px",
+                  right: "40px",
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-button)",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  padding: "8px 14px",
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  color: "var(--color-foreground)",
+                }}
+              >
+                Python
+              </span>
+              <span
+                className="motion-float-6"
+                style={{
+                  position: "absolute",
+                  bottom: "32px",
+                  left: "100px",
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-button)",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  padding: "8px 14px",
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  color: "var(--color-foreground)",
+                }}
+              >
+                Supabase
+              </span>
+            </div>
+
+            {/* Terminal window */}
+            <div
+              style={{
+                maxWidth: "560px",
+                width: "100%",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                overflow: "hidden",
+                position: "relative",
+                zIndex: 10,
+              }}
+            >
+              {/* Title bar */}
+              <div
+                style={{
+                  height: "44px",
+                  backgroundColor: "#141414",
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "0 16px",
+                  position: "relative",
+                }}
+              >
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <span
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      borderRadius: "50%",
+                      backgroundColor: "#FF5F57",
+                    }}
+                  />
+                  <span
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      borderRadius: "50%",
+                      backgroundColor: "#FFBD2E",
+                    }}
+                  />
+                  <span
+                    style={{
+                      width: "12px",
+                      height: "12px",
+                      borderRadius: "50%",
+                      backgroundColor: "#28C840",
+                    }}
+                  />
+                </div>
+                <span
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    fontFamily: "monospace",
+                    fontSize: "0.8125rem",
+                    color: "rgba(255,255,255,0.5)",
+                  }}
+                >
+                  kevin@portfolio ~ %
+                </span>
+              </div>
+
+              {/* Terminal body */}
+              <div
+                style={{
+                  backgroundColor: "#1a1a2e",
+                  padding: "28px 24px",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "monospace",
+                    fontSize: "0.875rem",
+                    color: "rgba(255,255,255,0.5)",
+                    margin: 0,
+                    marginBottom: "12px",
+                  }}
+                >
+                  $ echo $TAGLINE
+                </p>
+                <p
+                  className="terminal-type-line"
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.5rem",
+                    fontWeight: 700,
+                    color: "#ffffff",
+                    margin: 0,
+                    marginBottom: "16px",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    borderRight: "2px solid #1CB0F6",
+                  }}
+                >
+                  MBA who codes.
+                </p>
+                <p
+                  className="terminal-ready-line"
+                  style={{
+                    fontFamily: "monospace",
+                    fontSize: "0.8125rem",
+                    color: "#22C55E",
+                    margin: 0,
+                  }}
+                >
+                  {"//"} ready to ship
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            typing: typing-terminal 8s steps(14) infinite + blink-cursor 0.8s step-end infinite<br />
+            ready line: fade-in-ready 8s ease infinite (delayed appearance)<br />
+            floating badges: float-badge [2.6s-3.6s] ease-in-out infinite
+          </div>
+        </section>
+
+        {/* ── Banner 2: The Stat Wall ────────────────────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Stat Wall</h2>
+          <p style={sectionDescStyle}>
+            Bold blue banner with staggered stat cards. Impact metrics pop in
+            one by one with an availability indicator pulsing in the corner.
+            Perfect for results showcases and pitch decks.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "#1CB0F6",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              padding: "48px 40px",
+            }}
+          >
+            {/* Header row */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                flexWrap: "wrap",
+                gap: "16px",
+                marginBottom: "32px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "0.8125rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.6)",
+                    margin: 0,
+                    marginBottom: "8px",
+                  }}
+                >
+                  Impact at a Glance
+                </p>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.5rem",
+                    fontWeight: 800,
+                    color: "#ffffff",
+                    margin: 0,
+                  }}
+                >
+                  Results That Ship
+                </h3>
+              </div>
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  backgroundColor: "rgba(255,255,255,0.15)",
+                  border: "1px solid rgba(255,255,255,0.3)",
+                  borderRadius: "100px",
+                  padding: "8px 16px",
+                }}
+              >
+                <span
+                  className="availability-dot"
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: "var(--color-secondary)",
+                    display: "inline-block",
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.8125rem",
+                    fontWeight: 600,
+                    color: "#ffffff",
+                  }}
+                >
+                  Available Now
+                </span>
+              </div>
+            </div>
+
+            {/* 2x2 stat grid */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: "20px",
+                maxWidth: "560px",
+                margin: "0 auto",
+              }}
+            >
+              {[
+                { value: "50+", label: "Projects Shipped", cls: "motion-stat-1" },
+                { value: "10x", label: "Faster Delivery", cls: "motion-stat-2" },
+                { value: "99%", label: "Client Retention", cls: "motion-stat-3" },
+                { value: "4+", label: "Industries Served", cls: "motion-stat-4" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className={stat.cls}
+                  style={{
+                    backgroundColor: "var(--color-card)",
+                    border: "2px solid var(--color-foreground)",
+                    borderRadius: "var(--radius-container)",
+                    boxShadow: "var(--shadow-brutal-sm)",
+                    padding: "24px 20px",
+                    textAlign: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "2.5rem",
+                      fontWeight: 800,
+                      color: "var(--color-primary)",
+                      margin: 0,
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {stat.value}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body), sans-serif",
+                      fontSize: "0.8125rem",
+                      fontWeight: 500,
+                      color: "var(--color-foreground)",
+                      opacity: 0.6,
+                      margin: 0,
+                    }}
+                  >
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            container: #1CB0F6 bg, 2px black border, brutal shadow<br />
+            stats: pop-in 6s ease infinite, stagger 0s → 0.25s → 0.5s → 0.75s<br />
+            availability: pulse-dot 2s ease-in-out infinite
+          </div>
+        </section>
+
+        {/* ── Banner 3: The Stack ────────────────────────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Stack</h2>
+          <p style={sectionDescStyle}>
+            Three mini project cards cascade in from the right with staggered
+            rotation, fanning into a layered stack. Demonstrates depth of
+            portfolio work. Loops every 7 seconds.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "#FAF9F6",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              padding: "48px 40px",
+            }}
+          >
+            {/* Header */}
+            <p
+              style={{
+                fontFamily: "var(--font-display), sans-serif",
+                fontSize: "0.8125rem",
+                fontWeight: 700,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                color: "var(--color-primary)",
+                margin: 0,
+                marginBottom: "8px",
+              }}
+            >
+              Portfolio
+            </p>
+            <h3
+              style={{
+                fontFamily: "var(--font-display), sans-serif",
+                fontSize: "1.5rem",
+                fontWeight: 800,
+                color: "var(--color-foreground)",
+                margin: 0,
+                marginBottom: "32px",
+              }}
+            >
+              Depth of Work
+            </h3>
+
+            {/* Stack area */}
+            <div
+              style={{
+                position: "relative",
+                height: "340px",
+                maxWidth: "600px",
+                margin: "0 auto",
+              }}
+            >
+              {/* Back card */}
+              <div
+                className="stack-card-back"
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  left: "40px",
+                  width: "300px",
+                  zIndex: 1,
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-card)",
+                  boxShadow: "var(--shadow-brutal)",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    height: "36px",
+                    backgroundColor: "#141414",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 12px",
+                    gap: "6px",
+                  }}
+                >
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#FF5F57" }} />
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#FFBD2E" }} />
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#28C840" }} />
+                </div>
+                <div style={{ height: "120px", backgroundColor: "#FFFBEB", position: "relative" }}>
+                  <div style={{ height: "4px", backgroundColor: "#F59E0B" }} />
+                </div>
+                <div style={{ padding: "16px" }}>
+                  <p style={{ fontFamily: "var(--font-display), sans-serif", fontSize: "1rem", fontWeight: 700, margin: 0, marginBottom: "4px" }}>
+                    Data Pipeline
+                  </p>
+                  <p style={{ fontFamily: "var(--font-body), sans-serif", fontSize: "0.8125rem", color: "var(--color-foreground)", opacity: 0.6, margin: 0 }}>
+                    ETL automation
+                  </p>
+                </div>
+              </div>
+
+              {/* Middle card */}
+              <div
+                className="stack-card-mid"
+                style={{
+                  position: "absolute",
+                  top: "30px",
+                  left: "calc(50% - 150px)",
+                  width: "300px",
+                  zIndex: 2,
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-card)",
+                  boxShadow: "var(--shadow-brutal)",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    height: "36px",
+                    backgroundColor: "#141414",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 12px",
+                    gap: "6px",
+                  }}
+                >
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#FF5F57" }} />
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#FFBD2E" }} />
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#28C840" }} />
+                </div>
+                <div style={{ height: "120px", backgroundColor: "#EFF6FF", position: "relative" }}>
+                  <div style={{ height: "4px", backgroundColor: "#1CB0F6" }} />
+                </div>
+                <div style={{ padding: "16px" }}>
+                  <p style={{ fontFamily: "var(--font-display), sans-serif", fontSize: "1rem", fontWeight: 700, margin: 0, marginBottom: "4px" }}>
+                    AI Platform
+                  </p>
+                  <p style={{ fontFamily: "var(--font-body), sans-serif", fontSize: "0.8125rem", color: "var(--color-foreground)", opacity: 0.6, margin: 0 }}>
+                    ML-powered insights
+                  </p>
+                </div>
+              </div>
+
+              {/* Front card */}
+              <div
+                className="stack-card-front"
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  left: "calc(100% - 340px)",
+                  width: "300px",
+                  zIndex: 3,
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-card)",
+                  boxShadow: "var(--shadow-brutal)",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    height: "36px",
+                    backgroundColor: "#141414",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 12px",
+                    gap: "6px",
+                  }}
+                >
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#FF5F57" }} />
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#FFBD2E" }} />
+                  <span style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: "#28C840" }} />
+                </div>
+                <div style={{ height: "120px", backgroundColor: "#F0FDF4", position: "relative" }}>
+                  <div style={{ height: "4px", backgroundColor: "#22C55E" }} />
+                </div>
+                <div style={{ padding: "16px" }}>
+                  <p style={{ fontFamily: "var(--font-display), sans-serif", fontSize: "1rem", fontWeight: 700, margin: 0, marginBottom: "4px" }}>
+                    Growth Engine
+                  </p>
+                  <p style={{ fontFamily: "var(--font-body), sans-serif", fontSize: "0.8125rem", color: "var(--color-foreground)", opacity: 0.6, margin: 0 }}>
+                    0-to-1 product
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            back: stack-cascade-back 7s ease infinite<br />
+            mid: stack-cascade-mid 7s ease 0.3s infinite<br />
+            front: stack-cascade-front 7s ease 0.6s infinite<br />
+            motion: translateX(120px → 0 → -20px) + rotate stagger
+          </div>
+        </section>
+
+        {/* ── Banner 4: The Bridge Diagram ───────────────────────────────── */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Bridge Diagram</h2>
+          <p style={sectionDescStyle}>
+            Business skills enter from the left, engineering skills from the
+            right, converging on a central node. Visualizes the
+            &quot;MBA who codes&quot; positioning. Loops every 7 seconds.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "var(--color-card)",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              padding: "48px 32px",
+            }}
+          >
+            {/* Header */}
+            <div style={{ textAlign: "center", marginBottom: "40px" }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "0.8125rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--color-secondary)",
+                  margin: 0,
+                  marginBottom: "8px",
+                }}
+              >
+                The Bridge
+              </p>
+              <h3
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "1.5rem",
+                  fontWeight: 800,
+                  color: "var(--color-foreground)",
+                  margin: 0,
+                }}
+              >
+                Business Meets Engineering
+              </h3>
+            </div>
+
+            {/* Three-column layout */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "40px",
+                maxWidth: "720px",
+                margin: "0 auto",
+                flexWrap: "wrap",
+              }}
+            >
+              {/* Left column — business skills */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  alignItems: "flex-end",
+                }}
+              >
+                {[
+                  { label: "Product Strategy", cls: "bridge-left-1" },
+                  { label: "Market Research", cls: "bridge-left-2" },
+                  { label: "Business Models", cls: "bridge-left-3" },
+                  { label: "Growth & GTM", cls: "bridge-left-4" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className={`bridge-pill-left ${item.cls}`}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      backgroundColor: "rgba(34,197,94,0.1)",
+                      border: "1px solid var(--color-secondary)",
+                      borderRadius: "100px",
+                      padding: "10px 20px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: "8px",
+                        height: "8px",
+                        borderRadius: "50%",
+                        backgroundColor: "var(--color-secondary)",
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: "var(--font-body), sans-serif",
+                        fontSize: "0.875rem",
+                        fontWeight: 600,
+                        color: "#15803d",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Center node */}
+              <div
+                className="bridge-center"
+                style={{
+                  width: "56px",
+                  height: "56px",
+                  borderRadius: "50%",
+                  backgroundColor: "#141414",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.25rem",
+                    fontWeight: 800,
+                    color: "#ffffff",
+                  }}
+                >
+                  K
+                </span>
+              </div>
+
+              {/* Right column — engineering skills */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  alignItems: "flex-start",
+                }}
+              >
+                {[
+                  { label: "Full-Stack Dev", cls: "bridge-right-1" },
+                  { label: "AI / ML", cls: "bridge-right-2" },
+                  { label: "Data Pipelines", cls: "bridge-right-3" },
+                  { label: "System Design", cls: "bridge-right-4" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className={`bridge-pill-right ${item.cls}`}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      backgroundColor: "rgba(28,176,246,0.1)",
+                      border: "1px solid var(--color-primary)",
+                      borderRadius: "100px",
+                      padding: "10px 20px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: "8px",
+                        height: "8px",
+                        borderRadius: "50%",
+                        backgroundColor: "var(--color-primary)",
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: "var(--font-body), sans-serif",
+                        fontSize: "0.875rem",
+                        fontWeight: 600,
+                        color: "#0369a1",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tagline */}
+            <p
+              style={{
+                fontFamily: "var(--font-body), sans-serif",
+                fontSize: "0.9375rem",
+                color: "var(--color-foreground)",
+                opacity: 0.6,
+                textAlign: "center",
+                margin: 0,
+                marginTop: "40px",
+              }}
+            >
+              MBA who codes. Bridging strategy and engineering.
+            </p>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            left pills: bridge-enter-left 7s ease, stagger 0s → 0.15s → 0.3s → 0.45s<br />
+            right pills: bridge-enter-right 7s ease, stagger 0.5s → 0.65s → 0.8s → 0.95s<br />
+            center: bridge-center-pulse 7s ease 0.6s infinite<br />
+            connector lines: 2px dashed #E5E5E5 via ::after / ::before pseudo-elements
+          </div>
+        </section>
+
+        {/* ── Banner 5: The Marquee Strip (Enhanced) ─────────────────────── */}
+        <section style={{ ...sectionStyle, borderBottom: "none" }}>
+          <h2 style={sectionTitleStyle}>Marquee Strip (Enhanced)</h2>
+          <p style={sectionDescStyle}>
+            Two-row marquee with opposing scroll directions. Text keywords
+            interspersed with badge pills on a bold blue background. Row 1
+            scrolls left, row 2 scrolls right.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "#1CB0F6",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              overflow: "hidden",
+            }}
+          >
+            {/* Row 1 — scrolls left */}
+            <div style={{ padding: "20px 0", overflow: "hidden" }}>
+              <div
+                className="marquee-enhanced-row-1"
+                style={{
+                  display: "flex",
+                  gap: "24px",
+                  whiteSpace: "nowrap",
+                  width: "max-content",
+                  alignItems: "center",
+                }}
+              >
+                {[0, 1].map((copy) => (
+                  <div
+                    key={copy}
+                    style={{
+                      display: "flex",
+                      gap: "24px",
+                      alignItems: "center",
+                    }}
+                  >
+                    {[
+                      { type: "text", content: "Strategy" },
+                      { type: "sep" },
+                      { type: "badge", content: "React" },
+                      { type: "sep" },
+                      { type: "text", content: "Design" },
+                      { type: "sep" },
+                      { type: "badge", content: "AI / ML" },
+                      { type: "sep" },
+                      { type: "text", content: "Engineering" },
+                      { type: "sep" },
+                      { type: "badge", content: "Next.js" },
+                      { type: "sep" },
+                      { type: "text", content: "Product" },
+                      { type: "sep" },
+                      { type: "badge", content: "TypeScript" },
+                      { type: "sep" },
+                      { type: "text", content: "Ship Faster" },
+                      { type: "sep" },
+                    ].map((item, i) => {
+                      if (item.type === "sep") {
+                        return (
+                          <span
+                            key={`${copy}-sep-${i}`}
+                            style={{
+                              fontSize: "0.625rem",
+                              color: "rgba(255,255,255,0.3)",
+                            }}
+                          >
+                            *
+                          </span>
+                        );
+                      }
+                      if (item.type === "badge") {
+                        return (
+                          <span
+                            key={`${copy}-badge-${i}`}
+                            style={{
+                              backgroundColor: "rgba(255,255,255,0.15)",
+                              border: "1px solid rgba(255,255,255,0.3)",
+                              borderRadius: "100px",
+                              padding: "6px 16px",
+                              fontFamily: "var(--font-body), sans-serif",
+                              fontSize: "0.8125rem",
+                              fontWeight: 600,
+                              color: "#ffffff",
+                            }}
+                          >
+                            {item.content}
+                          </span>
+                        );
+                      }
+                      return (
+                        <span
+                          key={`${copy}-text-${i}`}
+                          style={{
+                            fontFamily: "var(--font-display), sans-serif",
+                            fontSize: "1.5rem",
+                            fontWeight: 700,
+                            textTransform: "uppercase",
+                            color: "#ffffff",
+                          }}
+                        >
+                          {item.content}
+                        </span>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div style={{ height: "2px", backgroundColor: "rgba(255,255,255,0.15)" }} />
+
+            {/* Row 2 — scrolls right */}
+            <div style={{ padding: "20px 0", overflow: "hidden" }}>
+              <div
+                className="marquee-enhanced-row-2"
+                style={{
+                  display: "flex",
+                  gap: "24px",
+                  whiteSpace: "nowrap",
+                  width: "max-content",
+                  alignItems: "center",
+                }}
+              >
+                {[0, 1].map((copy) => (
+                  <div
+                    key={copy}
+                    style={{
+                      display: "flex",
+                      gap: "24px",
+                      alignItems: "center",
+                    }}
+                  >
+                    {[
+                      { type: "text", content: "Analytics" },
+                      { type: "sep" },
+                      { type: "badge", content: "Python" },
+                      { type: "sep" },
+                      { type: "text", content: "Growth" },
+                      { type: "sep" },
+                      { type: "badge", content: "Supabase" },
+                      { type: "sep" },
+                      { type: "text", content: "Automation" },
+                      { type: "sep" },
+                      { type: "badge", content: "n8n" },
+                      { type: "sep" },
+                      { type: "text", content: "Startups" },
+                      { type: "sep" },
+                      { type: "badge", content: "BigQuery" },
+                      { type: "sep" },
+                      { type: "text", content: "Build Fast" },
+                      { type: "sep" },
+                    ].map((item, i) => {
+                      if (item.type === "sep") {
+                        return (
+                          <span
+                            key={`${copy}-sep-${i}`}
+                            style={{
+                              fontSize: "0.625rem",
+                              color: "rgba(255,255,255,0.3)",
+                            }}
+                          >
+                            *
+                          </span>
+                        );
+                      }
+                      if (item.type === "badge") {
+                        return (
+                          <span
+                            key={`${copy}-badge-${i}`}
+                            style={{
+                              backgroundColor: "rgba(255,255,255,0.15)",
+                              border: "1px solid rgba(255,255,255,0.3)",
+                              borderRadius: "100px",
+                              padding: "6px 16px",
+                              fontFamily: "var(--font-body), sans-serif",
+                              fontSize: "0.8125rem",
+                              fontWeight: 600,
+                              color: "#ffffff",
+                            }}
+                          >
+                            {item.content}
+                          </span>
+                        );
+                      }
+                      return (
+                        <span
+                          key={`${copy}-text-${i}`}
+                          style={{
+                            fontFamily: "var(--font-display), sans-serif",
+                            fontSize: "1.5rem",
+                            fontWeight: 700,
+                            textTransform: "uppercase",
+                            color: "#ffffff",
+                          }}
+                        >
+                          {item.content}
+                        </span>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            row 1: marquee-scroll 25s linear infinite (left)<br />
+            row 2: marquee-scroll-reverse 30s linear infinite (right)<br />
+            blue background (#1CB0F6) with white text + semi-transparent badge pills
           </div>
         </section>
       </div>

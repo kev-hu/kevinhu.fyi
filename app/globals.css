@@ -218,6 +218,111 @@
     animation: marquee-scroll 20s linear infinite;
   }
 
+  /* ── Banner components ───────────────────────────────────────────── */
+
+  /* Terminal Card */
+  @keyframes typing-terminal {
+    0%        { width: 0; }
+    2%        { width: 0; }
+    40%       { width: 14ch; }
+    100%      { width: 14ch; }
+  }
+  @keyframes blink-cursor {
+    0%, 100%  { border-color: #1CB0F6; }
+    50%       { border-color: transparent; }
+  }
+  @keyframes fade-in-ready {
+    0%, 45%   { opacity: 0; transform: translateY(4px); }
+    55%, 85%  { opacity: 1; transform: translateY(0); }
+    95%, 100% { opacity: 0; transform: translateY(0); }
+  }
+  .terminal-type-line {
+    animation: typing-terminal 8s steps(14) infinite, blink-cursor 0.8s step-end infinite;
+  }
+  .terminal-ready-line {
+    animation: fade-in-ready 8s ease infinite;
+  }
+
+  /* The Stack */
+  @keyframes stack-cascade-back {
+    0%, 5%    { opacity: 0; transform: translateX(120px) rotate(8deg); }
+    20%, 70%  { opacity: 1; transform: translateX(0) rotate(-4deg); }
+    85%, 100% { opacity: 0; transform: translateX(-20px) rotate(-5deg); }
+  }
+  @keyframes stack-cascade-mid {
+    0%, 5%    { opacity: 0; transform: translateX(120px) rotate(4deg); }
+    20%, 70%  { opacity: 1; transform: translateX(0) rotate(0deg); }
+    85%, 100% { opacity: 0; transform: translateX(-20px) rotate(-1deg); }
+  }
+  @keyframes stack-cascade-front {
+    0%, 5%    { opacity: 0; transform: translateX(120px) rotate(0deg); }
+    20%, 70%  { opacity: 1; transform: translateX(0) rotate(3deg); }
+    85%, 100% { opacity: 0; transform: translateX(-20px) rotate(2deg); }
+  }
+  .stack-card-back  { animation: stack-cascade-back 7s ease infinite; }
+  .stack-card-mid   { animation: stack-cascade-mid 7s ease 0.3s infinite; }
+  .stack-card-front { animation: stack-cascade-front 7s ease 0.6s infinite; }
+
+  /* Bridge Diagram */
+  @keyframes bridge-enter-left {
+    0%, 5%    { opacity: 0; transform: translateX(-30px); }
+    15%, 72%  { opacity: 1; transform: translateX(0); }
+    85%, 100% { opacity: 0; transform: translateX(-10px); }
+  }
+  @keyframes bridge-enter-right {
+    0%, 5%    { opacity: 0; transform: translateX(30px); }
+    15%, 72%  { opacity: 1; transform: translateX(0); }
+    85%, 100% { opacity: 0; transform: translateX(10px); }
+  }
+  @keyframes bridge-center-pulse {
+    0%, 10%   { opacity: 0; transform: scale(0.5); }
+    20%, 75%  { opacity: 1; transform: scale(1); }
+    85%, 100% { opacity: 0; transform: scale(0.9); }
+  }
+  .bridge-left-1 { animation: bridge-enter-left 7s ease infinite; }
+  .bridge-left-2 { animation: bridge-enter-left 7s ease 0.15s infinite; }
+  .bridge-left-3 { animation: bridge-enter-left 7s ease 0.3s infinite; }
+  .bridge-left-4 { animation: bridge-enter-left 7s ease 0.45s infinite; }
+  .bridge-right-1 { animation: bridge-enter-right 7s ease 0.5s infinite; }
+  .bridge-right-2 { animation: bridge-enter-right 7s ease 0.65s infinite; }
+  .bridge-right-3 { animation: bridge-enter-right 7s ease 0.8s infinite; }
+  .bridge-right-4 { animation: bridge-enter-right 7s ease 0.95s infinite; }
+  .bridge-center { animation: bridge-center-pulse 7s ease 0.6s infinite; }
+  .bridge-pill-left { position: relative; }
+  .bridge-pill-right { position: relative; }
+  .bridge-pill-left::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    width: 32px;
+    height: 0;
+    border-top: 2px dashed #E5E5E5;
+  }
+  .bridge-pill-right::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    width: 32px;
+    height: 0;
+    border-top: 2px dashed #E5E5E5;
+  }
+  @media (max-width: 767px) {
+    .bridge-pill-left::after,
+    .bridge-pill-right::before {
+      display: none;
+    }
+  }
+
+  /* Marquee Strip (enhanced - reverse direction) */
+  @keyframes marquee-scroll-reverse {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .marquee-enhanced-row-1 { animation: marquee-scroll 25s linear infinite; }
+  .marquee-enhanced-row-2 { animation: marquee-scroll-reverse 30s linear infinite; }
+
   /* Prose / MDX content styles */
   .prose-content h2 {
     font-family: var(--font-display);
