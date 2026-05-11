@@ -1,8 +1,8 @@
 ---
 title: "CARES Act Data Initiative"
 slug: "cares-act-data"
-subtitle: "From Tax Codes to Targeted Relief"
-description: "Translated cryptic tax-code patterns into plain-English eligibility verdicts, then sized the result — surfacing 20,000 eligible accounts and $200M of addressable relief inside the program window."
+subtitle: "Scaling a $200M Data Solution"
+description: "Built data pipelines in Alteryx and Power BI to identify 20,000 accounts representing $200M in economic opportunity for CARES Act relief programs."
 featured: true
 order: 3
 tags: ["Alteryx", "Power BI", "Data Pipeline", "Government"]
@@ -18,40 +18,25 @@ metrics:
 
 ## The Problem
 
-The CARES Act made billions in relief available overnight — but reaching eligible businesses required answering a question the data couldn't answer directly: *who qualifies, and for how much?*
+The CARES Act created urgent need for state governments to identify and reach eligible businesses quickly. The challenge: the data existed across multiple systems, but there was no infrastructure to aggregate, clean, and analyze it at the scale required.
 
-Eligibility lived inside tax codes — Form 941 line items, NAICS classifications, PPP forgiveness flags, EIDL status — spread across four legacy systems that didn't speak to each other. The interpretation work, translating regulatory language into a yes/no per business and then a dollar value, was the bottleneck. Compute was cheap; judgment was scarce.
+Manual processes that might have taken weeks would leave eligible businesses without relief. Speed was critical.
 
-Manual at this scale would have taken weeks. Eligible businesses would have aged out of the relief window before being contacted.
+## The Solution
 
-## The Approach
+Built an end-to-end data pipeline using Alteryx and Power BI that could process large volumes of messy government data into actionable intelligence.
 
-Worked the problem in three phases.
+Key components:
+- **Alteryx workflows** automating data ingestion, cleaning, and transformation from multiple source systems
+- **Power BI dashboards** giving program administrators real-time visibility into eligibility and outreach status
+- **Data pipeline architecture** designed for repeatability, so the same process could be rerun as new data arrived
+- **Quality assurance process** to validate account identification accuracy before outreach
 
-**1 · Dig.** Pulled and reconciled records from four legacy systems — IRS filings, state UI claims, business license registries, SBA loan flags. Used Alteryx for ingestion and dedupe; the goal at this stage was a single 100K+ candidate pool with normalized identifiers, not a clean answer.
-
-**2 · Translate.** This is where the consulting work lived. Built rule mappings that turned cryptic tax-code patterns into plain-English eligibility verdicts:
-
-- `NAICS 722511 + W2 < 500` → full-service restaurant, qualifies for ERC
-- `Sched C gross < 50% YoY` → significant decline test passed, Round 2 PPP eligible
-- `1099-NEC contractors > 0` → eligible for SETC
-
-Each rule was defensible against the underlying statute, not just keyword-matched. 100K+ candidates collapsed to 20,000 verified eligible accounts.
-
-**3 · Size.** Tiered the eligible accounts by expected relief value so administrators could sequence outreach by impact-per-contact:
-
-- Tier A (high-value): 2,000 accounts × ~$20K = $40M
-- Tier B (mid): 8,000 × ~$12K = $96M
-- Tier C (long-tail): 10,000 × ~$6.4K = $64M
-
-Total: $200M of addressable opportunity. Power BI dashboards gave program admins real-time visibility into which tier was being worked, the audit trail behind each verdict, and which accounts had been contacted.
-
-![From tax codes to targeted relief — Dig, Translate, Size](/images/projects/cares-act-data-diagram.png)
+![From tax codes to targeted relief — DIG, TRANSLATE, SIZE](/images/projects/cares-act-data-diagram.png)
 
 ## The Results
 
-- **20,000 eligible accounts** verified against statute, not just matched against keywords
-- **$200M in addressable economic opportunity** sized by tier — sequenced for impact, not just totalled
-- **~10,000 hours of manual interpretation work** absorbed by the scoring framework
-- Delivered fast enough that relief reached eligible businesses inside the program window
-- Reusable methodology — the interpretation rules apply to any future relief program; the data plumbing reruns when fresh records arrive
+- Identified 20,000 eligible accounts representing $200M in economic opportunity
+- Saved an estimated 10,000 hours of manual data processing work
+- Delivered results fast enough to meaningfully impact CARES Act relief distribution
+- Created a reusable data infrastructure for future program administration
