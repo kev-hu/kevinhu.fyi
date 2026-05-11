@@ -536,8 +536,11 @@
   .prose-content img {
     border-radius: var(--radius-card);
     border: 2px solid var(--color-muted);
-    margin: 1.5rem 0;
+    margin: 2.5rem 0;
     max-width: 100%;
+    background: #fff;
+    padding: 2rem;
+    box-sizing: border-box;
   }
   .prose-content strong {
     font-weight: 700;
