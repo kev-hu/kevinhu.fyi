@@ -574,6 +574,11 @@
     margin-bottom: 0.5rem;
     scroll-margin-top: 89px;
   }
+
+  .brand-kit-section {
+    scroll-margin-top: 145px;
+  }
+
   .prose-content p {
     margin-bottom: 1rem;
     line-height: 1.7;
