@@ -78,13 +78,68 @@
     box-shadow: 6px 6px 0 #141414;
   }
 
-  /* TOC link states */
+  /* Project table row hover — subtle tint, whole row is a click target via the title link */
+  .project-row {
+    transition: background-color 120ms ease;
+  }
+  .project-row:hover {
+    background-color: rgba(28, 176, 246, 0.06);
+  }
+
+  /* Skeleton placeholder while ProjectsView resolves the user's saved view preference */
+  .projects-skeleton-row {
+    animation: projects-skeleton-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes projects-skeleton-pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 0.85; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .projects-skeleton-row {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+
+  /* Featured-work grid: 1 col mobile → 2 col tablet → 3 col desktop */
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 640px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .project-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Flagship card — same shape as the others, just spans 2 of 3 cols at desktop */
+  @media (min-width: 1024px) {
+    .project-card-flagship {
+      grid-column: span 2;
+    }
+  }
+
+
+  /* TOC link states — owned in CSS (no inline color) so :hover and .active
+     can actually win over the base color. */
+  .toc-link,
+  .toc-link:visited,
+  .toc-link:link {
+    color: rgba(20, 20, 20, 0.45);
+    font-weight: 500;
+  }
   .toc-link:hover {
-    color: var(--color-primary);
+    color: var(--color-foreground);
   }
   .toc-link.active {
-    color: var(--color-primary);
-    border-left: 2px solid var(--color-primary);
+    color: var(--color-foreground);
+    font-weight: 550;
   }
 
   /* Back link hover */
@@ -534,16 +589,147 @@
     line-height: 1.6;
   }
   .prose-content img {
+    display: block;
     border-radius: var(--radius-card);
-    border: 2px solid var(--color-muted);
+    border: 2px solid var(--color-foreground);
+    box-shadow: var(--shadow-brutal);
     margin: 2.5rem 0;
     max-width: 100%;
+    height: auto;
     background: #fff;
-    padding: 2rem;
+    padding: 0.5rem;
     box-sizing: border-box;
   }
   .prose-content strong {
     font-weight: 700;
     color: var(--color-foreground);
+  }
+
+  /* Code blocks in prose — full macOS terminal treatment for any ``` fence.
+     A ::before pseudo-element draws the title bar with traffic-light dots,
+     so authors just write a normal markdown code fence and it reads as a window. */
+  .prose-content pre,
+  .drilldown-body pre {
+    position: relative;
+    margin: 2rem 0;
+    background: #1a1a2e;
+    color: rgba(255, 255, 255, 0.92);
+    border: 2px solid var(--color-foreground);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-brutal);
+    padding: 46px 22px 22px;
+    overflow-x: auto;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Code", monospace;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    tab-size: 2;
+  }
+  .prose-content pre::before,
+  .drilldown-body pre::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background:
+      radial-gradient(circle at 16px center, #ff5f57 5px, transparent 5.5px),
+      radial-gradient(circle at 34px center, #febc2e 5px, transparent 5.5px),
+      radial-gradient(circle at 52px center, #28c840 5px, transparent 5.5px),
+      linear-gradient(180deg, #1f1f2e 0%, #15151f 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-top-left-radius: calc(var(--radius-card) - 2px);
+    border-top-right-radius: calc(var(--radius-card) - 2px);
+    pointer-events: none;
+  }
+  /* Optional title text in the title bar — markdown ``` doesn't set this,
+     but a remark plugin or hand-wrapped <pre data-title="..."> would. */
+  .prose-content pre[data-title]::after,
+  .drilldown-body pre[data-title]::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 30px;
+    line-height: 30px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.02em;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+  }
+  .prose-content pre code,
+  .drilldown-body pre code {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+  /* Inline code — distinct enough to read as a token, subtle enough not to
+     compete with prose or terminal blocks. Same rule covers drilldowns. */
+  .prose-content :not(pre) > code,
+  .drilldown-body :not(pre) > code {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Code", monospace;
+    font-size: 0.875em;
+    font-weight: 600;
+    color: var(--color-foreground);
+    background: rgba(20, 20, 20, 0.085);
+    border: 1px solid rgba(20, 20, 20, 0.14);
+    padding: 0.5px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* Drilldown body — inherits prose tone but tighter spacing inside the card */
+  .drilldown-body p {
+    font-family: var(--font-body);
+    margin-bottom: 0.75rem;
+    line-height: 1.65;
+    color: var(--color-foreground);
+  }
+  .drilldown-body ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .drilldown-body li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+  .drilldown-body strong {
+    font-weight: 700;
+    color: var(--color-foreground);
+  }
+  .drilldown-body > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .brand-kit-tab:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 #141414;
+  }
+
+  .brand-kit-tab:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 #141414;
+  }
+}
+
+/* ─── UNLAYERED OVERRIDES ──────────────────────────────────────────────
+   ProjectCard banner aspect ratio: inline style sets 6/1 for flagship
+   and 21/7 for default cards. The 6/1 only fits visually at >=1024px
+   where flagship spans 2 columns; below that, flagship is single-col
+   like the rest and needs 21/7 to match heights. !important here beats
+   the inline style because this rule lives outside @layer components. */
+@media (max-width: 1023.98px) {
+  .project-card-flagship .project-banner {
+    aspect-ratio: 21 / 7 !important;
   }
 }
