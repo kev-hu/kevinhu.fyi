@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type TOCItem  = { id: string; text: string };
 type TOCGroup = { label: string; items: TOCItem[] };
@@ -9,7 +9,7 @@ export function BrandKitTOC({ groups }: { groups: TOCGroup[] }) {
   const [activeId, setActiveId] = useState<string>("");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const allItems = groups.flatMap((g) => g.items);
+  const allItems = useMemo(() => groups.flatMap((g) => g.items), [groups]);
 
   useEffect(() => {
     if (allItems.length === 0) return;
@@ -46,8 +46,7 @@ export function BrandKitTOC({ groups }: { groups: TOCGroup[] }) {
       observerRef.current?.disconnect();
       window.removeEventListener("scroll", handle);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [allItems]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
@@ -79,7 +78,7 @@ export function BrandKitTOC({ groups }: { groups: TOCGroup[] }) {
           >
             {group.label}
           </p>
-          <nav style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <nav aria-label={group.label} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
             {group.items.map(({ id, text }) => (
               <a
                 key={id}
