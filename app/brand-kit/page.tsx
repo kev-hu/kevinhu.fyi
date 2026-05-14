@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Button from "@/components/Button";
+import { Drilldown } from "@/components/Drilldown";
 
 export const metadata: Metadata = {
   title: "Brand Kit",
@@ -219,7 +220,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Colors ──────────────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="colors" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Colors</h2>
           <p style={sectionDescStyle}>
             Seven core colors. Primary blue is the dominant accent. Foreground
@@ -274,7 +275,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Typography ──────────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="typography" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Typography</h2>
           <p style={sectionDescStyle}>
             Two Google Fonts. Bricolage Grotesque for headings/display —
@@ -457,7 +458,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Shadows & Borders ───────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="shadows-borders" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Shadows &amp; Borders</h2>
           <p style={sectionDescStyle}>
             Neubrutalist offset shadows — hard edges, no blur, solid color.
@@ -507,7 +508,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Border Radius ───────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="border-radius" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Border Radius</h2>
           <p style={sectionDescStyle}>
             Three radius tokens. Cards and buttons use 16px. Inner containers
@@ -547,7 +548,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Buttons ─────────────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="buttons" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Buttons</h2>
           <p style={sectionDescStyle}>
             Two variants with a &quot;press-in&quot; interaction: on hover the
@@ -617,7 +618,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Cards ───────────────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="cards" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Cards</h2>
           <p style={sectionDescStyle}>
             Neubrutalist cards: white background, 2px black border, offset
@@ -739,7 +740,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Skill Pills ─────────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="skill-pills" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Skill Pills</h2>
           <p style={sectionDescStyle}>
             Small tags used to list skills/technologies. White background, muted
@@ -793,7 +794,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Layout ──────────────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="layout-patterns" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Layout Patterns</h2>
           <p style={sectionDescStyle}>
             Standard section layout used across the site. Desktop-first
@@ -887,7 +888,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── 1. Animated Hero Entrance ────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="animated-hero-entrance" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Animated Hero Entrance</h2>
           <p style={sectionDescStyle}>
             Staggered slide-up + fade. Title enters first, subtitle follows,
@@ -959,7 +960,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── 2. Counting Stats ────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="counting-stats" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Counting Stats</h2>
           <p style={sectionDescStyle}>
             KPI cards pop in with staggered scale, numbers tick up from zero.
@@ -1040,7 +1041,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── 3. Card Cascade ──────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="card-cascade" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Card Cascade</h2>
           <p style={sectionDescStyle}>
             Project cards slide in from the right with slight rotation, fanning
@@ -1125,7 +1126,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── 4. Floating Skill Badges ─────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="floating-skill-badges" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Floating Skill Badges</h2>
           <p style={sectionDescStyle}>
             Skill pills bob at different speeds and phases, creating an organic,
@@ -1192,7 +1193,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── 5. Pulsing CTA Block ─────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="pulsing-cta-block" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Pulsing CTA Block</h2>
           <p style={sectionDescStyle}>
             Attention-grabbing call-to-action with a rhythmic border glow,
@@ -1292,7 +1293,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── 6. Marquee / Ticker ──────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="marquee-ticker" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Marquee / Ticker</h2>
           <p style={sectionDescStyle}>
             Horizontal scrolling strip of brand keywords. Classic video
@@ -1432,7 +1433,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Banner 1: The Terminal Card ────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="terminal-card" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Terminal Card</h2>
           <p style={sectionDescStyle}>
             A macOS-style terminal window with typing animation and floating
@@ -1702,7 +1703,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Banner 2: The Stat Wall ────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="stat-wall" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Stat Wall</h2>
           <p style={sectionDescStyle}>
             Bold blue banner with staggered stat cards. Impact metrics pop in
@@ -1867,7 +1868,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Banner 3: The Stack ────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="the-stack" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Stack</h2>
           <p style={sectionDescStyle}>
             Three mini project cards cascade in from the right with staggered
@@ -2072,7 +2073,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Banner 4: The Bridge Diagram ───────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="bridge-diagram" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Bridge Diagram</h2>
           <p style={sectionDescStyle}>
             Business skills enter from the left, engineering skills from the
@@ -2298,7 +2299,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Banner 5: The Marquee Strip (Enhanced) ─────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="marquee-strip-enhanced" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Marquee Strip (Enhanced)</h2>
           <p style={sectionDescStyle}>
             Two-row marquee with opposing scroll directions. Text keywords
@@ -2566,7 +2567,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Component 1: The Window Card ─────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="window-card" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Window Card</h2>
           <p style={sectionDescStyle}>
             The homepage&apos;s macOS-style project card — the site&apos;s most
@@ -2737,7 +2738,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Component 2: The Headshot Split ──────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="headshot-split" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Headshot Split</h2>
           <p style={sectionDescStyle}>
             The hero section&apos;s two-column layout — the personal brand
@@ -2904,7 +2905,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── Component 3: The Availability Badge ─────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="availability-badge" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Availability Badge</h2>
           <p style={sectionDescStyle}>
             The green pill with pulsing dot — a standalone animated
@@ -3126,7 +3127,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── The Quote Block ────────────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="quote-block" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Quote Block</h2>
           <p style={sectionDescStyle}>
             A testimonial pull-quote card with an oversized decorative quotation
@@ -3277,7 +3278,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── The Split Comparison ───────────────────────────────────────── */}
-        <section style={sectionStyle}>
+        <section id="split-comparison" style={sectionStyle}>
           <h2 style={sectionTitleStyle}>The Split Comparison</h2>
           <p style={sectionDescStyle}>
             A side-by-side Problem / Solution card with color-coded header bars,
@@ -3476,7 +3477,7 @@ export default function BrandKitPage() {
         </section>
 
         {/* ── The Social Card ────────────────────────────────────────────── */}
-        <section style={{ ...sectionStyle, borderBottom: "none" }}>
+        <section id="social-card" style={{ ...sectionStyle, borderBottom: "none" }}>
           <h2 style={sectionTitleStyle}>The Social Card</h2>
           <p style={sectionDescStyle}>
             A 1200&times;630 social media post template (half-size preview) with a
@@ -3654,6 +3655,1760 @@ export default function BrandKitPage() {
             duration: 7s ease infinite (looping)<br />
             motion: blue zone slides from top, white zone slides from bottom, content staggers 0.2s&rarr;1.0s<br />
             aspect-ratio: 1200/630 (standard OG image size, rendered at half scale)
+          </div>
+        </section>
+
+        {/* ── Section divider: Case Study Components ─────────────── */}
+        <section
+          style={{ ...sectionStyle, borderBottom: "none", paddingBottom: "24px" }}
+        >
+          <div
+            style={{
+              display: "inline-block",
+              backgroundColor: "var(--color-foreground)",
+              color: "#ffffff",
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "0.8125rem",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              padding: "5px 14px",
+              borderRadius: "var(--radius-button)",
+              marginBottom: "16px",
+            }}
+          >
+            Case Study Components
+          </div>
+          <h2
+            style={{
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "2rem",
+              fontWeight: 800,
+              letterSpacing: "-0.02em",
+              color: "var(--color-foreground)",
+              margin: 0,
+              marginBottom: "12px",
+            }}
+          >
+            For project pages
+          </h2>
+          <p style={{ ...sectionDescStyle, marginBottom: 0 }}>
+            Components designed for case-study narratives: system
+            architectures, annotated screenshots, process timelines, and data
+            viz primitives. Placeholder content drawn from real projects so
+            the specimens read the way they&apos;ll read on the page.
+          </p>
+        </section>
+
+        {/* ── Architecture Diagram ────────────────────────────────── */}
+        <section id="architecture-diagram" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Architecture Diagram</h2>
+          <p style={sectionDescStyle}>
+            Three-tier &quot;sources &rarr; shared brain &rarr; surfaces&quot; flow.
+            Sized to sit inside MDX prose. Demo shows the Personal AI Studio
+            multi-repo workspace.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "var(--color-card)",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              padding: "40px 28px",
+            }}
+          >
+            <div style={{ textAlign: "center", marginBottom: "28px" }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "0.75rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--color-primary)",
+                  margin: 0,
+                  marginBottom: "6px",
+                }}
+              >
+                Personal AI Studio
+              </p>
+              <h3
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "1.25rem",
+                  fontWeight: 800,
+                  color: "var(--color-foreground)",
+                  margin: 0,
+                }}
+              >
+                Multi-repo workspace
+              </h3>
+            </div>
+
+            {/* Tier 1 — sources */}
+            <p
+              style={{
+                fontFamily: "var(--font-display), sans-serif",
+                fontSize: "0.6875rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--color-foreground)",
+                opacity: 0.5,
+                margin: 0,
+                marginBottom: "10px",
+                textAlign: "center",
+              }}
+            >
+              Sources
+            </p>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "12px",
+              }}
+            >
+              {[
+                { name: "career-camp", desc: "Transcripts, role prep" },
+                { name: "content.main", desc: "Scripts, drafts, posts" },
+                { name: "databank", desc: "Personal data, exports" },
+              ].map((n) => (
+                <div
+                  key={n.name}
+                  style={{
+                    border: "1.5px solid var(--color-secondary)",
+                    borderRadius: "var(--radius-container)",
+                    backgroundColor: "rgba(34,197,94,0.06)",
+                    padding: "12px 14px",
+                    textAlign: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "monospace",
+                      fontSize: "0.8125rem",
+                      fontWeight: 700,
+                      color: "#15803d",
+                      margin: 0,
+                      marginBottom: "2px",
+                    }}
+                  >
+                    {n.name}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body), sans-serif",
+                      fontSize: "0.75rem",
+                      color: "var(--color-foreground)",
+                      opacity: 0.6,
+                      margin: 0,
+                    }}
+                  >
+                    {n.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "12px",
+                margin: "10px 0",
+              }}
+            >
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    color: "var(--color-foreground)",
+                    opacity: 0.4,
+                    fontSize: "1.25rem",
+                    lineHeight: 1,
+                  }}
+                >
+                  &darr;
+                </div>
+              ))}
+            </div>
+
+            {/* Tier 2 — hub */}
+            <p
+              style={{
+                fontFamily: "var(--font-display), sans-serif",
+                fontSize: "0.6875rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--color-foreground)",
+                opacity: 0.5,
+                margin: 0,
+                marginBottom: "10px",
+                textAlign: "center",
+              }}
+            >
+              Shared brain
+            </p>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <div
+                style={{
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-container)",
+                  backgroundColor: "var(--color-foreground)",
+                  color: "#ffffff",
+                  padding: "14px 24px",
+                  maxWidth: "360px",
+                  textAlign: "center",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "monospace",
+                    fontSize: "0.9375rem",
+                    fontWeight: 700,
+                    margin: 0,
+                    marginBottom: "2px",
+                  }}
+                >
+                  kj-skills
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.75rem",
+                    opacity: 0.7,
+                    margin: 0,
+                  }}
+                >
+                  Skills, lessons.md, MEMORY.md — shared across all repos
+                </p>
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: "12px",
+                maxWidth: "480px",
+                margin: "10px auto",
+              }}
+            >
+              {[0, 1].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    color: "var(--color-foreground)",
+                    opacity: 0.4,
+                    fontSize: "1.25rem",
+                    lineHeight: 1,
+                  }}
+                >
+                  &darr;
+                </div>
+              ))}
+            </div>
+
+            {/* Tier 3 — surfaces */}
+            <p
+              style={{
+                fontFamily: "var(--font-display), sans-serif",
+                fontSize: "0.6875rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--color-foreground)",
+                opacity: 0.5,
+                margin: 0,
+                marginBottom: "10px",
+                textAlign: "center",
+              }}
+            >
+              Surfaces
+            </p>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: "12px",
+                maxWidth: "480px",
+                margin: "0 auto",
+              }}
+            >
+              {[
+                {
+                  name: "kevinhu.fyi",
+                  desc: "Public portfolio + MDX case studies",
+                },
+                {
+                  name: "Obsidian-as-IDE",
+                  desc: "Daily working vault",
+                },
+              ].map((n) => (
+                <div
+                  key={n.name}
+                  style={{
+                    border: "1.5px solid var(--color-primary)",
+                    borderRadius: "var(--radius-container)",
+                    backgroundColor: "rgba(28,176,246,0.06)",
+                    padding: "12px 14px",
+                    textAlign: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "monospace",
+                      fontSize: "0.8125rem",
+                      fontWeight: 700,
+                      color: "#0369a1",
+                      margin: 0,
+                      marginBottom: "2px",
+                    }}
+                  >
+                    {n.name}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body), sans-serif",
+                      fontSize: "0.75rem",
+                      color: "var(--color-foreground)",
+                      opacity: 0.6,
+                      margin: 0,
+                    }}
+                  >
+                    {n.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Annotated Screenshot ──────────────────────────────────── */}
+        <section id="annotated-screenshot" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Annotated Screenshot</h2>
+          <p style={sectionDescStyle}>
+            Mock UI panel with numbered callouts and a key below. For
+            tour-style explanations — &quot;here&apos;s what the eval
+            dashboard looks like, here&apos;s what each piece does.&quot;
+            Swap the mocked panel for a real screenshot in production.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "var(--color-card)",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              padding: "32px",
+            }}
+          >
+            {/* Screenshot panel */}
+            <div
+              style={{
+                position: "relative",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-container)",
+                backgroundColor: "#0E1116",
+                overflow: "hidden",
+                marginBottom: "24px",
+              }}
+            >
+              {/* Title bar */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "10px 14px",
+                  borderBottom: "1px solid rgba(255,255,255,0.1)",
+                  backgroundColor: "rgba(255,255,255,0.03)",
+                }}
+              >
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    backgroundColor: "#ff5f57",
+                  }}
+                />
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    backgroundColor: "#febc2e",
+                  }}
+                />
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    backgroundColor: "#28c840",
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: "monospace",
+                    fontSize: "0.75rem",
+                    color: "rgba(255,255,255,0.5)",
+                    marginLeft: "8px",
+                  }}
+                >
+                  cyberse-eval / dashboard.tsx
+                </span>
+              </div>
+
+              {/* Body — mocked rubric table */}
+              <div
+                style={{
+                  padding: "24px 28px",
+                  color: "#E5E7EB",
+                  fontFamily: "monospace",
+                  fontSize: "0.8125rem",
+                  lineHeight: 1.7,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    marginBottom: "12px",
+                  }}
+                >
+                  <span style={{ color: "#1CB0F6", fontWeight: 700 }}>
+                    Run #143
+                  </span>
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>
+                    2026-05-09 · 24 prompts · GPT-4o
+                  </span>
+                </div>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1.4fr 0.5fr 0.5fr 0.7fr",
+                    gap: "8px 16px",
+                    color: "rgba(255,255,255,0.5)",
+                    fontSize: "0.75rem",
+                    paddingBottom: "8px",
+                    borderBottom: "1px dashed rgba(255,255,255,0.15)",
+                  }}
+                >
+                  <span>Criterion</span>
+                  <span>Old</span>
+                  <span>New</span>
+                  <span>Δ</span>
+                </div>
+                {[
+                  { c: "Threat-model accuracy", a: "3.2", b: "4.6", d: "+1.4" },
+                  { c: "Citation grounding", a: "2.9", b: "4.4", d: "+1.5" },
+                  { c: "Practitioner tone", a: "3.4", b: "4.1", d: "+0.7" },
+                  { c: "Scope adherence", a: "3.1", b: "4.5", d: "+1.4" },
+                  { c: "No-hallucination", a: "3.0", b: "4.7", d: "+1.7" },
+                ].map((r) => (
+                  <div
+                    key={r.c}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1.4fr 0.5fr 0.5fr 0.7fr",
+                      gap: "8px 16px",
+                      paddingTop: "8px",
+                      paddingBottom: "8px",
+                      borderBottom: "1px dashed rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    <span>{r.c}</span>
+                    <span style={{ color: "rgba(255,255,255,0.5)" }}>
+                      {r.a}
+                    </span>
+                    <span style={{ color: "#22c55e" }}>{r.b}</span>
+                    <span style={{ color: "#22c55e" }}>{r.d}</span>
+                  </div>
+                ))}
+                <div
+                  style={{
+                    marginTop: "14px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span style={{ color: "rgba(255,255,255,0.5)" }}>
+                    Composite
+                  </span>
+                  <span style={{ color: "#22c55e", fontWeight: 700 }}>
+                    53% → 92%
+                  </span>
+                </div>
+              </div>
+
+              {/* Callouts */}
+              <span
+                style={{
+                  position: "absolute",
+                  top: 48,
+                  right: 24,
+                  width: 28,
+                  height: 28,
+                  borderRadius: "50%",
+                  backgroundColor: "#1CB0F6",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontWeight: 800,
+                  fontSize: "0.875rem",
+                  boxShadow:
+                    "0 0 0 3px #0E1116, 0 0 0 4px #ffffff",
+                }}
+              >
+                1
+              </span>
+              <span
+                style={{
+                  position: "absolute",
+                  top: 102,
+                  right: 24,
+                  width: 28,
+                  height: 28,
+                  borderRadius: "50%",
+                  backgroundColor: "#1CB0F6",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontWeight: 800,
+                  fontSize: "0.875rem",
+                  boxShadow:
+                    "0 0 0 3px #0E1116, 0 0 0 4px #ffffff",
+                }}
+              >
+                2
+              </span>
+              <span
+                style={{
+                  position: "absolute",
+                  bottom: 20,
+                  left: 24,
+                  width: 28,
+                  height: 28,
+                  borderRadius: "50%",
+                  backgroundColor: "#1CB0F6",
+                  color: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontWeight: 800,
+                  fontSize: "0.875rem",
+                  boxShadow:
+                    "0 0 0 3px #0E1116, 0 0 0 4px #ffffff",
+                }}
+              >
+                3
+              </span>
+            </div>
+
+            {/* Key */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: "16px",
+              }}
+            >
+              {[
+                {
+                  n: 1,
+                  t: "Run metadata",
+                  d: "Date, prompt count, model. Lets reviewers slice by week or by model without opening the file.",
+                },
+                {
+                  n: 2,
+                  t: "Calibration delta",
+                  d: "Side-by-side scoring vs. last week. Reviewer attention goes here when triaging regressions.",
+                },
+                {
+                  n: 3,
+                  t: "Composite payoff",
+                  d: "Single headline number. Everything above is how it moved — this is what the room remembers.",
+                },
+              ].map((item) => (
+                <div key={item.n} style={{ display: "flex", gap: "10px" }}>
+                  <span
+                    style={{
+                      flexShrink: 0,
+                      width: 24,
+                      height: 24,
+                      borderRadius: "50%",
+                      backgroundColor: "var(--color-foreground)",
+                      color: "#ffffff",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontWeight: 700,
+                      fontSize: "0.75rem",
+                    }}
+                  >
+                    {item.n}
+                  </span>
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-display), sans-serif",
+                        fontSize: "0.875rem",
+                        fontWeight: 700,
+                        color: "var(--color-foreground)",
+                        margin: 0,
+                        marginBottom: "2px",
+                      }}
+                    >
+                      {item.t}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-body), sans-serif",
+                        fontSize: "0.8125rem",
+                        lineHeight: 1.5,
+                        color: "var(--color-foreground)",
+                        opacity: 0.6,
+                        margin: 0,
+                      }}
+                    >
+                      {item.d}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Process Timeline ──────────────────────────────────────── */}
+        <section id="process-timeline" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Process Timeline</h2>
+          <p style={sectionDescStyle}>
+            Vertical timeline for case-study process arcs. Phase markers
+            connect via a left rule; the final step uses the secondary color
+            to indicate ship/payoff.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "var(--color-card)",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              padding: "40px 32px",
+            }}
+          >
+            <div style={{ position: "relative", paddingLeft: "60px" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  left: 22,
+                  top: 22,
+                  bottom: 22,
+                  width: 2,
+                  backgroundColor: "var(--color-foreground)",
+                  opacity: 0.15,
+                }}
+              />
+
+              {[
+                {
+                  n: 1,
+                  phase: "Discover",
+                  title: "Score rubric with practitioners",
+                  desc: "Sat with four security analysts and listed every implicit grading dimension. Pulled out the five that mattered.",
+                  duration: "Week 1",
+                },
+                {
+                  n: 2,
+                  phase: "Design",
+                  title: "Calibration loop",
+                  desc: "Weekly side-by-side: agent output vs. analyst output. Track where they disagree, ask why.",
+                  duration: "Weeks 2–3",
+                },
+                {
+                  n: 3,
+                  phase: "Build",
+                  title: "Eval-in-the-loop",
+                  desc: "Wrapped scoring into the agent's hot path. Outputs below threshold get retried with revised context.",
+                  duration: "Weeks 4–6",
+                },
+                {
+                  n: 4,
+                  phase: "Ship",
+                  title: "Composite 53% → 92%",
+                  desc: "Six weeks of calibration. Threat-model accuracy and no-hallucination drove most of the lift.",
+                  duration: "Week 7",
+                },
+              ].map((step, idx, arr) => {
+                const isLast = idx === arr.length - 1;
+                return (
+                  <div
+                    key={step.n}
+                    style={{
+                      position: "relative",
+                      marginBottom: isLast ? 0 : "28px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        left: -60,
+                        top: 0,
+                        width: 44,
+                        height: 44,
+                        borderRadius: "50%",
+                        backgroundColor: isLast
+                          ? "var(--color-secondary)"
+                          : "var(--color-foreground)",
+                        color: "#ffffff",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontFamily: "var(--font-display), sans-serif",
+                        fontSize: "1.125rem",
+                        fontWeight: 800,
+                        border: "2px solid var(--color-foreground)",
+                        boxShadow: "var(--shadow-brutal-sm)",
+                      }}
+                    >
+                      {step.n}
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "baseline",
+                        gap: "10px",
+                        marginBottom: "4px",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "var(--font-display), sans-serif",
+                          fontSize: "0.6875rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          color: "var(--color-primary)",
+                        }}
+                      >
+                        {step.phase}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-body), sans-serif",
+                          fontSize: "0.75rem",
+                          color: "var(--color-foreground)",
+                          opacity: 0.4,
+                        }}
+                      >
+                        {step.duration}
+                      </span>
+                    </div>
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-display), sans-serif",
+                        fontSize: "1.0625rem",
+                        fontWeight: 700,
+                        color: "var(--color-foreground)",
+                        margin: 0,
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-body), sans-serif",
+                        fontSize: "0.9375rem",
+                        lineHeight: 1.6,
+                        color: "var(--color-foreground)",
+                        opacity: 0.75,
+                        margin: 0,
+                      }}
+                    >
+                      {step.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Score Progression ─────────────────────────────────────── */}
+        <section id="score-progression" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Score Progression</h2>
+          <p style={sectionDescStyle}>
+            Before/after horizontal bar with a calibration threshold marker.
+            Big delta badge top-right. Use for payoff numbers like the
+            Cyberse eval composite.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "var(--color-card)",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              padding: "40px 32px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginBottom: "32px",
+                flexWrap: "wrap",
+                gap: "16px",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "0.75rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "var(--color-primary)",
+                    margin: 0,
+                    marginBottom: "6px",
+                  }}
+                >
+                  Composite eval score
+                </p>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.25rem",
+                    fontWeight: 800,
+                    color: "var(--color-foreground)",
+                    margin: 0,
+                  }}
+                >
+                  Six weeks of calibration
+                </h3>
+              </div>
+              <div
+                style={{
+                  backgroundColor: "var(--color-secondary)",
+                  color: "#ffffff",
+                  padding: "10px 18px",
+                  borderRadius: "var(--radius-button)",
+                  border: "2px solid var(--color-foreground)",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontWeight: 800,
+                  fontSize: "1.125rem",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                +39 pts
+              </div>
+            </div>
+
+            {/* Initial bar */}
+            <div style={{ marginBottom: "20px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "baseline",
+                  marginBottom: "8px",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.8125rem",
+                    fontWeight: 600,
+                    color: "var(--color-foreground)",
+                    opacity: 0.6,
+                  }}
+                >
+                  Initial — week 1
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1rem",
+                    fontWeight: 800,
+                    color: "var(--color-foreground)",
+                  }}
+                >
+                  53%
+                </span>
+              </div>
+              <div
+                style={{
+                  position: "relative",
+                  height: "20px",
+                  backgroundColor: "var(--color-muted)",
+                  borderRadius: "100px",
+                  overflow: "hidden",
+                  border: "1.5px solid var(--color-foreground)",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: "53%",
+                    backgroundColor: "rgba(28,176,246,0.4)",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* After bar */}
+            <div style={{ marginBottom: "8px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "baseline",
+                  marginBottom: "8px",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.8125rem",
+                    fontWeight: 600,
+                    color: "var(--color-foreground)",
+                    opacity: 0.6,
+                  }}
+                >
+                  After calibration — week 7
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1rem",
+                    fontWeight: 800,
+                    color: "var(--color-secondary)",
+                  }}
+                >
+                  92%
+                </span>
+              </div>
+              <div
+                style={{
+                  position: "relative",
+                  height: "20px",
+                  backgroundColor: "var(--color-muted)",
+                  borderRadius: "100px",
+                  overflow: "hidden",
+                  border: "1.5px solid var(--color-foreground)",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: "92%",
+                    backgroundColor: "var(--color-secondary)",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Threshold scale */}
+            <div
+              style={{
+                position: "relative",
+                marginTop: "16px",
+                paddingTop: "16px",
+                borderTop: "1px dashed var(--color-muted)",
+                height: "44px",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  left: "80%",
+                  top: 0,
+                  bottom: "16px",
+                  borderLeft: "2px dashed var(--color-foreground)",
+                  opacity: 0.4,
+                }}
+              />
+              <span
+                style={{
+                  position: "absolute",
+                  left: "80%",
+                  bottom: 0,
+                  transform: "translateX(-50%)",
+                  fontFamily: "monospace",
+                  fontSize: "0.6875rem",
+                  color: "var(--color-foreground)",
+                  opacity: 0.6,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                practitioner threshold · 80%
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Hero Metric ───────────────────────────────────────────── */}
+        <section id="hero-metric" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Hero Metric</h2>
+          <p style={sectionDescStyle}>
+            Single oversized tile for the one defining payoff of a case
+            study. Use at most one per page, above the fold, when there&apos;s
+            a number worth the room. Pairs well with a Process Timeline
+            beneath.
+          </p>
+
+          <div
+            style={{
+              backgroundColor: "var(--color-card)",
+              border: "2px solid var(--color-foreground)",
+              borderRadius: "var(--radius-card)",
+              boxShadow: "var(--shadow-brutal)",
+              padding: "clamp(32px, 5vw, 56px) clamp(28px, 4vw, 48px)",
+            }}
+          >
+            <div
+              style={{
+                display: "inline-block",
+                backgroundColor: "rgba(28,176,246,0.12)",
+                border: "1px solid var(--color-primary)",
+                color: "#0369a1",
+                fontFamily: "var(--font-display), sans-serif",
+                fontSize: "0.75rem",
+                fontWeight: 700,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                padding: "4px 12px",
+                borderRadius: "100px",
+                marginBottom: "20px",
+              }}
+            >
+              Composite eval score
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                gap: "20px",
+                flexWrap: "wrap",
+                marginBottom: "16px",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "clamp(3.5rem, 8vw, 5rem)",
+                  fontWeight: 800,
+                  letterSpacing: "-0.04em",
+                  color: "var(--color-foreground)",
+                  lineHeight: 1,
+                }}
+              >
+                92%
+              </span>
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  backgroundColor: "var(--color-secondary)",
+                  color: "#ffffff",
+                  padding: "8px 16px",
+                  borderRadius: "var(--radius-button)",
+                  border: "2px solid var(--color-foreground)",
+                  boxShadow: "var(--shadow-brutal-sm)",
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 800,
+                }}
+              >
+                +39 pts
+              </span>
+            </div>
+
+            <p
+              style={{
+                fontFamily: "var(--font-body), sans-serif",
+                fontSize: "1.0625rem",
+                lineHeight: 1.6,
+                color: "var(--color-foreground)",
+                opacity: 0.75,
+                margin: 0,
+                maxWidth: "560px",
+              }}
+            >
+              Six weeks of weekly practitioner calibration. Threat-model
+              accuracy and no-hallucination drove most of the lift.
+            </p>
+          </div>
+        </section>
+
+        {/* ── Metric Tile (w/ optional sparkline) ───────────────────── */}
+        <section id="metric-tile" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Metric Tile</h2>
+          <p style={sectionDescStyle}>
+            KPI tile: big number, label, optional delta indicator, optional
+            mini-bar sparkline. Drop a row of two or three above the fold for
+            quick payoff scanning. The sparkline is only honest when you have
+            real time-series data — most snapshot metrics should render
+            without it.
+          </p>
+
+          {/* Variant A — basic (no sparkline) */}
+          <p
+            style={{
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "0.6875rem",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "var(--color-foreground)",
+              opacity: 0.5,
+              margin: 0,
+              marginBottom: "10px",
+            }}
+          >
+            Variant A — basic (snapshot metrics)
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "16px",
+              marginBottom: "32px",
+            }}
+          >
+            {[
+              { value: "$200M", label: "Economic opportunity unlocked", delta: undefined },
+              { value: "20,000", label: "Accounts identified", delta: undefined },
+              { value: "10,000", label: "Hours saved", delta: undefined },
+            ].map((m) => (
+              <div
+                key={m.label}
+                style={{
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-card)",
+                  boxShadow: "var(--shadow-brutal)",
+                  padding: "24px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    gap: "8px",
+                    marginBottom: "4px",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "2.25rem",
+                      fontWeight: 800,
+                      letterSpacing: "-0.03em",
+                      color: "var(--color-foreground)",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {m.value}
+                  </span>
+                  {m.delta && (
+                    <span
+                      style={{
+                        fontFamily: "var(--font-display), sans-serif",
+                        fontSize: "0.8125rem",
+                        fontWeight: 700,
+                        color: "var(--color-secondary)",
+                      }}
+                    >
+                      {m.delta}
+                    </span>
+                  )}
+                </div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.875rem",
+                    color: "var(--color-foreground)",
+                    opacity: 0.6,
+                    margin: 0,
+                  }}
+                >
+                  {m.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Variant B — with sparkline */}
+          <p
+            style={{
+              fontFamily: "var(--font-display), sans-serif",
+              fontSize: "0.6875rem",
+              fontWeight: 700,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "var(--color-foreground)",
+              opacity: 0.5,
+              margin: 0,
+              marginBottom: "10px",
+            }}
+          >
+            Variant B — with sparkline (time-series only)
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "16px",
+            }}
+          >
+            {[
+              {
+                value: "92%",
+                label: "Composite eval score",
+                delta: "+39 pts",
+                bars: [3, 4, 4, 5, 6, 7, 9],
+              },
+              {
+                value: "5.2k",
+                label: "Weekly practitioner reviews",
+                delta: "+18%",
+                bars: [4, 5, 5, 6, 6, 7, 8],
+              },
+              {
+                value: "1.4s",
+                label: "Median agent latency",
+                delta: "−0.6s",
+                bars: [8, 7, 6, 6, 5, 5, 4],
+              },
+            ].map((m) => (
+              <div
+                key={m.label}
+                style={{
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-card)",
+                  boxShadow: "var(--shadow-brutal)",
+                  padding: "24px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    gap: "8px",
+                    marginBottom: "4px",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "2.25rem",
+                      fontWeight: 800,
+                      letterSpacing: "-0.03em",
+                      color: "var(--color-foreground)",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {m.value}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "0.8125rem",
+                      fontWeight: 700,
+                      color: "var(--color-secondary)",
+                    }}
+                  >
+                    {m.delta}
+                  </span>
+                </div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.875rem",
+                    color: "var(--color-foreground)",
+                    opacity: 0.6,
+                    margin: 0,
+                    marginBottom: "16px",
+                  }}
+                >
+                  {m.label}
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-end",
+                    gap: "3px",
+                    height: "28px",
+                  }}
+                >
+                  {m.bars.map((h, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        flex: 1,
+                        height: `${(h / 10) * 100}%`,
+                        backgroundColor: "var(--color-primary)",
+                        opacity: 0.3 + (i / m.bars.length) * 0.65,
+                        borderRadius: "2px",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Delta Tile (before → after) ───────────────────────────── */}
+        <section id="delta-tile" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>The Delta Tile</h2>
+          <p style={sectionDescStyle}>
+            Before → after pair with an explicit delta badge. For metrics
+            where the <em>movement</em> is the story: a time-to-qualification
+            cut, an eval score lift, a latency drop. Replaces strings like
+            &quot;13d → 15m&quot; with two clearly weighted values.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "16px",
+            }}
+          >
+            {[
+              {
+                eyebrow: "Time to qualification",
+                before: "13d",
+                after: "15m",
+                delta: "1,248× faster",
+                caption: "BBBS Mentor Enrollment voice agent — first reply turnaround before vs. after.",
+              },
+              {
+                eyebrow: "Composite eval score",
+                before: "53%",
+                after: "92%",
+                delta: "+39 pts",
+                caption: "Cyberse eval composite after six weeks of practitioner calibration.",
+              },
+              {
+                eyebrow: "Rubric range",
+                before: "60",
+                after: "90",
+                delta: "+30",
+                caption: "Vendor page score range pre- and post-rubric rewrite.",
+              },
+            ].map((d) => (
+              <div
+                key={d.eyebrow}
+                style={{
+                  backgroundColor: "var(--color-card)",
+                  border: "2px solid var(--color-foreground)",
+                  borderRadius: "var(--radius-card)",
+                  boxShadow: "var(--shadow-brutal)",
+                  padding: "28px 24px",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "0.6875rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "var(--color-foreground)",
+                    opacity: 0.5,
+                    margin: 0,
+                    marginBottom: "16px",
+                  }}
+                >
+                  {d.eyebrow}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    gap: "14px",
+                    marginBottom: "14px",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "2rem",
+                      fontWeight: 800,
+                      letterSpacing: "-0.03em",
+                      color: "var(--color-foreground)",
+                      opacity: 0.4,
+                      lineHeight: 1,
+                      textDecoration: "line-through",
+                      textDecorationThickness: "2px",
+                      textDecorationColor: "rgba(20,20,20,0.3)",
+                    }}
+                  >
+                    {d.before}
+                  </span>
+                  <span
+                    style={{
+                      color: "var(--color-foreground)",
+                      opacity: 0.4,
+                      fontSize: "1.5rem",
+                      lineHeight: 1,
+                    }}
+                  >
+                    →
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display), sans-serif",
+                      fontSize: "2.5rem",
+                      fontWeight: 800,
+                      letterSpacing: "-0.03em",
+                      color: "var(--color-foreground)",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {d.after}
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    backgroundColor: "var(--color-secondary)",
+                    color: "#ffffff",
+                    padding: "4px 12px",
+                    borderRadius: "var(--radius-button)",
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "0.8125rem",
+                    fontWeight: 800,
+                    marginBottom: "14px",
+                  }}
+                >
+                  {d.delta}
+                </div>
+
+                <p
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.8125rem",
+                    lineHeight: 1.5,
+                    color: "var(--color-foreground)",
+                    opacity: 0.6,
+                    margin: 0,
+                  }}
+                >
+                  {d.caption}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Sparkline & Bar Row ───────────────────────────────────── */}
+        <section id="sparkline-bar-row" style={{ ...sectionStyle, borderBottom: "none" }}>
+          <h2 style={sectionTitleStyle}>Sparkline &amp; Bar Row</h2>
+          <p style={sectionDescStyle}>
+            Bare data viz primitives. Sparkline renders as an SVG polyline
+            with a terminal marker; bar row as flex divs. For inline use:
+            inside paragraphs, beside a stat, or composed into a larger
+            tile.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "16px",
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: "var(--color-card)",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                padding: "24px",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "0.6875rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--color-foreground)",
+                  opacity: 0.5,
+                  margin: 0,
+                  marginBottom: "8px",
+                }}
+              >
+                Sparkline
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  gap: "12px",
+                  marginBottom: "12px",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.75rem",
+                    fontWeight: 800,
+                    color: "var(--color-foreground)",
+                  }}
+                >
+                  92%
+                </span>
+                <span
+                  style={{
+                    fontFamily: "monospace",
+                    fontSize: "0.75rem",
+                    color: "var(--color-foreground)",
+                    opacity: 0.5,
+                  }}
+                >
+                  last 7 weeks
+                </span>
+              </div>
+              <svg
+                viewBox="0 0 200 60"
+                width="100%"
+                height="60"
+                preserveAspectRatio="none"
+                style={{ display: "block" }}
+              >
+                <polyline
+                  points="0,48 33,42 66,36 100,30 133,20 166,12 200,6"
+                  fill="none"
+                  stroke="#1CB0F6"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle
+                  cx="198"
+                  cy="6"
+                  r="3.5"
+                  fill="#1CB0F6"
+                  stroke="#141414"
+                  strokeWidth="1.5"
+                />
+              </svg>
+            </div>
+
+            <div
+              style={{
+                backgroundColor: "var(--color-card)",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                padding: "24px",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "0.6875rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--color-foreground)",
+                  opacity: 0.5,
+                  margin: 0,
+                  marginBottom: "8px",
+                }}
+              >
+                Bar Row
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  gap: "12px",
+                  marginBottom: "12px",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.75rem",
+                    fontWeight: 800,
+                    color: "var(--color-foreground)",
+                  }}
+                >
+                  24
+                </span>
+                <span
+                  style={{
+                    fontFamily: "monospace",
+                    fontSize: "0.75rem",
+                    color: "var(--color-foreground)",
+                    opacity: 0.5,
+                  }}
+                >
+                  prompts in run #143
+                </span>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  gap: "4px",
+                  height: "60px",
+                }}
+              >
+                {[4, 6, 3, 8, 5, 9, 7, 5, 8, 6, 9, 7].map((h, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      flex: 1,
+                      height: `${(h / 10) * 100}%`,
+                      backgroundColor: "var(--color-foreground)",
+                      borderRadius: "2px",
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Code blocks in prose ──────────────────────────────────── */}
+        <section id="code-block" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>Code Block (Markdown)</h2>
+          <p style={sectionDescStyle}>
+            Any standard Markdown <code style={codeStyle}>```</code> code fence
+            inside a case study renders as a dark monospace block with the
+            same brutal border + shadow as cards. No custom component
+            required — just write the fence.
+          </p>
+
+          <div className="prose-content">
+            <pre>
+{`~/Code/
+├── infra/
+│   └── kj-skills/        # Claude Code plugin — shared skills
+├── workspaces/
+│   ├── career-camp/      # interview prep + R&D
+│   ├── content.main/     # scripts, drafts, brands
+│   └── databank/         # analytics + ETL
+└── products/
+    └── kevinhu.fyi/      # this portfolio site`}
+            </pre>
+          </div>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            {"```text"}<br />
+            {"~/Code/"}<br />
+            {"├── infra/"}<br />
+            {"..."}<br />
+            {"```"}
+          </div>
+        </section>
+
+        {/* ── Drilldown Card (MDX component) ────────────────────────── */}
+        <section id="drilldown-card" style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>Drill-down Card (MDX)</h2>
+          <p style={sectionDescStyle}>
+            Always-visible card for the optional &quot;deeper context&quot;
+            section at the bottom of a case study. Replaces the native
+            <code style={codeStyle}>&lt;details&gt;</code> toggle so the content is
+            scannable without a click. Eyebrow signals it&apos;s a sidecar to the
+            main narrative.
+          </p>
+
+          <Drilldown title="How the rubric work was structured">
+            <ul>
+              <li>
+                <strong>Per-category rubrics.</strong> One rubric per solution
+                category, owned by domain experts. Each rubric expressed the
+                criteria buyers use inside that category — not a global
+                &quot;is this vendor good&quot; question.
+              </li>
+              <li>
+                <strong>Citation-mandatory scoring.</strong> The agent could
+                not return a score without a source. The retrieval surface
+                was the eval surface.
+              </li>
+              <li>
+                <strong>Compression as the failure signal.</strong> Score
+                distribution per category was the canonical health metric. If
+                a category compressed, the rubric was wrong before the agent
+                was.
+              </li>
+            </ul>
+          </Drilldown>
+
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "16px",
+              background: "rgba(28,176,246,0.04)",
+              borderRadius: "var(--radius-button)",
+              fontFamily: "monospace",
+              fontSize: "0.8125rem",
+              lineHeight: 1.8,
+              color: "var(--color-foreground)",
+            }}
+          >
+            {"<Drilldown title=\"How the rubric work was structured\">"}<br />
+            {""}<br />
+            {"- **Per-category rubrics.** One rubric per ..."}<br />
+            {"- **Citation-mandatory scoring.** The agent could ..."}<br />
+            {""}<br />
+            {"</Drilldown>"}
           </div>
         </section>
       </div>
