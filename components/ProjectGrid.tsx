@@ -2,15 +2,22 @@ import type { ProjectMeta } from "@/lib/projects";
 import ProjectCard from "@/components/ProjectCard";
 import Button from "@/components/Button";
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function ProjectGrid({
   projects,
   showViewAll = false,
+  heading = "Featured Work",
+  description = "A selection of projects across AI, data, and operations",
+  headingLevel = "h2",
 }: {
   projects: ProjectMeta[];
   showViewAll?: boolean;
+  heading?: string;
+  description?: string;
+  headingLevel?: "h1" | "h2";
 }) {
+  const [flagship, ...rest] = projects;
+  const HeadingTag = headingLevel;
+
   return (
     <section
       id="projects"
@@ -19,23 +26,23 @@ export default function ProjectGrid({
         paddingBottom: "80px",
       }}
     >
-      {/* ── Centered content wrapper ─────────────────────────────────────── */}
       <div style={{ maxWidth: "1200px", margin: "0 auto" }} className="px-6 lg:px-12">
 
-        {/* ── Section heading ──────────────────────────────────────────────── */}
+        {/* ── Section heading ─────────────────────────────────────────────── */}
         <div style={{ marginBottom: "48px" }}>
-          <h2
+          <HeadingTag
             style={{
               fontFamily: "var(--font-display), sans-serif",
-              fontSize: "2.25rem",
-              fontWeight: 700,
+              fontSize: headingLevel === "h1" ? "2.75rem" : "2.25rem",
+              fontWeight: headingLevel === "h1" ? 800 : 700,
               color: "var(--color-foreground)",
               margin: "0 0 12px 0",
-              lineHeight: 1.15,
+              lineHeight: 1.1,
+              letterSpacing: headingLevel === "h1" ? "-0.02em" : "normal",
             }}
           >
-            Featured Work
-          </h2>
+            {heading}
+          </HeadingTag>
           <p
             style={{
               fontFamily: "var(--font-body), sans-serif",
@@ -46,25 +53,21 @@ export default function ProjectGrid({
               lineHeight: 1.6,
             }}
           >
-            A selection of projects across AI, data, and operations
+            {description}
           </p>
         </div>
 
-        {/* ── Project grid ─────────────────────────────────────────────────── */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 520px), 1fr))",
-            gap: "24px",
-          }}
-          className="project-grid"
-        >
-          {projects.map((p) => (
-            <ProjectCard project={p} key={p.slug} />
-          ))}
-        </div>
+        {/* ── Projects grid: flagship spans 2 cols, rest fill ────────────── */}
+        {projects.length > 0 && (
+          <div className="project-grid">
+            {flagship && <ProjectCard project={flagship} variant="flagship" />}
+            {rest.map((p) => (
+              <ProjectCard project={p} key={p.slug} />
+            ))}
+          </div>
+        )}
 
-        {/* ── View all link ─────────────────────────────────────────────────── */}
+        {/* ── View all link ────────────────────────────────────────────────── */}
         {showViewAll && (
           <div
             style={{

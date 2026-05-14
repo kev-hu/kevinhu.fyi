@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { getProjects } from "@/lib/projects";
+import { getListedProjects } from "@/lib/projects";
 
 const displayFont = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -45,7 +45,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const projects = getProjects();
+  const projects = getListedProjects();
 
   return (
     <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>

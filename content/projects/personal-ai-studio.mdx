@@ -1,0 +1,157 @@
+---
+title: "Personal AI Studio"
+slug: "personal-ai-studio"
+status: inactive
+subtitle: "A multi-repo workspace, a portable skill library, and a memory layer connecting personal prompts, skills, agents, and notes."
+description: "A multi-repo Claude Code workspace — 5 active domains, 15 shared skills, and 12 MCP integrations connected by a memory layer. AI workflow treated as a product: skills as CLIs, lessons.md as immune system."
+featured: true
+order: 7
+tags: ["Claude Code", "Obsidian", "MCP", "Skills", "Workflows"]
+role: "Solo"
+timeline: "Ongoing"
+metrics:
+  - label: "Active Workspaces"
+    value: "5"
+  - label: "Shared Skills"
+    value: "15"
+  - label: "MCP Integrations"
+    value: "12"
+---
+
+## Architecture
+
+```text
+              ┌────────────────────────────────────────────────────┐
+              │              BRAIN — Obsidian vault                │
+              │     notes · transcripts · references · lessons     │
+              └─────────────────────────┬──────────────────────────┘
+                                        │
+        ┌────────────┬───────────┬──────┴──────┬────────────┬────────────┐
+        ▼            ▼           ▼             ▼            ▼            ▼
+   career-camp   content.    databank      content.    kevinhufyi-   kevinhu.fyi
+   interview     main        analytics +   kevinhu.    youtube       portfolio
+   prep + R&D    scripts +   BigQuery +    fyi         video         (this site)
+                 drafts      ETL           site CMS    pipeline
+        │            │           │             │            │            │
+        └────────────┴───────────┴──────┬──────┴────────────┴────────────┘
+                                        │
+                          ┌─────────────▼─────────────┐
+                          │      kj-skills plugin     │
+                          │  15 shared skills + memory│
+                          └─────────────┬─────────────┘
+                                        │
+                          ┌─────────────┴─────────────┐
+                          ▼                           ▼
+                     Claude Code               12+ MCP servers
+                                          (Apify · Vercel · Gmail ·
+                                           Drive · Notion · Obsidian)
+```
+
+**Knowledge substrate on top.** The Obsidian vault holds every transcript, reference, post-mortem, and half-written thought. Every workspace reads from it; the load-bearing outputs get written back. Treating notes as a queryable substrate — not a destination — is what makes context portable between sessions.
+
+**Domain workspaces in the middle.** Six repos, each owning one durable domain end-to-end. New work goes *into* an existing workspace, not into a fresh one. The shape mirrors how a competent platform team is organized: domain pods that own their problem from data to interface, with shared infrastructure underneath.
+
+**Shared skills and execution underneath.** `kj-skills` is a versioned Claude Code plugin pointing at the same skill library from every workspace. A skill written for one domain ships to all the others the next session. Claude Code and a dozen MCP servers form the execution layer — the surface that actually reaches into Gmail, Drive, BigQuery, Vercel, and the file system.
+
+## Patterns
+
+### Repos as workspaces, not projects
+
+One repo per durable domain — career, content, analytics, site, video — not one per output. A new interview prep cycle, a new content sprint, a new dashboard: they go into the existing workspace as a dated folder. Workspaces accumulate; projects come and go inside them.
+
+Why this matters: project-level repos die when the project ends, taking their tooling and memory with them. Domain workspaces let CLAUDE.md, LESSONS.md, the local `bin/`, the launchd jobs, and the accumulated context survive past any single deliverable. The cost of starting a new project goes to near-zero because the substrate is already loaded.
+
+Concrete shape: `career-camp/active/<company>/` for live processes, `career-camp/archive/` for closed ones, and a `career-camp/dashboards/` Obsidian folder that aggregates across both. Same skeleton in `databank`, `content.main`, and the rest.
+
+### Skills as CLIs
+
+`kj-skills` is a Claude Code plugin holding 15 skills — each one a markdown file with a procedure, the failure modes to avoid, and the shape of the output. They're written exactly the way I'd onboard a teammate: goal first, gotchas second, examples third. When a skill is good, both the human reader and the agent reader benefit; when a skill is wrong, the same edit fixes both.
+
+The argument is simple: *the same stuff you use to train humans should be the same stuff you use to train machines.* `kj-skills` is the literal implementation. Skills like `apify-scraper`, `lessons`, `cli-tools`, and `qmd` get loaded on demand — the agent picks them up by name; I read them when I want to remember how I do something.
+
+Documentation and tooling collapse into the same artifact. Version-controlled, diff-able, reviewable.
+
+### MEMORY.md as persistent context
+
+Every workspace and every plugin has a `MEMORY.md` indexed by topic — user preferences, project history, recurring references, feedback I've already received and shouldn't need to be told twice. Claude Code reads it at session start; I read it when I'm reorienting.
+
+The discipline is *what not to save*: not code patterns (the codebase shows those), not git history (the log shows that), not transient task state (todos handle that). Save the things that won't be recoverable from the artifacts themselves — user-level preferences, the *why* behind a non-obvious decision, the names of people and tools that don't show up in code.
+
+The payoff is compounding: every session writes context the next session won't have to be told.
+
+### Lessons.md as immune system
+
+Every workspace has a `LESSONS.md`. When something fails — a bad refactor, a misread spec, a tool used wrong — one line goes in. Quarterly I prune: kill the dull entries, promote the load-bearing ones into a skill, retire what no longer applies. The file stays short on purpose; a wall of advice gets ignored.
+
+The job isn't to remember everything. It's to make sure the *same* mistake doesn't repeat — and to surface the patterns worth turning into shared tooling. Closer to a defect-tracking discipline than a journal. The `lessons` and `lessons-prune` skills in `kj-skills` automate the capture and the cleanup, so the file gets the maintenance it needs without me having to remember to do it.
+
+### Obsidian as IDE
+
+The vault is the substrate. Notes, transcripts, references, dashboards — all live as markdown files Claude Code can read directly. Dataview queries turn folders into live tables (e.g. *every active interview process, sorted by next step*). Templates standardize the shape of recurring artifacts. The graph view shows what's connected to what.
+
+Calling it an IDE is barely a metaphor. It's where I write, where context accumulates, and where the agent picks up what it needs. Markdown is durable, greppable, addressable from CLI, and free of vendor lock-in — the substrate I'd bet a decade on.
+
+## Live examples
+
+![Workspace tree — five domain repos under ~/Code/workspaces](/images/projects/personal-ai-studio-workspace-tree.png)
+
+*Five domain workspaces side-by-side. Each owns one durable domain end-to-end.*
+
+![career-camp dashboard tracking active interview processes](/images/projects/personal-ai-studio-career-dashboard.png)
+
+*The `career-camp/dashboards/` Obsidian view — Dataview query over the active folder, showing every live process and its next step.*
+
+![A SKILL.md file open in the editor](/images/projects/personal-ai-studio-skill-md.png)
+
+*`kj-skills/content/SKILL.md` — the same file the human reads and the agent loads.*
+
+![MEMORY.md with auto-memory entries](/images/projects/personal-ai-studio-memory-md.png)
+
+*A workspace `MEMORY.md` — preferences, references, and decisions accumulated across sessions.*
+
+![BRAIN vault graph view](/images/projects/personal-ai-studio-brain-graph.png)
+
+*The Obsidian vault graph — notes, transcripts, and references connected by wikilinks. The substrate every workspace reads from.*
+
+## What's next
+
+Currently iterating on two fronts. First, the auto-memory layer — moving from per-workspace `MEMORY.md` files toward a small server that lets workspaces share specific memory namespaces without coupling them. Second, the evaluation surface: skills are testable artifacts, and I'm scaffolding a lightweight harness so a skill edit can run against fixture transcripts and report regressions before it ships. The studio earns its keep when it gets sharper week over week — that's the only metric that matters.
+
+<Drilldown title="Repo structure">
+</Drilldown>
+
+```text
+~/Code/
+├── infra/
+│   └── kj-skills/                 # Claude Code plugin — 15 shared skills
+│       ├── skills/                # apify-scraper, lessons, qmd, cli-tools, ...
+│       ├── scripts/               # bootstrap.sh, index.sh
+│       ├── CLAUDE.md
+│       └── LESSONS.md
+├── workspaces/
+│   ├── career-camp/               # interview prep + R&D
+│   │   ├── active/                # one folder per live process
+│   │   ├── archive/               # closed processes
+│   │   ├── dashboards/            # Obsidian Dataview surfaces
+│   │   ├── bin/                   # workspace-local CLIs
+│   │   └── launchd/               # scheduled jobs
+│   ├── content.main/              # scripts, drafts, brands
+│   │   ├── brands/
+│   │   ├── library/
+│   │   ├── sessions/
+│   │   └── tools/
+│   ├── databank/                  # analytics + ETL
+│   │   ├── data/
+│   │   ├── evals/
+│   │   ├── launchd/
+│   │   └── bin/
+│   ├── content.kevinhu.fyi/       # site CMS + content
+│   └── kevinhufyi-youtube/        # video pipeline
+└── products/
+    └── kevinhu.fyi/               # this portfolio site
+```
+
+
+Every workspace ships with a `CLAUDE.md`, `LESSONS.md`, and `MEMORY.md`. The five domain repos plus `kj-skills` are private; this portfolio repo is the one public surface.
+
+

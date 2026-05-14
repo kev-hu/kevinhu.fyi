@@ -1,39 +1,89 @@
 ---
-title: "Scaling Cybersecurity SEO with AI"
-slug: "cybersecurity-seo"
-subtitle: "200+ Vendor Pages, CMS Migration, AI Scoring"
-description: "Built a programmatic SEO system for a cybersecurity marketplace, migrated their CMS, and shipped an AI agent that scores and rates solutions to surface score compression issues."
-featured: false
-order: 6
-tags: ["SEO", "AI", "Content Strategy", "Programmatic SEO"]
-thumbnail: /images/projects/cybersecurity-seo.png
+title: "Cyberse — Cybersecurity Marketplace and Research Agent"
+slug: "cyberse-research-agent"
+status: active
+subtitle: "Helped Cyberse launch their MVP and go to market — 200 AI-scored vendor pages, 200 inbound leads, and a $200K reseller deal in Singapore."
+
+overview: "As technical consultant, I led the development of Cyberse's AI vendor-research agent. I pushed back on the original build order and proposed shipping distribution and product as one artifact — the agent's outputs published as PSEO pages, with per-category eval rubrics underneath. Several pages ranked on Google, and the inbound leads helped secure distributor partnerships the CEO had been chasing."
+
+description: "Cyberse needed to prove the supply side of their cybersecurity marketplace — that they could generate qualified buyer demand organically. I pushed back on the build order: ship distribution first via PSEO, with the agent's outputs as the PSEO content. Then built the eval infrastructure when stakes went public — 80% of diagnosed failures resolved in three weeks."
+
+featured: true
+order: 1
+tags: ["AI Agents", "Eval Rubrics", "Programmatic SEO", "LLM Tool-Use", "RAG"]
+thumbnail: /images/logos/cyberse-horizontal.png
+bannerBg: "#141432"
+clientLogo: "/images/logos/cyberse.jpg"
+hideBanner: true
+role: "Technical Consultant"
+timeline: "7 months (May – Nov '25)"
+team: "CEO, Design (1), Engineering (1)"
 metrics:
-  - label: "Vendor Pages"
-    value: "200+"
-  - label: "Page 1 Rankings"
-    value: "35%"
-  - label: "Scoring Accuracy"
-    value: "+41%"
+  - label: "Eval Failures Fixed"
+    value: "80% / 3 wks"
+  - label: "Vendor Pages Live"
+    value: "200"
+  - label: "Reseller Deal"
+    value: "$200K"
 ---
 
-## The Problem
+## Business Context
 
-A cybersecurity marketplace needed to rank for hundreds of vendor and solution-specific keywords, but manually creating quality content for 200+ vendors was impossible at the speed the market required.
+As technical consultant, I led the development of Cyberse's AI vendor-research agent. I pushed back on the original build order and proposed shipping distribution and product as one artifact — the agent's outputs published as PSEO pages, with per-category eval rubrics underneath. Several pages ranked on Google, and the inbound leads helped secure distributor partnerships the CEO had been chasing.
 
-The challenge: cybersecurity buyers search for very specific solutions ("SIEM vendors," "endpoint detection tools," "zero trust network access"), and generic content doesn't convert. Each page needed to be genuinely useful.
+## Phase 1: Sequencing
 
-## The Solution
+The CEO wanted to build the research agent first — the technically interesting part, and the obvious move. But when I looked at the plan, the gating constraint wasn't the agent. It was distribution. We had no users to test scores against, no path to validate that the agent was trustworthy, and no leads to give Cyberse's distributor partners as proof of the marketplace model the CEO was still trying to sell them on.
 
-Rebuilt the foundation first with a CMS migration, then built a programmatic content system and an AI scoring agent on top of it.
+I pushed back on sequencing. Proposed we tackle distribution first via programmatic SEO — structured so PSEO didn't delay the agent; it *became* the agent's deployment surface. **The agent's outputs were the PSEO content.** Every page in the corpus a deployed agent run. Every week the agent improved, the SEO ranked higher. Every week PSEO ran, we forced ourselves to deploy and observe the agent in production.
 
-Key components:
-- **CMS migration** moving the existing content infrastructure to a system that could support programmatic publishing at scale
-- **AI generation pipeline** using LLMs to draft vendor summaries, capability breakdowns, and use cases from structured data
-- **Solution scoring agent** that rates and ranks cybersecurity vendors against defined criteria, giving buyers a signal beyond raw content
-- **Score compression analysis** an internal evaluation tool that identified where ratings were clustering too tightly to be useful, and surfaced calibration issues
+The sell to the CEO wasn't *"SEO matters more than the agent."* It was *"PSEO buys us validation, leads, and distributor proof — and the agent gets sharper in production faster than it would in isolation."*
 
-## The Results
+## How I Build
 
-- 200+ vendor and solution pages published
-- 35% of targeted keywords achieved page 1 rankings
-- Delivered an internal scoring tool that improved scoring accuracy by 41% and exposed calibration problems that would have undermined buyer trust
+1. **Discovery before tooling.** I'm not a cybersecurity expert. Before writing prompts, I sat with the CEO and the founding team to map solution categories — SIEM, EDR, ZTNA, IAM, compliance platforms, a half-dozen more — and the evaluation criteria buyers actually use inside each. Different buyers care about different things in different categories. A single global rubric would have collapsed under that variance — the same trap I'd dodged a few years earlier in the [CARES Act pipelines](/projects/cares-act-data).
+
+2. **Retrieval-grounded agent, not LLM-only.** Built the scoring agent with tool-calling against Perplexity, so every rating cited the sources it came from. An ungrounded model answer is a liability — buyers (and Google) need to see where the claim came from. Citation-first scoring also made the eval loop tractable: when a rating was wrong, you could point at the source it misread, not at "the model."
+
+3. **Weekly calibration with practitioners.** Set up a recurring cadence with industry professionals to spot-check ratings on tone, framing, and missed nuance. Qualitative review caught the things automated metrics never would — a SIEM that scored well on capabilities but was widely known to be miserable to operate, for example. Practitioners shaped the rubric, the rubric shaped the agent, the agent shaped the page.
+
+4. **Eval infra, built when the stakes rose.** Once the agent's outputs were going public, score quality became a customer-facing problem, not an internal one. The CEO flagged ratings felt off; I built a spreadsheet decomposing every score by cybersecurity category and criterion. A scorer that produces numbers but can't *differentiate* is the eval failure mode — a buyer reading *"this vendor is a 3.8 and this one is a 4.1"* learns nothing.
+
+<EvalCohortPanel />
+
+*Red cells flag compression — categories where fewer than 10% of vendors earned a 5★. Cohort B (rubric granularity) lifted the rows where the rubric was the bottleneck; cohort C (Perplexity grounding) lifted the rows where the model itself lacked coverage.*
+
+5. **The insight: asymmetry isn't a bug.** The naive fix is to re-weight the rubric until every category looks the same. The real diagnosis: scoring *can't* be congruent across categories. Endpoint security has decades of public material the model can grade against — 5s are abundant and earned. Drata-era compliance platforms barely existed in the training cut, so the model honestly hedges to 3s. **The compression wasn't a rubric bug; it was the model reporting its own confidence floor.**
+
+   **Per-category rubrics on top, retrieval weight underneath.** The fix wasn't normalization — it was accepting the asymmetry and routing under-covered categories through Perplexity retrieval so the agent had real-time context where its training data was thin. A/B/C tested prompt variants against the rubric.
+
+   **80% of diagnosed failures fixed in three weeks** — categories clearing the rubric quality threshold climbed from 3/12 at baseline to 11/12 (25% → 92%). Because the page *was* the agent output, every rubric iteration shipped to production the same week.
+
+6. **Published the agent's outputs as the marketing surface.** 200+ vendor and solution pages went live — each one a deployed agent run with a rubric attached and citations exposed.
+
+![A published vendor page — agent output, citations, and rubric breakdown rendered as the buyer-facing product](/images/projects/cyberse-pseo-page.png)
+
+*A live vendor page. Score, justification, and citations are the agent's output rendered directly — no editorial layer between eval and surface.*
+
+## What it proved
+
+- **200+ pages published**, covering vendor and solution-category long-tail queries the enterprise side couldn't easily reach.
+- **200 inbound leads** attributed via RB2B from organic search, with zero distributor margin.
+- **$200K reseller partnership** in Singapore — Cyberse used the organic supply-side proof to enter a Southeast Asia accelerator and sign a distributor deal in the new market.
+- **80% of eval failures fixed in three weeks** — the discipline that made the published outputs trustworthy enough to *be* the marketing surface.
+
+When the agent's outputs are the product, internal eval and customer-facing product collapse into one workstream. Every rubric improvement is an SEO improvement. Every SEO win surfaces what to rank for next. The two halves can't drift, because they're the same artifact.
+
+## What carries forward
+
+Anywhere agentic outputs are the product — summarization, scored marketplaces, name-screening — the same loop applies: rubrics as substrate, calibration as cadence, the published artifact as the eval surface. And asymmetry is information, not noise: don't normalize what the model is honestly telling you about its own coverage.
+
+<Drilldown title="How the rubric work was structured">
+
+- **Per-category rubrics.** One rubric per solution category, owned by domain experts. Each rubric expressed the criteria buyers use inside that category — not a global "is this vendor good" question.
+- **Citation-mandatory scoring.** The agent could not return a score without a source. The retrieval surface was the eval surface — a wrong score traced back to a misread source, not an opaque model state.
+- **Weekly spot-check cadence.** A rotating panel of practitioners reviewed a sampled subset of scores each week. Disagreements drove rubric edits, not prompt edits.
+- **Compression as the failure signal.** Score distribution per category was the canonical health metric. If a category compressed, the first question wasn't *"is the rubric wrong"* — it was *"is this a coverage gap the model is honestly reporting?"* The answer determined whether to edit the rubric or route more retrieval at the category.
+- **Airtable as a collaboration layer, not a replacement.** The engineering bottleneck on the Cyberse side meant the founder couldn't see or iterate on AI outputs directly — every change went through one engineer. I proposed Airtable alongside the existing Supabase setup (free startup credits, low risk, no migration required), framed as a parallel inspection layer. Within a week the founder was directly editing rationales and flagging score anomalies — which is what unblocked the per-category rubric work in the first place.
+
+</Drilldown>

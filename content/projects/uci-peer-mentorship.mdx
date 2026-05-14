@@ -1,38 +1,79 @@
 ---
-title: "Peer Mentoring at Scale"
-slug: "peer-mentorship"
-subtitle: "A Matching Platform for Student Wellness"
-description: "Built and launched a peer mentorship portal at UC Irvine that improved student retention by 20% and course completion by 40%."
+title: "Firstly — UC Irvine Launch on Six Weeks' Notice"
+slug: "uci-peer-mentorship"
+status: active
+subtitle: "Rebuilt a peer-mentorship platform on Bubble in six weeks with a two-person team after the CTO walked — UC Irvine launched on time and the contract closed Firstly's pre-seed."
+description: "Six weeks before Firstly's first enterprise launch at UC Irvine, the CTO was out. Rebuilt the platform on Bubble with a junior engineer, shipped on the original date, and used the launch to close the pre-seed. The post-launch finding that mattered most was the one our own survey design got wrong."
 featured: false
 order: 5
-tags: ["EdTech", "Platform", "SaaS", "Mentorship"]
-thumbnail: /images/projects/peer-mentorship.png
+tags: ["Crisis Recovery", "Zero-to-One", "Bubble", "Measurement Design", "EdTech"]
+thumbnail: /images/logos/uci-biosci.png
+bannerBg: "#FFFFFF"
+hideBanner: true
+clientLogo: "https://www.google.com/s2/favicons?domain=uci.edu&sz=128"
+role: "Co-Founder, Product & Engineering"
+timeline: "6-week rebuild + launch (Firstly, late '22)"
+team: "Junior Engineer (1), UCI Program Ops, UCI IT"
 metrics:
-  - label: "Retention Improvement"
+  - label: "Retention Lift"
     value: "+20%"
-  - label: "Completion Rate"
+  - label: "Course Completion"
     value: "+40%"
+  - label: "Tuition Saved"
+    value: "$75K"
 ---
 
-## The Problem
+## Background
 
-Student retention is one of the most expensive problems in higher education, and one of the most preventable. At UC Irvine, first-generation students and those from underrepresented backgrounds were at higher risk of dropping out, often due to isolation and lack of access to peer support.
+Six weeks before Firstly's first enterprise launch at UC Irvine, I fired the CTO. The team was two people now — me and a junior engineer. The contract was signed, the SOW was specific, FERPA accommodations were live conversations with UCI IT, and the academic-year budget cycle meant a delay would mean losing the renewal — and probably losing the pre-seed I was raising on the back of this launch.
 
-Existing mentorship programs were opt-in, hard to find, and chronically underutilized. Students who needed help most were least likely to seek it out.
+## Decision
 
-## The Solution
+The decision wasn't whether to ship. It was *how*.
 
-Built a peer mentorship portal that made matching automatic, proactive, and easy to access. The platform connected incoming students with near-peers who'd navigated similar challenges.
+Three options were live. (A) Continue on the existing codebase — the only person who fully understood it had just walked, and most of it was built on architectural decisions I'd disagreed with. (B) Delay to spring — a nine-month gap that would put us out of the academic budget cycle, almost certainly cost us the renewal, and reset the fundraising narrative. (C) Rebuild on Bubble, no-code, on the original timeline. Scary, but preserved everything that mattered to the customer and the round.
 
-Key components:
-- **Matching algorithm** pairing students based on major, background, and self-reported challenges
-- **Structured curriculum** giving mentor-mentee pairs a framework for productive conversations
-- **Progress tracking** letting program coordinators monitor engagement and intervene early
-- **Mobile-friendly interface** designed for student usage patterns
+I chose C. The judgment wasn't "no-code is good." It was that timing risk was bigger than tech risk in this window — the customer cared about the launch date and the program working, not about what stack it ran on. The cost of a nine-month delay would compound through every downstream conversation; the cost of running on Bubble for a year was contained, and recoverable later.
 
-## The Results
+![Three live options scored against four criteria — Bubble rebuild was the only one that passed on all four](/images/projects/uci-decision-matrix.png)
 
-- Launched peer mentorship portal at UC Irvine
-- +20% improvement in student retention among program participants
-- +40% improvement in course completion rates
-- Proving that SaaS solutions can systematically improve student wellness and retention at scale
+*The exercise of writing the criteria down before choosing was the real work. It kept the decision honest under deadline pressure, where the path of least resistance would have been to rationalize whichever option already felt right.*
+
+## How it shipped
+
+1. **Combed the SOW line by line.** Every signed deliverable got tagged: must-have, can-cut, reduced-fidelity. UCI ended up with a clearer (smaller) scope than they originally signed for — and were happier with it once we walked them through what each cut bought us in launch certainty. The cuts were deliberate, not lazy.
+
+2. **Trained the junior engineer on Bubble and co-worked daily.** Team capability after launch mattered more than my own velocity through the rebuild. I could've out-shipped solo; I would've left them with a system they couldn't operate. Co-working until they were independent was the trade I needed to make.
+
+3. **Tackled the gating blockers first.** UCI IT for SSO migration, FERPA accommodations documented, accessibility passes scheduled. Blockers don't reschedule themselves, and the fastest way to find out if a launch is impossible is to start the slow conversations early. Everything else could wait until the gating items were queued.
+
+4. **Cut the analytics dashboard.** Earlier discovery had said admins wanted dashboards. UCI's program ops were fine with spreadsheets and weekly summary emails. The dashboard was a feature copied from a different customer's needs — keeping it would have absorbed the engineering hours I needed elsewhere. Lesson cost: a year of feature sprawl that started here.
+
+5. **The 20% missing-data crisis.** Two weeks in, survey responses were dropping required fields. Root cause: students procrastinated, deadline-driven usage spiked, and Bubble's workload limits started silently failing the data-collection flow. A teammate suggested using Hotjar session recordings to reconstruct the missing submissions manually. The program team spent days combing through recordings and got the issue rate from 20% down to 5% — prioritizing student experience (no forced resubmissions) over engineering elegance. The lesson wasn't "use Hotjar." It was that the right recovery move sometimes lives outside the engineering org entirely.
+
+6. **Triangulated outcomes after launch.** Pre/post sense-of-belonging scales for the short term, student-directory scraping for long-term enrollment, structured qualitative interviews with program staff. Three independent signals on the same outcome, because no single one of them would have been defensible alone.
+
+## What it proved
+
+- **+20% retention lift** among program participants in the first cohort
+- **+40% course-completion improvement** for the same cohort
+- **~$75K in tuition savings** for UCI from the retention lift — the ROI calc that closed the renewal
+- **Pre-seed round closed** with Sunstone, New Jersey State, Blackstone, and accelerator partners — the launch became the proof point we'd staked the round on
+
+![Three independent signals on one outcome — survey, directory scrape, qualitative — flagged for triangulation against the survey's timing bias](/images/projects/uci-measurement.png)
+
+*The dashed red arrow is the signal we would have shipped if we'd trusted a single source. The other two — directory scraping and qualitative interviews — are what made the bias visible.*
+
+**Structural insight:** the most useful finding from launch wasn't the +20% retention number. It was the moment our pre/post survey lied. Sense-of-belonging scales showed a *drop* between pre and post, which directly contradicted everything the qualitative data was telling us. Root cause: the pre-survey was collected in week 2 of the semester; the post-survey was collected during finals week. Incomparable conditions — students are simply more stressed at finals than in week 2. The drop was an artifact of when we measured, not what we built. We caught it because we'd triangulated against the directory-scraping and qualitative data; if we'd trusted the single survey signal, we would have shipped a wrong story to the board, the customer, and ourselves. The discipline isn't running more surveys — it's noticing when your own measurement design is the thing that's lying to you.
+
+## What carries forward
+
+Most launch-stage measurement fails the same way: one source, one snapshot, one number that gets quoted in the deck. The Firstly UCI launch worked because the recovery moves were as deliberate as the build moves — a no-code rebuild that protected timing, a manual reconstruction that protected data quality, and a triangulated measurement design that surfaced its own bias before it became a board narrative. The same pattern travels: in any AI-product context where a single metric is about to drive a decision, the operator move is asking what *else* would have to be true for that metric to be trustworthy — and instrumenting against the adversarial case before the metric leaves the room.
+
+<Drilldown title="Option-set, measurement design, and what I'd still change">
+
+- **The three-option evaluation, with the criteria.** (A) Continue codebase — failed on team continuity. (B) Delay nine months — failed on budget cycle, renewal risk, and the fundraising narrative. (C) Bubble rebuild — passed on timing, scope preservability, and the team's ability to maintain post-launch. The exercise of writing the criteria down before choosing was the real work — it kept the decision honest under deadline pressure, where the path of least resistance would have been to rationalize whichever option already felt right.
+- **Triangulation methodology.** Pre/post 5-point sense-of-belonging scales (short-term, weak signal due to the timing bias caught later); annual student-directory scraping for actual enrollment status (long-term, strong signal); structured qualitative interviews with program staff and students (cross-validation). The three together gave a directional read no single one could.
+- **Bubble anchoring as the unfinished lesson.** I never set a deprecation date when we shipped. Every individual decision after launch made it slightly easier to stay than to migrate — the no-code platform had become load-bearing before anyone noticed. Eventually we tried to force Twilio into Bubble for an SMS pivot, which is when the cost of staying surfaced. The discipline I'd add now: a "rebuild on a real stack by date X" line in the launch doc, ratified by the team, treated as a real commitment.
+
+</Drilldown>

@@ -1,0 +1,104 @@
+---
+title: "databank — A Shared Data Layer for an Agent-Native Workflow"
+slug: "databank"
+status: inactive
+subtitle: "One CLI, one file contract, one place where YouTube / TikTok / LinkedIn data and its derived metrics live — designed so an agent walking in cold can use it without docs."
+description: "One CLI, one file contract, one place where YouTube / TikTok / LinkedIn data and its derived analytics live. Daily launchd sweeps; four downstream repos read from it; designed to be navigable by Claude as a first-class user, not just by me."
+featured: true
+order: 8
+tags: ["CLI", "Bash", "Agent-Native Tooling", "Data Infrastructure", "Open Source"]
+thumbnail: /images/projects/databank.png
+role: "Solo"
+timeline: "Ongoing since 2025"
+metrics:
+  - label: "Sources unified"
+    value: "5"
+  - label: "Daily sweep"
+    value: "launchd"
+  - label: "Consumers reading"
+    value: "4 repos"
+---
+
+## Background
+
+I had four repos writing the same YouTube scraper. Different flavors of `yt-dlp --flat-playlist`, different jq one-liners to extract the same fields, different definitions of "what counts as a breakout." Every time one of them broke — and they all broke, because `--flat-playlist` [silently nulls per-video metadata](https://github.com/yt-dlp/yt-dlp/issues) — I fixed it in whichever repo I was in and forgot the other three. The fix wasn't writing the scraper better. It was writing it once.
+
+`databank` is that one place. A single `bin/databank` CLI, five sources (YouTube + YouTube Analytics + TikTok + LinkedIn + RSS), a file-contract on disk (`STRUCTURE.md`) that downstream consumers read directly, and a daily launchd sweep that keeps everything current in the background. Four repos now read; none re-scrape.
+
+## Designed for Claude to walk in cold
+
+The interesting constraint: most CLIs assume a human reads the README before typing. `databank` assumes the next user is an agent that just got `cd`'d into the repo with no context, has one tool call to figure out the surface, and gets nothing useful from a 404. That changed every design decision.
+
+1. **Every verb has a usage helper. `-h`, `--help`, no args — same output.** No `${var:?usage}` parameter expansion leaking `line 47: ...` errors that look like script bugs to an agent. Help is data, not a stack trace.
+
+2. **Unknown-X errors enumerate valid X inline.** `unknown source: foo (valid: youtube tiktok linkedin rss youtube-analytics)`. An agent that has to guess will guess wrong; an agent that sees the valid set retries correctly on the next call. Saves a turn per mistake, and there are a lot of mistakes.
+
+3. **Subcommands auto-discover from the filesystem.** Adding a new analyzer is: drop a script into `bin/analyzers/`, `chmod +x`, done — the dispatcher scans the directory at help-time. No registry to update, no place to forget to register. The filesystem is the source of truth for "what can I do."
+
+4. **stdout is data; stderr is hints.** JSON arrays, transcripts, tabular rows → stdout. "no videos.json for that handle, try `databank list youtube`" → stderr. An agent piping `databank get youtube transcript X | jq` doesn't get its pipeline poisoned by a warning line.
+
+5. **Exit codes are a contract.** `0` success, `1` data error (asked for something that should exist and didn't), `2` usage error (bad flag, unknown source). Documented in top-level `--help`. Agents can branch cleanly on `$?` instead of regex-matching error text.
+
+6. **Default to summary; `--detail` is opt-in.** `databank status` is a thirty-line roll-up — what's fresh, what's stale, what failed. `--detail` opens the full picture. Commands that could dump a thousand rows must default to a compact view, because the cost of "agent reads its own 50k-token tool output" is real.
+
+None of these are inventions. They're the patterns every well-built unix tool already follows; the change is treating "navigable by an LLM that has never seen this repo" as a *first-class* constraint, not a nice-to-have. Once it is, the design pressure points itself in a direction that humans also benefit from.
+
+## Derived metrics live in the bank
+
+The other interesting constraint: when you finally have a shared data layer, the temptation is to keep it pure — raw scrapes only, every consumer computes its own breakouts, its own canonical topic mapping, its own velocity scores. That's wrong. Four consumers each implementing "what counts as a breakout" produces four different answers to the same question, and the "what's a breakout" definition is *exactly* the kind of decision you want one source of truth on.
+
+So `databank` also owns derived analytics. `bin/analyzers/breakouts` writes per-author rolling-window breakout detection to `data/<source>/analysis/breakouts/<YYYY-MM-DD>.json` with a `latest.json` symlink. `bin/analyzers/topic-canonicalize` clusters per-video topic labels into a smaller canonical vocabulary via batched `claude -p` calls and writes the dated snapshot for downstream readers. Consumers (BRAIN dashboards, content.main brand reports, kevinhu.fyi build-time queries) **read** those JSON files. They don't recompute.
+
+The rule in `CLAUDE.md` is blunt: *"If you're about to write a 4th implementation of breakout math somewhere else, stop — add it as an analyzer here instead."* That's the rule I was breaking before this repo existed.
+
+## How it actually runs
+
+- **Daily launchd sweep**, one plist per source. The YouTube sweep fetches channel metadata for ~50 tracked handles, pulls transcripts and comments for recent uploads, and runs the optional Stage 1a comment-labeler that uses `claude -p` to tag high-signal comments by signal type (question / pain / gap / resonance / etc).
+- **TikTok sweep** is cost-aware — backed by Apify's `apidojo/tiktok-profile-scraper` with batched 4-handle runs cohorted by date filter (initial fetch vs steady-state), tracking compute units per sweep so I know what the daily data costs.
+- **LinkedIn sweep** via Apify's `supreme_coder/linkedin-post`, normalized to the same `posts.json` + per-post `.md` shape so BRAIN can browse posts in Obsidian.
+- **YouTube Analytics** is the only OAuth source — private metrics for my own channel (views, retention curves, real-time impressions, demographics) merged daily into `data/youtube-analytics/<handle>/videos/<video_id>/daily.jsonl` with idempotent 90-day re-pulls.
+- **Logs** land in `logs/sweep-YYYY-MM-DD.log` per source; `databank status` summarizes freshness, failures, and stale handles in under 30 lines.
+
+## What this enabled downstream
+
+The reason the consolidation is worth doing isn't the consolidation. It's what becomes cheap once the data is one keystroke away:
+
+- **My YouTube channel's content strategy queries** — *"show me peer-creator breakouts in the last 60 days at >3x multiplier, filtered to my niche"* — became a single `databank analyze breakouts youtube --window 60d --min-multiplier 3.0` pipe into jq. Before this, it was either "open the laptop and run three Python scripts in sequence" or "don't bother."
+- **Cross-platform corpus for content gap detection** — my [zep-mcp](/projects/zep-mcp) knowledge graph ingests transcripts and comments from databank's outputs directly. The graph is only as good as the data feeding it; consolidating the feed paid for itself in the agent surface above it.
+- **Always-fresh strategy reviews.** Because the sweep runs nightly, every Monday morning's "what happened across my tracked creators this week" briefing is one CLI call against pre-warmed JSON, not an ad-hoc scrape.
+
+## What carries forward
+
+The general pattern: when you find yourself with N consumers re-implementing a shared upstream concern, the right move isn't a library — it's a **CLI with a file contract**. Libraries lock you into one runtime; file contracts let any consumer (Python, bash, Next.js build step, Claude) read the same JSON. The CLI surface is for interactive and agent use; the file contract is for everything else. Two surfaces, one source of truth.
+
+The agent-navigability moves cost almost nothing to apply once you're already writing a dispatcher. Enumerated errors, summary-default, stdout-vs-stderr discipline, filesystem-discoverable subcommands — these aren't a separate "make it AI-friendly" pass. They're the bits of CLI craft most tools skip because no human ever complained loudly enough. Agents do complain — silently, by burning a tool call. Designing for them upgrades the human experience as a side effect.
+
+<Drilldown title="The architecture decision behind databank's existence">
+
+The repo split that made `databank` necessary was deliberate. Three repos, three roles:
+
+- **BRAIN** (Obsidian vault) — consumes data, journals strategy, holds reference dashboards. *Read-only relative to code repos.* Doesn't author scripts.
+- **databank** — raw data acquisition + generic derived analytics. Any consumer.
+- **content.main** — brand-specific operational tools (Remotion overlays, transcript-doc bridges, video-render helpers). Single brand.
+
+Before this split, BRAIN had a `_scripts/` directory with ten Python files quietly authoring data inside a "read-only" vault. The architecture violation produced duplicate scripts in two places at once — three repos meant six scrapers across four sources. Pulling the code out of BRAIN was the forcing function; landing it in `databank` with a real CLI was the consolidation.
+
+The migration was two-phase on purpose. Phase 1: mechanical move into `_inbox/` quarantine folders in both `databank` and `content.main`, with READMEs flagging likely canonical homes. Phase 2 (per-script): diff against any existing same-purpose script, decide duplicate / divergent / unique, promote to canonical path with a kebab-name CLI subcommand. The two phases keep "get the architecture violation out" (mechanical, safe) separate from "decide which version is right" (judgment, slower). Splitting them meant the violation was resolved in a day and the reconcile pass could happen incrementally without blocking.
+
+The decision doc is in BRAIN at `Decisions/2026-05-07-migrate-scripts-out-of-brain.md`. The discipline it encodes — *BRAIN never writes back into the code repos it reads from* — is the kind of constraint that's easy to articulate and hard to maintain unless something forcing it exists. `databank` is the forcing function.
+
+</Drilldown>
+
+<Drilldown title="The stack: why bash + jq + yq, not Python">
+
+A normal person would write this in Python. I almost did. Three reasons I didn't:
+
+- **Boot time and dependencies.** A bash script with `set -euo pipefail` starts in milliseconds and has zero install footprint beyond `brew install yt-dlp jq yq`. The launchd sweep runs nightly; Python virtualenv resolution on a daily cron is a stupid place to spend time and a stupid place to introduce flake.
+- **Transparency for agent debugging.** When Claude is debugging a failed sweep, the entire script is shell — readable top-to-bottom, no class hierarchies, no decorator magic, no "what does this import do." jq queries are dense but local; you can paste any one of them into a terminal and see what it returns. Python's machinery would be invisible scaffolding around the same five lines that actually matter.
+- **The actual logic is data transformation.** 90% of what `databank` does is: shell out to `yt-dlp`, pipe through `jq`, atomic-write to disk. That's exactly what bash + jq is best at. The 10% that isn't — Apple Vision OCR on TikTok overlay frames — is a single Swift CLI (`bin/lib/tiktok-ocr-frame.swift`) shelled out from bash. Right tool, narrow scope.
+
+The one place I'd reach for Python: anything with non-trivial state, retry/backoff, or concurrency. Currently nothing in `databank` needs that. If a future source does, it gets a Python helper invoked from the bash dispatcher — not a port of the dispatcher itself.
+
+All file writes are atomic (`<path>.tmp` → `mv`) and the public file contract in `STRUCTURE.md` is versioned. Internal scraper details may change; the on-disk JSON shapes won't without a version bump and a note to consumers.
+
+</Drilldown>

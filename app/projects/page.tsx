@@ -1,8 +1,16 @@
-import { redirect } from "next/navigation";
-import { getProjects } from "@/lib/projects";
+import { getListedProjects } from "@/lib/projects";
+import ProjectsView from "@/components/ProjectsView";
+
+export const metadata = {
+  title: "Projects | Kevin Hu",
+};
 
 export default function ProjectsPage() {
-  const projects = getProjects();
-  const first = projects[0];
-  redirect(`/projects/${first.slug}`);
+  const projects = getListedProjects();
+
+  return (
+    <main>
+      <ProjectsView projects={projects} />
+    </main>
+  );
 }

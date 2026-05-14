@@ -1,0 +1,94 @@
+---
+title: "BBBS — SMS Agent for Mentor Enrollment"
+slug: "bbbs-mentor-enrollment"
+status: active
+subtitle: "Tool-calling SMS agent for mentor enrollment qualification, routing, and scheduling — voice variant tested and killed."
+description: "Big Brothers Big Sisters' mentor enrollment was bottlenecked at the intake team — a 13-day phone-tag cycle that made mentor recruitment their biggest expense. Scoped the project with WOO (Workflow / Outcome / Owner), shipped a tool-calling SMS agent that handled routing and scheduling, ran a voice variant in parallel, and killed it when the data showed it was increasing call volume from frustrated users."
+overview: "Big Brothers Big Sisters is the largest mentorship nonprofit in the US, and mentor recruitment is their largest cost center. Interested volunteers were waiting an average of 13 days of phone tag before anyone called them back. The intake team was severely understaffed; their week was 60–70 inquiries per person and almost no time left for the high-touch relationship work that actually decides whether a volunteer becomes a mentor."
+featured: true
+order: 2
+tags: ["AI Agents", "Tool-Use", "SMS Automation", "A/B Testing", "Trust-Sensitive AI"]
+thumbnail: /images/logos/big-brothers-big-sisters.png
+bannerBg: "#000000"
+hideBanner: true
+clientLogo: "https://www.google.com/s2/favicons?domain=bbbs.org&sz=128"
+role: "Co-Founder, Product & Engineering"
+timeline: "~6 months (during Firstly, 2024)"
+team: "Engineer (1), BBBS Intake Team, BBBS CPO"
+metrics:
+  - label: "Inbound Calls Cut"
+    value: "70%"
+  - label: "Time to Qualification"
+    value: "13d → 15m"
+  - label: "Annual Youth Impact"
+    value: "+200"
+---
+
+## Business Context
+
+Big Brothers Big Sisters is the largest mentorship nonprofit in the US. Their mentor enrollment team faced high call volumes, frequent turnover, and a complex intake process requiring several manual touchpoints. On average, it would take 13 days to qualify a volunteer inquiry and schedule an onsite interview.
+
+Staff were spending most of their time on repetitive intake and scheduling tasks, leaving less time for the high-touch relationship building that actually makes mentorship programs work.
+
+## Solution
+
+Built an SMS-based automation platform that handled the repetitive front-end of the enrollment process: initial acknowledgment, document collection, scheduling, and status updates.
+
+Key components:
+- **SMS automation** using n8n workflows triggered by new inquiry submissions
+- **Document collection** flow guiding volunteers through required paperwork via conversational SMS
+- **Scheduling integration** connecting to staff calendars for background check and interview appointments
+- **Escalation logic** routing complex cases to staff while automating standard ones
+
+## How I Build
+
+1. **Got close to the actual users first.** Asked the Chief Program Officer for a direct line to the intake team and sat in on inquiry calls. The shape of the bottleneck wasn't volume — it was the latency between every stage of the funnel. That kind of pattern doesn't survive translation through a Slack summary; you have to hear three callers in a row to see it.
+
+2. **Built a tool-calling SMS agent for routing and scheduling.** Volunteer responds to inbound interest → agent qualifies, captures the required fields, books the volunteer into the intake team's calendar based on geography and time-zone. Tool-calling, not chat-only, because the agent had to actually write into the team's scheduling system — a chatbot that says *"someone will follow up"* is the failure mode it was meant to eliminate.
+
+3. **Ran a voice variant in parallel.** A subset of the older-volunteer cohort got a voice agent built on ElevenLabs + OpenAI + Twilio instead of SMS. On paper this was the *"right"* answer — older volunteers preferred phone, the cohort-channel fit argued for voice, and it was the more impressive build. I ran it anyway, against my own intuition, because the only way to know which channel actually worked was to measure both.
+
+4. **Killed voice when the metric said to.** The voice variant *increased* call volume from frustrated users — the signal that picked up volunteers escalating off the agent and calling the office anyway. SMS was reducing that signal; voice was spiking it. The data made the call obvious. The operator move was being willing to throw away the voice prototype after it shipped, not before — and to admit publicly that my on-paper intuition had been wrong.
+
+![Inbound call volume by channel during the test — voice variant spiking, SMS variant declining](/images/projects/mentor-enrollment-channel-volume.png)
+
+*The frustration signal that picked up volunteers escalating off the agent. Voice variant in red — increasing inbound load. SMS variant in blue — reducing it. The data was clean enough that the kill decision didn't need a debate.*
+
+5. **Doubled down on SMS, closed the loop with the enrollment team.** Weekly check-ins with the intake team — the people watching every conversation and every escalation. Adjusted the qualification flow based on what they were manually correcting. The enrollment team was the user; the CPO was the buyer. Treating them as different audiences kept the agent honest.
+
+## What it proved
+
+- **70% reduction in inbound calls.** The intake team's load came down by more than two-thirds, with the same headcount.
+- **Time-to-first-contact: 13 days → 15 minutes.** What was a phone-tag chain became a same-session SMS round trip.
+- **~200 additional youth matched annually** as the second-order effect of catching more qualified volunteers before they cooled.
+- **Trust earned with the customer.** BBBS agreed to publish the work as a public case study — uncommon for a trust-sensitive nonprofit, and the durable signal that the system had crossed their internal bar.
+
+![Before/after timeline — 13-day phone-tag chain compressed to a single 15-minute SMS exchange](/images/projects/mentor-enrollment-timeline.png)
+
+*The bottleneck wasn't a stage in the funnel — it was the latency between every stage. SMS collapsed the latency without the frustration spike voice introduced.*
+
+**Structural insight:** the operator move wasn't building the SMS agent — it was running both variants and killing the more impressive one when the data demanded it. Intuition told me voice was right for the cohort; the metric told me SMS was right for the workflow. WOO discipline plus parallel variants plus willingness to kill is how AI projects survive past launch.
+
+## What I'd do differently now
+
+BBBS shipped and earned trust, but a year later I'd instrument it differently. A follow-on voice-AI prototype for a regulated-industry contact center surfaced the language for what I'd had to invent at BBBS:
+
+- **Instrument false containment from day one.** The frustration signal that drove the BBBS kill decision was *exactly* a false-containment metric — calls the agent "handled" that the caller had to call back about. I caught it by accident at BBBS by looking at total call volume; I'd now build the explicit counter on day one so the kill criterion is pre-committed, not surfaced after the fact.
+- **Write the not-automated list before the prompt.** Trust-sensitive contexts have categories the agent shouldn't touch — emotional distress, complex eligibility, anything with liability or duty-of-care exposure. I made these escalations *implicit* at BBBS. I now treat the not-automated list as a deliverable, reviewed with the team that owns the workflow before the prompt exists.
+- **Phased rollout with pre-committed kill criteria.** BBBS's voice kill happened reactively, after the spike. A staged 10% → 50% → 100% with kill criteria written *before* the test gives you the same outcome without the lag — and lets you expand confidently when the data works in your favor, not just retreat when it doesn't.
+- **ROI model with sensitivity, not point estimates.** "+200 youth annually" is a real outcome but it's a point estimate. Modeling the inputs (containment rate, frustration delta, FTE freed) with ranges makes the case defensible to a finance partner and forces you to know which input you're betting on hardest.
+
+If I were rebuilding BBBS today, the shape would look more like [vapi-voice-agent](https://github.com/kev-hu/vapi-voice-agent) — a recent voice-AI prototype for an insurance contact center where I made each of these moves explicit on the way in. Voice was the right call in that context, for reasons the BBBS test would have surfaced — different cohort, different intent, different failure modes.
+
+## What carries forward
+
+Most AI projects fail at launch-plus-six-weeks because nobody can answer Workflow, Outcome, or Owner cleanly — the workflow doesn't fit, the outcome isn't measured, or no one's left to operate the system. The pattern from BBBS is general: scope with WOO before building, run variants when intuition disagrees with the obvious answer, instrument the metric that would force you to kill your own work, and act on the data when it disagrees with you. The same shape applies in financial-services compliance, agentic case disposition, internal AI enablement — anywhere AI has to land inside a real team's workflow and survive past launch.
+
+<Drilldown title="The voice kill decision">
+
+- **The metric that actually mattered.** Time-to-first-contact made the SMS agent look great in either variant. *Call volume from frustrated users* was the signal that distinguished them — and it wasn't on the original dashboard.
+- **What the voice variant got wrong.** Older volunteers preferred phone for first contact, but the agent's voice latency and rigidity broke the rhythm of how a real phone conversation flows. The robocall pattern-match landed in seconds; what felt right on paper read as a worse experience than the 13-day phone-tag baseline.
+- **Why killing it was the cheaper move.** The voice prototype was the more expensive build and the more impressive demo. Killing it was a writedown. Keeping it would have been a much larger writedown — every confused older volunteer was a board-level story waiting to happen.
+- **What the WOO test didn't catch.** Workflow and Owner were aligned for both variants. Outcome's *primary* metric (time-to-contact) was aligned. The Outcome's *secondary* metric (frustration signal) is what made the difference — and it's the metric the framework now insists on naming up front.
+
+</Drilldown>

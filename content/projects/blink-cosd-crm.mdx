@@ -1,40 +1,73 @@
 ---
-title: "APIs, Apps & Agencies"
-slug: "public-sector-crm"
-subtitle: "Transforming Public Sector Services"
-description: "Launched a CRM platform for a government agency with 2000+ employees, connecting three previously disconnected systems."
+title: "B-LINK — Cross-Agency CRM for the County of San Diego"
+slug: "blink-cosd-crm"
+status: active
+subtitle: "A $600K cross-agency CRM that grew to $2M when procurement compliance forced custom — and how naming the scope kept it solvent."
+description: "Cross-agency CRM for the County of San Diego serving 2,000 case managers across three agencies on one shared D365 tenant. Mid-project, an adjudication-workflow doc-management requirement surfaced — the obvious vendor wasn't on the county's approved list. Built it custom inside D365 CE and named the work as a signed change order. The project grew from $600K to over $2M in signed scope over the engagement."
 featured: true
-order: 2
-tags: ["CRM", "Government", "Digital Transformation", "APIs"]
-thumbnail: /images/projects/public-sector-crm.png
+order: 5
+tags: ["Compliance-Aware Scoping", "Cross-Agency Architecture", "D365 / Azure", "Stakeholder Coordination", "Scope Discipline"]
+thumbnail: /images/logos/county-of-san-diego.png
+bannerBg: "#FFFFFF"
+hideBanner: true
+clientLogo: "https://www.google.com/s2/favicons?domain=sandiegocounty.gov&sz=128"
+role: "PM + Delivery Lead (RSM)"
+timeline: "~2 years (2017 – 2019)"
+team: "Developers (8), Sub-contractor (Perspecta), County PMO + 3 agencies"
 metrics:
-  - label: "Employees Served"
+  - label: "Project Value"
+    value: "$600K → $2M+"
+  - label: "Agencies on One Tenant"
+    value: "3"
+  - label: "Case Managers Served"
     value: "2,000+"
-  - label: "Project Revenue"
-    value: "$2M"
 ---
 
-## The Problem
+## Background
 
-Three agencies. Disconnected systems. Thousands of employees waiting for better service. A large government agency was operating with siloed data across multiple legacy systems. Employees couldn't see the full picture of constituent interactions, and service delivery suffered as a result.
+Three County of San Diego agencies, one shared D365 tenant, 2,000 case managers handling benefits eligibility and adjudicating fraud determinations on the same platform. The unusual part wasn't the CRM. It was that three agencies that didn't share trust by default were going to share a tenant — because the workflow required it. A case worker at one agency routinely needed read access to another agency's case to route evidence for adjudication. Federated systems would have made each agency safer in isolation and broken the cross-agency hand-off that was the point.
 
-The core challenge: government agencies move slowly, and any solution needed to integrate with existing systems without replacing them entirely.
+Then midway through delivery, a requirement surfaced that nobody had scoped: case managers needed to attach, track, and route documents through the adjudication workflow — evidence for benefits-fraud determinations and eligibility records, sensitive personal data, flowing across three agencies.
 
-## The Solution
+## Problem
 
-We designed and launched a CRM platform that bridged the three disconnected systems via APIs, creating a unified view of constituent interactions across the agency.
+The obvious move was an off-the-shelf document-management vendor. Faster, cheaper, lower-risk than building it.
 
-Key components:
-- **API integration layer** connecting legacy databases without requiring migration
-- **Unified agent dashboard** giving employees a single interface for constituent history
-- **Workflow automation** routing cases to the right department based on constituent needs
-- **Training and change management** program for 2,000+ employees across multiple offices
+Then we hit the wall: the vendor wasn't on the county's approved-vendor list. Government procurement rules blocked the path entirely. The visible options were two — wait for vendor approval (months, against state-funded use-it-or-lose-it timelines) or absorb the work silently into the existing $600K contract.
 
-The project was delivered in phases, allowing the agency to adopt the new system incrementally while maintaining continuity of service.
+The actual move was a third one: build the doc-management module custom inside D365 CE, and name the new work as a signed change order with the county PMO. The work wasn't in the original scope. Pretending otherwise would have hidden a six-figure compliance-driven build from the client and burned the project's credibility the moment it surfaced later. Compliance constraints had rewritten the build-vs-buy default — but the operator move was making the constraint visible to the customer instead of swallowing it.
 
-## The Results
+## How it shipped
 
-- Successfully launched CRM for a government agency with 2,000+ employees
-- Connected three previously siloed systems through a unified API layer
-- Reduced average case resolution time by streamlining information access
-- Created a replicable framework for digital transformation in public sector contexts
+1. **Stood up the shared D365 tenant with role-based access across three agencies.** The federated alternative was simpler per-agency but would have killed the cross-agency hand-off that was the workflow's whole point. One tenant + agency-scoped security roles preserved it at the cost of more upfront role design. Federated would have left adjudication disconnected from the agencies generating the evidence.
+
+2. **Moved the team from waterfall to two-week sprints with live client demos before kickoff.** This was a deliberate process bet, not retrofit. A waterfall schedule on a 2-year engagement with ambiguous requirements would have buried scope surprises until UAT, where "small additions" become free and trust evaporates. Two-week demos meant the next unknown surfaced at week four, not week thirty.
+
+3. **Vetted three doc-management vendors against the county's approved-vendor list before specifying a build.** Vendor-first was the default. Custom-build instinct gets expensive when you skip the buy-first check. We ran the procurement path to its conclusion before pivoting — the approved-vendor list was the hard constraint, not our preference.
+
+4. **Scoped the custom module as a change order, not a goodwill build.** This was the operator move. The instinct around me was to deliver the doc-management module quietly inside the existing contract and protect the relationship. I named it as new scope explicitly with the county PMO, structured the change order against the work the procurement constraint had created, and got it signed: $600K → $1.2M. The relationship got *stronger*, not weaker — naming the constraint was the move that earned trust.
+
+5. **Designed the doc-management module for the cross-agency adjudication workflow, not generic file storage.** Documents needed to flow with case context across agency boundaries — evidence attached to a fraud determination at Agency A had to land readable in Agency B's adjudication review. A generic file-store wouldn't have served the workflow; the custom build let us treat documents as case-linked artifacts with cross-agency routing.
+
+## What it proved
+
+- **$600K → $2M+ in signed scope** across the engagement (the doc-management change order was the first of several)
+- **Three agencies on one shared tenant**, a posture the county hadn't done before
+- **2,000 case managers** onboarded across agency lines
+- **Recognized as an RSM "Game Changer"** and promoted to Supervisor off the back of the engagement
+
+**Structural insight:** compliance constraints don't just delay decisions; they rewrite which decisions you should be making. Vendor-first becomes vendor-or-compliance-clean-custom. And when a compliance constraint creates new scope, the operator move is naming it explicitly — not absorbing it. Absorbed scope teaches the client to expect free work; named scope teaches them you can be trusted to surface the next surprise the same way.
+
+## What carries forward
+
+The same shape applies to vetting AI tools against your customers' compliance posture — CMMC, SOC2, the customer asks that drive products like GraphiteQ. The selection-stage trade-off (this tool meets the compliance bar, that one doesn't) determines what teams actually use and what gets absorbed as risk later. Procurement compliance for a vendor list maps directly to compliance-aware AI tool rollout: the discipline isn't running an approved-vendor check; it's structuring the work so the compliance constraint gets named, costed, and signed off — not absorbed silently into the team's workflow. Naming the constraint is also the move that earns the credibility to push back on it next time.
+
+<Drilldown title="How the cross-agency design and change order were structured">
+
+- **Why one shared tenant beat three federated ones.** Three agencies, three tenants would have meant three security postures, three audit surfaces, and three integration projects to stitch the adjudication hand-off together. Adjudication routinely needed Agency A's evidence and Agency B's case context side-by-side. One tenant with role-based partitioning gave the case manager the workflow surface they needed without standing up a custom inter-agency middleware layer.
+- **Custom doc-management inside D365 CE, not as a sidecar.** The module had to participate in case-record relationships, audit trails, and security roles already running in D365. A sidecar app would have needed its own auth model and its own audit log — duplicating compliance surface for no benefit. Building inside D365 CE kept the document artifacts inside the same record model the case workers were already working in.
+- **Azure Functions for the state-system integrations.** Eligibility data flowed from state systems with their own latency and uptime profiles. Azure Functions handled the integrations as discrete event handlers — failing transactions could be retried without blocking the case worker's day, and the integration surface was small enough to audit.
+- **Change order structured against named work, not labor hours.** The change order itemized deliverables (module scope, integration points, security model, adjudication workflow features) rather than dev-hour estimates. Itemized deliverables made it possible for the county PMO to defend the spend internally — they were buying a thing, not buying time.
+- **Power BI on top, agency-scoped.** Reporting layer respected the same role partitioning as the tenant — agency leadership saw their own cases by default, cross-agency views required the explicit role.
+
+</Drilldown>

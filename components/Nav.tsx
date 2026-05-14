@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Button from "./Button";
 import type { ProjectMeta } from "@/lib/projects";
 
@@ -12,8 +13,8 @@ export default function Nav({ projects = [] }: { projects?: ProjectMeta[] }) {
   const isProjectDetail = pathname.startsWith("/projects/");
 
   const navLinks = [
-    { label: "Projects", href: "#projects" },
-    { label: "About", href: "#about" },
+    { label: "Home", href: "/" },
+    { label: "Projects", href: "/#projects" },
   ];
 
   return (
@@ -46,6 +47,9 @@ export default function Nav({ projects = [] }: { projects?: ProjectMeta[] }) {
           <Link
             href="/"
             style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
               fontFamily: "var(--font-display), sans-serif",
               fontWeight: 700,
               fontSize: "1.125rem",
@@ -54,19 +58,31 @@ export default function Nav({ projects = [] }: { projects?: ProjectMeta[] }) {
               lineHeight: 1,
             }}
           >
+            <Image
+              src="/images/kevin-avatar.jpg"
+              alt="Kevin Hu"
+              width={48}
+              height={48}
+              priority
+              style={{
+                borderRadius: "50%",
+                objectFit: "cover",
+                flexShrink: 0,
+              }}
+            />
             Kevin Hu
           </Link>
 
-          {/* Right: desktop links (hidden below md, hidden on project detail pages) */}
+          {/* Right: desktop links */}
           <nav className="hidden md:flex" style={{ alignItems: "center", gap: "32px" }}>
-            {!isProjectDetail && navLinks.map(({ label, href }) => (
+            {navLinks.map(({ label, href }) => (
               <a
                 key={label}
                 href={href}
                 className="nav-link"
                 style={{
                   fontFamily: "var(--font-body), sans-serif",
-                  fontSize: "0.875rem",
+                  fontSize: "1rem",
                   fontWeight: 500,
                   color: "var(--color-foreground)",
                   textDecoration: "none",
@@ -77,7 +93,12 @@ export default function Nav({ projects = [] }: { projects?: ProjectMeta[] }) {
               </a>
             ))}
 
-            <Button href={isProjectDetail ? "#project-cta" : "#contact"} variant="primary" className="text-sm px-4 py-2">
+            <Button
+              href={isProjectDetail ? "https://calendly.com/kevinqinhu/30min" : "#contact"}
+              variant="primary"
+              className="text-sm px-4 py-2"
+              {...(isProjectDetail ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
               Book a Call
             </Button>
           </nav>
@@ -190,10 +211,11 @@ export default function Nav({ projects = [] }: { projects?: ProjectMeta[] }) {
           }}
         >
           <Button
-            href={isProjectDetail ? "#project-cta" : "#contact"}
+            href={isProjectDetail ? "https://calendly.com/kevinqinhu/30min" : "#contact"}
             variant="primary"
             className="text-sm"
             onClick={() => setMenuOpen(false)}
+            {...(isProjectDetail ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             Book a Call
           </Button>
@@ -259,18 +281,13 @@ export default function Nav({ projects = [] }: { projects?: ProjectMeta[] }) {
                   onClick={() => setMenuOpen(false)}
                   style={{
                     display: "block",
-                    padding: "8px 12px",
+                    padding: "4px 0",
                     fontFamily: "var(--font-body), sans-serif",
                     fontSize: "0.9375rem",
-                    fontWeight: isActive ? 700 : 500,
-                    color: isActive ? "var(--color-primary)" : "var(--color-foreground)",
+                    fontWeight: isActive ? 550 : 500,
+                    color: isActive ? "var(--color-foreground)" : "rgba(20, 20, 20, 0.45)",
                     textDecoration: "none",
-                    borderLeft: isActive
-                      ? "3px solid var(--color-primary)"
-                      : "3px solid transparent",
-                    backgroundColor: isActive ? "rgba(28, 176, 246, 0.06)" : "transparent",
-                    borderRadius: "4px",
-                    transition: "color 150ms, background-color 150ms, border-color 150ms",
+                    transition: "color 150ms",
                   }}
                 >
                   {project.title}

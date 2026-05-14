@@ -1,0 +1,75 @@
+---
+title: "RSM — CARES Act Data Initiative"
+slug: "rsm-cares-act-data"
+status: active
+subtitle: "A shared CARES Act eligibility pipeline and Power BI reporting layer across 5 tax regions, 6 entity types, and 90 offices."
+description: "Encoded tax-leadership judgment from 5 RSM regions into Alteryx pipelines covering 6 entity types — and got 90 offices to standardize their inputs in time to capture the relief window. $200M of upsell opportunity surfaced across 20,000 client accounts."
+featured: true
+order: 3
+tags: ["Alteryx", "Power BI", "Data Pipeline", "Cross-Org Coordination"]
+thumbnail: /images/logos/rsm.png
+bannerBg: "#FFFFFF"
+hideBanner: true
+clientLogo: "https://www.google.com/s2/favicons?domain=rsmus.com&sz=128"
+role: "Innovation Lab Lead"
+timeline: "~6 months (Apr – Sep '20)"
+team: "Regional Tax Leaders (5), Office Partners (90)"
+metrics:
+  - label: "Accounts Identified"
+    value: "20,000"
+  - label: "Economic Opportunity"
+    value: "$200M"
+  - label: "Hours Saved"
+    value: "10,000"
+---
+
+## Background
+
+By April 2020, every RSM tax office in the country was racing to identify which of their clients qualified for CARES Act subsidies. They were all doing it manually. They were all doing it differently. They were all running out of time.
+
+## Problem
+
+The bottleneck wasn't the math. It was the coordination.
+
+Tax leaders knew how to calculate eligibility — but the rules differed sharply by entity type (partnerships, S-corps, C-corps, sole proprietorships, LLCs, and trusts each carried their own carve-outs and exclusions), and each of RSM's five regions had its own conventions, edge cases, and authoritative voices on what to count.
+
+Encoding the calc in software was the easy part. The actual project was getting 5 regional tax leaderships to agree on shared definitions, then convincing 90 offices to standardize their data inputs against those definitions — fast, before the relief window closed.
+
+## How it shipped
+
+![From tax codes to targeted relief — Dig, Translate, Size](/images/projects/cares-act-data-diagram.png)
+
+1. **Convened the experts.** Sat with regional tax leaders across all five RSM regions to extract the eligibility logic for each of the six entity types. Subject-matter experts labeled the data; my job was to encode their judgment, not invent it.
+2. **Built six pipeline branches in Alteryx**, one per entity type, with regional carve-outs treated as parameters. A partnership's K-1 distributions look nothing like an S-corp's wage base, so a one-size-fits-all schema would have collapsed under its own exceptions. Six branches kept each entity-type's nuances intact.
+
+![Alteryx pipeline — six entity-type branches converging into a shared output schema](/images/projects/cares-act-data-pipeline-branches.png)
+
+*Six branches in, one schema out. Regional carve-outs were parameters, not branches — the structural decision that kept the pipeline maintainable as new edge cases surfaced.*
+3. **Started in one office** to prove the pattern. The first deployment tested whether the framework survived contact with real client data — and whether tax partners would actually re-key their work against a shared spec. Both held.
+4. **Scaled office by office across 90 sites.** The harder problem at this stage wasn't the pipeline — it was data hygiene. The firm's reporting tools were thin, so most office data had to be manually keyed against the new spec, and each adoption was its own coordination project. The unit of work shifted from code commits to partner conversations.
+5. **Built Power BI dashboards** so tax partners could explore results by region, entity type, and subsidy program — and target the highest-impact upsell opportunities themselves.
+
+![Power BI dashboard tax partners used to target high-impact accounts](/images/projects/cares-act-data-dashboard.png)
+
+*The dashboard tax partners actually used — region × entity type × subsidy program, with the highest-impact upsell opportunities surfaced on top. Self-serve was the only model that scaled across 90 offices.*
+
+## What it proved
+
+- **$200M of economic impact** identified across 20,000 client accounts
+- **6 entity types · 5 regions · 90 offices** standardized on one shared calc instead of 90 parallel ones
+- **~10,000 hours of manual interpretation work** absorbed by the framework
+
+**Structural insight:** the work that mattered wasn't the eligibility logic — it was the shared spec underneath. Once 5 regions and 90 offices operated against the same calc, every improvement compounded across all of them instead of being re-litigated office by office. The Innovation Lab earned firm-wide recognition for the work, but the durable artifact was the spec, not the recognition.
+
+## What carries forward
+
+Most large-org AI enablement projects fail at the coordination layer, not the technical one — five functions can't agree on shared definitions in time, and the technical work ships fragmented or late as a result. The CARES Act pattern inverts that: encode the experts' judgment into a single shared spec, prove it in one office, then treat adoption itself as the program. The same shape carries to internal evals across teams, agentic case disposition across regions, AI-graded surfaces across product lines — anywhere tooling has to land across multiple owners with their own conventions. The hard part is the cross-org definition work. The technology is downstream of it.
+
+<Drilldown title="How the pipeline and the rollout were structured">
+
+- **Why six branches, not one schema.** A partnership's K-1 distributions, an S-corp's wage base, and a sole prop's Schedule C answer "how much qualifies" with completely different inputs. A single global pipeline would have collapsed under the exception count. Six branches kept each entity-type's logic legible — and let regional carve-outs slot in as parameters instead of forks.
+- **Regional carve-outs as parameters, not branches.** Each of the five regions had its own authoritative read on edge cases — different positions on which distributions counted, which exclusions applied. Treating these as runtime parameters kept the pipeline tractable as new exceptions surfaced through the calculation window.
+- **Adoption as the actual program.** Each office adoption was its own coordination project — partner sponsorship, data re-keying against the spec, a debrief. Multiplying by 90 meant the rollout was sequenced like a sales pipeline, not a software rollout.
+- **Self-serve dashboards as the only model that scaled.** A central team filtering and routing high-impact accounts to 90 offices would have bottlenecked instantly. Power BI with region × entity type × subsidy program filtering let partners surface their own opportunities — the team didn't gate the rollout, the dashboard did.
+
+</Drilldown>

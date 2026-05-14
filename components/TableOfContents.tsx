@@ -96,7 +96,7 @@ export function TableOfContents({ headings, isMobile = false }: TOCProps) {
   };
 
   const linkList = (
-    <nav style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+    <nav style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
       {headings.map(({ id, text, level }) => {
         const isActive = activeId === id;
         return (
@@ -107,20 +107,13 @@ export function TableOfContents({ headings, isMobile = false }: TOCProps) {
             className={`toc-link${isActive ? " active" : ""}`}
             style={{
               fontFamily: "var(--font-body), sans-serif",
-              fontSize: "0.875rem",
+              fontSize: "1rem",
               textDecoration: "none",
-              padding: "4px 8px",
-              paddingLeft: level === 3 ? "20px" : "8px",
+              padding: "4px 0",
+              paddingLeft: level === 3 ? "16px" : "0px",
               display: "block",
-              borderRadius: "4px",
-              transition: "color 150ms ease, border-left-color 150ms ease",
-              color: isActive
-                ? "var(--color-primary)"
-                : "rgba(20, 20, 20, 0.7)",
-              borderLeft: isActive
-                ? "2px solid var(--color-primary)"
-                : "2px solid transparent",
-              lineHeight: 1.4,
+              transition: "color 150ms ease",
+              lineHeight: 1.45,
             }}
           >
             {text}
@@ -194,15 +187,15 @@ export function TableOfContents({ headings, isMobile = false }: TOCProps) {
         style={{
           fontFamily: "var(--font-body), sans-serif",
           fontSize: "0.75rem",
-          fontWeight: 600,
+          fontWeight: 700,
           textTransform: "uppercase",
-          letterSpacing: "0.08em",
-          color: "rgba(20, 20, 20, 0.5)",
-          marginBottom: "12px",
+          letterSpacing: "0.12em",
+          color: "rgba(20, 20, 20, 0.6)",
+          marginBottom: "14px",
           marginTop: 0,
         }}
       >
-        Contents
+        Overview
       </p>
       {linkList}
     </div>

@@ -1,11 +1,15 @@
-import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
+import { getProjectBySlug, getProjectSlugs, getRelatedProjects } from "@/lib/projects";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 import { extractHeadings } from "@/lib/extractHeadings";
 import { TableOfContents } from "@/components/TableOfContents";
 import { ProjectHeader } from "@/components/ProjectHeader";
-import ProjectCTA from "@/components/ProjectCTA";
+import { RelatedProjects } from "@/components/RelatedProjects";
+import { Drilldown } from "@/components/Drilldown";
+import { EvalCohortPanel } from "@/components/EvalCohortPanel";
 import { notFound } from "next/navigation";
+
+const mdxComponents = { Drilldown, EvalCohortPanel };
 
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
@@ -43,16 +47,36 @@ export default async function ProjectPage({
   }
 
   const headings = extractHeadings(project.content);
+  const related = getRelatedProjects(slug, 2);
 
   return (
-    <div style={{ display: "flex", gap: "48px", padding: "48px 32px" }}>
-      {/* Main article */}
-      <article style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+    <div
+      style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        paddingTop: "48px",
+        paddingBottom: "48px",
+      }}
+      className="px-6 lg:px-12"
+    >
+      <div style={{ display: "flex", gap: "48px" }}>
+        {/* Left TOC — sticky, desktop only */}
+        <aside
+          className="desktop-only"
+          style={{ width: "220px", flexShrink: 0 }}
+        >
+          <div style={{ position: "sticky", top: "89px" }}>
+            <TableOfContents headings={headings} />
+          </div>
+        </aside>
+
+        {/* Main article */}
+        <article style={{ flex: 1, minWidth: 0, maxWidth: "800px" }}>
           <ProjectHeader project={project} />
-          <div className="prose-content" style={{ marginTop: "40px" }}>
+          <div className="prose-content" style={{ marginTop: "72px" }}>
             <MDXRemote
               source={project.content}
+              components={mdxComponents}
               options={{
                 mdxOptions: {
                   rehypePlugins: [rehypeSlug],
@@ -60,19 +84,9 @@ export default async function ProjectPage({
               }}
             />
           </div>
-          <ProjectCTA />
-        </div>
-      </article>
-
-      {/* Right TOC — desktop only */}
-      <aside
-        className="desktop-only"
-        style={{ width: "240px", flexShrink: 0 }}
-      >
-        <div style={{ position: "sticky", top: "89px" }}>
-          <TableOfContents headings={headings} />
-        </div>
-      </aside>
+          <RelatedProjects projects={related} />
+        </article>
+      </div>
     </div>
   );
 }

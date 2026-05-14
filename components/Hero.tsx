@@ -20,30 +20,49 @@ export default function Hero() {
         className="px-6 lg:px-12 lg:py-[120px]"
       >
         {/* Two-column grid on lg+, single column on mobile */}
-        <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-8">
+        <div className="flex flex-col md:flex-row md:items-center gap-12 md:gap-8">
 
           {/* ── Left column (~55%) ─────────────────────────────────────────── */}
-          <div className="flex flex-col gap-6 lg:w-[55%]">
+          <div className="flex flex-col gap-6 md:w-[55%]">
 
-            {/* Eyebrow tag */}
-            <span
+            {/* Availability indicator */}
+            <div
               style={{
                 display: "inline-flex",
                 alignSelf: "flex-start",
                 alignItems: "center",
-                fontFamily: "var(--font-display), sans-serif",
-                color: "#ffffff",
-                fontSize: "0.8125rem",
-                fontWeight: 700,
-                letterSpacing: "0.06em",
-                textTransform: "uppercase",
-                background: "var(--color-secondary)",
-                borderRadius: "var(--radius-button)",
-                padding: "5px 14px",
+                gap: "8px",
               }}
             >
-              Portfolio
-            </span>
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  backgroundColor: "var(--color-secondary)",
+                  color: "#ffffff",
+                  borderRadius: "var(--radius-button)",
+                  padding: "5px 12px",
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "0.8125rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+              >
+                <span
+                  className="availability-dot"
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    backgroundColor: "#ffffff",
+                    display: "inline-block",
+                  }}
+                />
+                Open to full-time roles
+              </span>
+            </div>
 
             {/* Headline */}
             <h1
@@ -57,7 +76,7 @@ export default function Hero() {
                 margin: 0,
               }}
             >
-              Hello, I&apos;m Kevin 👋
+              I help teams work with AI where work already happens.
             </h1>
 
             {/* Bio paragraph */}
@@ -72,11 +91,9 @@ export default function Hero() {
                 margin: 0,
               }}
             >
-              My background is in enterprise software, data analytics, and 0→1
-              products. After my MBA at UC Berkeley Haas, I raised venture
-              capital to build a platform for mentorship programs. Now, I&apos;m
-              building AI, advising startups, and creating content to promote AI
-              literacy.
+              Product and systems operator. I do my best work close to real
+              users — turning ambiguous AI needs into systems teams actually
+              adopt. Eight years across consulting, startups, and enterprise.
             </p>
 
             {/* CTAs */}
@@ -91,7 +108,7 @@ export default function Hero() {
           </div>
 
           {/* ── Right column (~45%) ────────────────────────────────────────── */}
-          <div className="flex justify-center lg:justify-end lg:w-[45%] w-full">
+          <div className="hidden md:flex justify-center md:justify-end md:w-[45%]">
             <Image
               src="/images/headshot.png"
               alt="Kevin Hu"
