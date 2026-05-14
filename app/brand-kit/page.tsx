@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Button from "@/components/Button";
 import { Drilldown } from "@/components/Drilldown";
+import { BrandKitTOC } from "@/components/BrandKitTOC";
 
 export const metadata: Metadata = {
   title: "Brand Kit",
@@ -155,13 +156,85 @@ const codeStyle: React.CSSProperties = {
 
 /* ─── Page ───────────────────────────────────────────────────────────────────── */
 
+const TOC_GROUPS = [
+  {
+    label: "Design Tokens",
+    items: [
+      { id: "colors",           text: "Colors" },
+      { id: "typography",       text: "Typography" },
+      { id: "shadows-borders",  text: "Shadows & Borders" },
+      { id: "border-radius",    text: "Border Radius" },
+    ],
+  },
+  {
+    label: "Components",
+    items: [
+      { id: "buttons",          text: "Buttons" },
+      { id: "cards",            text: "Cards" },
+      { id: "skill-pills",      text: "Skill Pills" },
+      { id: "layout-patterns",  text: "Layout Patterns" },
+    ],
+  },
+  {
+    label: "Animations",
+    items: [
+      { id: "animated-hero-entrance", text: "Animated Hero Entrance" },
+      { id: "counting-stats",         text: "Counting Stats" },
+      { id: "card-cascade",           text: "Card Cascade" },
+      { id: "floating-skill-badges",  text: "Floating Skill Badges" },
+      { id: "pulsing-cta-block",      text: "Pulsing CTA Block" },
+      { id: "marquee-ticker",         text: "Marquee / Ticker" },
+    ],
+  },
+  {
+    label: "Hero Sections",
+    items: [
+      { id: "terminal-card",          text: "Terminal Card" },
+      { id: "stat-wall",              text: "Stat Wall" },
+      { id: "the-stack",              text: "The Stack" },
+      { id: "bridge-diagram",         text: "Bridge Diagram" },
+      { id: "marquee-strip-enhanced", text: "Marquee Strip (Enhanced)" },
+      { id: "window-card",            text: "Window Card" },
+      { id: "headshot-split",         text: "Headshot Split" },
+      { id: "availability-badge",     text: "Availability Badge" },
+      { id: "quote-block",            text: "Quote Block" },
+      { id: "split-comparison",       text: "Split Comparison" },
+      { id: "social-card",            text: "Social Card" },
+      { id: "architecture-diagram",   text: "Architecture Diagram" },
+      { id: "annotated-screenshot",   text: "Annotated Screenshot" },
+      { id: "process-timeline",       text: "Process Timeline" },
+    ],
+  },
+  {
+    label: "Data & Metrics",
+    items: [
+      { id: "score-progression", text: "Score Progression" },
+      { id: "hero-metric",       text: "Hero Metric" },
+      { id: "metric-tile",       text: "Metric Tile" },
+      { id: "delta-tile",        text: "Delta Tile" },
+      { id: "sparkline-bar-row", text: "Sparkline & Bar Row" },
+      { id: "code-block",        text: "Code Block" },
+      { id: "drilldown-card",    text: "Drill-down Card" },
+    ],
+  },
+];
+
 export default function BrandKitPage() {
   return (
     <main>
       <div
-        style={{ maxWidth: "1200px", margin: "0 auto" }}
+        style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", gap: "48px", alignItems: "flex-start" }}
         className="px-6 lg:px-12"
       >
+        {/* Sticky TOC sidebar — desktop only */}
+        <aside className="desktop-only" style={{ width: "220px", flexShrink: 0 }}>
+          <div style={{ position: "sticky", top: "89px" }}>
+            <BrandKitTOC groups={TOC_GROUPS} />
+          </div>
+        </aside>
+
+        {/* Main content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
         {/* ── Header ──────────────────────────────────────────────────────── */}
         <section
           style={{
@@ -5411,6 +5484,7 @@ export default function BrandKitPage() {
             {"</Drilldown>"}
           </div>
         </section>
+        </div>
       </div>
     </main>
   );
