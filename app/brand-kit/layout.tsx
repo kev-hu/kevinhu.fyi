@@ -74,12 +74,20 @@ export default function BrandKitLayout({ children }: { children: ReactNode }) {
           margin: "0 auto",
           display: "flex",
           gap: "48px",
-          alignItems: "flex-start",
         }}
         className="px-6 lg:px-12"
       >
         <aside className="desktop-only" style={{ width: "220px", flexShrink: 0 }}>
-          <div style={{ position: "sticky", top: "145px" }}>
+          <div
+            style={{
+              position: "sticky",
+              top: "145px",
+              maxHeight: "calc(100vh - 165px)",
+              overflowY: "auto",
+              overscrollBehavior: "contain",
+              paddingRight: "8px",
+            }}
+          >
             <BrandKitSidebar />
           </div>
         </aside>
