@@ -81,8 +81,8 @@ export default function BrandKitLayout({ children }: { children: ReactNode }) {
           <div
             style={{
               position: "sticky",
-              top: "145px",
-              maxHeight: "calc(100vh - 165px)",
+              top: "160px",
+              maxHeight: "calc(100vh - 180px)",
               overflowY: "auto",
               overscrollBehavior: "contain",
               paddingRight: "8px",

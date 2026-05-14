@@ -13,7 +13,7 @@ export function BrandKitTabs() {
     <div
       style={{
         position: "sticky",
-        top: "65px",
+        top: "80px",
         zIndex: 40,
         background: "var(--color-background)",
         borderBottom: "1px solid var(--color-muted)",

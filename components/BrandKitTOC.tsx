@@ -26,7 +26,7 @@ export function BrandKitTOC({ items }: { items: TOCItem[] }) {
       let bestDist = Infinity;
       for (const el of els) {
         const rect = el.getBoundingClientRect();
-        if (rect.top <= 160) {
+        if (rect.top <= 185) {
           const dist = Math.abs(rect.top);
           if (dist < bestDist) {
             bestDist = dist;
@@ -38,7 +38,7 @@ export function BrandKitTOC({ items }: { items: TOCItem[] }) {
     };
 
     observerRef.current = new IntersectionObserver(handle, {
-      rootMargin: "-145px 0px -60% 0px",
+      rootMargin: "-170px 0px -60% 0px",
       threshold: 0,
     });
     for (const el of els) observerRef.current.observe(el);
