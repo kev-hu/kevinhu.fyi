@@ -9,7 +9,22 @@ import { Drilldown } from "@/components/Drilldown";
 import { EvalCohortPanel } from "@/components/EvalCohortPanel";
 import { notFound } from "next/navigation";
 
-const mdxComponents = { Drilldown, EvalCohortPanel };
+function MdxImg({ src, alt }: { src?: string; alt?: string }) {
+  if (!src) return null;
+  return (
+    <a
+      href={src}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ display: "block", cursor: "zoom-in" }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt ?? ""} style={{ maxWidth: "100%", height: "auto" }} />
+    </a>
+  );
+}
+
+const mdxComponents = { Drilldown, EvalCohortPanel, img: MdxImg };
 
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));

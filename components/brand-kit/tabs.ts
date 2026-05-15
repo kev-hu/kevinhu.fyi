@@ -1,6 +1,7 @@
 export const BRAND_KIT_TABS = [
   { slug: "tokens",     label: "Design Tokens" },
   { slug: "components", label: "Components" },
+  { slug: "content",    label: "Content" },
   { slug: "animations", label: "Animations" },
   { slug: "heroes",     label: "Hero Sections" },
   { slug: "data",       label: "Data & Metrics" },
@@ -23,7 +24,14 @@ export const TOC_ITEMS_BY_TAB: Record<BrandKitTabSlug, TOCItem[]> = {
     { id: "skill-pills",     text: "Skill Pills" },
     { id: "layout-patterns", text: "Layout Patterns" },
   ],
+  content: [
+    { id: "callouts",       text: "Callouts" },
+    { id: "tables",         text: "Tables" },
+  ],
   animations: [
+    { id: "easing-curves",          text: "Easing Curves" },
+    { id: "transition-recipes",     text: "Transition Recipes" },
+    { id: "motion-principles",      text: "Motion Principles" },
     { id: "animated-hero-entrance", text: "Animated Hero Entrance" },
     { id: "counting-stats",         text: "Counting Stats" },
     { id: "card-cascade",           text: "Card Cascade" },

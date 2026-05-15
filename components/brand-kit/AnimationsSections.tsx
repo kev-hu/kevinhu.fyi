@@ -5,9 +5,396 @@ import {
   sectionDescStyle,
 } from "@/components/brand-kit/styles";
 
+const EASINGS = [
+  {
+    id: "linear",
+    label: "linear",
+    description: "Constant speed. Use for marquees, continuous loops, indeterminate progress.",
+    cubic: "linear",
+    cls: "motion-ease-linear",
+  },
+  {
+    id: "ease-out",
+    label: "ease-out",
+    description: "Fast start, soft landing. Default for UI entrances — feels responsive and confident.",
+    cubic: "cubic-bezier(0.16, 1, 0.3, 1)",
+    cls: "motion-ease-out",
+  },
+  {
+    id: "ease-in-out",
+    label: "ease-in-out",
+    description: "Soft on both ends. Use for state transitions where both start and stop should feel deliberate.",
+    cubic: "cubic-bezier(0.65, 0, 0.35, 1)",
+    cls: "motion-ease-inout",
+  },
+  {
+    id: "spring-soft",
+    label: "spring (soft overshoot)",
+    description: "Slight overshoot at the end. Use sparingly — drops, lands, additions to a list. Adds personality.",
+    cubic: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+    cls: "motion-ease-spring",
+  },
+] as const;
+
+const RECIPES = [
+  {
+    id: "hover-lift",
+    label: "Hover Lift",
+    description: "Card or link rises 2px and casts a slightly larger shadow. Confirms interactivity without shouting.",
+    cls: "motion-recipe-lift",
+    snippet:
+      "transition: transform 200ms cubic-bezier(0.16,1,0.3,1),\n            box-shadow 200ms ease;\n:hover { transform: translateY(-2px); box-shadow: 6px 6px 0 #141414; }",
+  },
+  {
+    id: "press-down",
+    label: "Press Down",
+    description: "On active, element sinks into its shadow. The canonical neubrutalist button feel.",
+    cls: "motion-recipe-press",
+    snippet:
+      "transition: transform 80ms ease, box-shadow 80ms ease;\n:hover  { transform: translateY(2px); box-shadow: 2px 2px 0 #141414; }\n:active { transform: translateY(4px); box-shadow: none; }",
+  },
+  {
+    id: "fade-in",
+    label: "Fade In",
+    description: "Opacity 0 → 1 with a tiny upward slide. Use for content that mounts after page load.",
+    cls: "motion-recipe-fade",
+    snippet:
+      "@keyframes fade-in {\n  from { opacity: 0; transform: translateY(8px); }\n  to   { opacity: 1; transform: translateY(0); }\n}\nanimation: fade-in 400ms cubic-bezier(0.16,1,0.3,1) both;",
+  },
+  {
+    id: "slide-in",
+    label: "Slide In",
+    description: "Element enters from offscreen. Use for sidebars, drawers, toasts.",
+    cls: "motion-recipe-slide",
+    snippet:
+      "@keyframes slide-in {\n  from { opacity: 0; transform: translateX(-24px); }\n  to   { opacity: 1; transform: translateX(0); }\n}\nanimation: slide-in 300ms cubic-bezier(0.16,1,0.3,1) both;",
+  },
+] as const;
+
 export function AnimationsSections() {
   return (
     <>
+      {/* ── A. Easing Curves ─────────────────────────────────────────────── */}
+      <section id="easing-curves" className="brand-kit-section" style={sectionStyle}>
+        <h2 style={sectionTitleStyle}>Easing Curves</h2>
+        <p style={sectionDescStyle}>
+          The four easings used across this site. Each track loops 2.4s so you
+          can feel the shape of the curve. Pick the one that matches the
+          intent — not the one that &quot;looks fanciest&quot;.
+        </p>
+
+        <div
+          style={{
+            background: "var(--color-card)",
+            border: "2px solid var(--color-foreground)",
+            borderRadius: "var(--radius-card)",
+            boxShadow: "var(--shadow-brutal)",
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+          }}
+        >
+          {EASINGS.map((e) => (
+            <div key={e.id}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "baseline",
+                  marginBottom: "8px",
+                  gap: "16px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "0.9375rem",
+                    fontWeight: 700,
+                    color: "var(--color-foreground)",
+                  }}
+                >
+                  {e.label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "monospace",
+                    fontSize: "0.75rem",
+                    color: "var(--color-foreground)",
+                    opacity: 0.6,
+                  }}
+                >
+                  {e.cubic}
+                </span>
+              </div>
+              <div
+                style={{
+                  position: "relative",
+                  height: "32px",
+                  background: "rgba(20,20,20,0.04)",
+                  border: "1.5px solid var(--color-foreground)",
+                  borderRadius: "999px",
+                  overflow: "hidden",
+                }}
+              >
+                <span
+                  className={e.cls}
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: 0,
+                    width: "24px",
+                    height: "24px",
+                    marginTop: "-12px",
+                    marginLeft: "4px",
+                    borderRadius: "50%",
+                    background: "var(--color-primary)",
+                    border: "2px solid var(--color-foreground)",
+                    boxShadow: "var(--shadow-brutal-sm)",
+                  }}
+                />
+              </div>
+              <p
+                style={{
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.875rem",
+                  lineHeight: 1.6,
+                  color: "var(--color-foreground)",
+                  opacity: 0.65,
+                  margin: 0,
+                  marginTop: "8px",
+                }}
+              >
+                {e.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            marginTop: "20px",
+            padding: "16px",
+            background: "rgba(28,176,246,0.04)",
+            borderRadius: "var(--radius-button)",
+            fontFamily: "monospace",
+            fontSize: "0.8125rem",
+            lineHeight: 1.8,
+            color: "var(--color-foreground)",
+          }}
+        >
+          default for entrances: ease-out (cubic-bezier(0.16, 1, 0.3, 1))<br />
+          default for state changes: ease-in-out<br />
+          continuous motion: linear<br />
+          accents (rare): spring with mild overshoot
+        </div>
+      </section>
+
+      {/* ── B. Transition Recipes ────────────────────────────────────────── */}
+      <section id="transition-recipes" className="brand-kit-section" style={sectionStyle}>
+        <h2 style={sectionTitleStyle}>Transition Recipes</h2>
+        <p style={sectionDescStyle}>
+          Copy-paste transition snippets for the four micro-interactions used
+          across the site. Hover, tap, or wait — each card demonstrates the
+          recipe live.
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: "20px",
+          }}
+        >
+          {RECIPES.map((r) => (
+            <div
+              key={r.id}
+              style={{
+                background: "var(--color-card)",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                padding: "20px",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--font-display), sans-serif",
+                  fontSize: "0.9375rem",
+                  fontWeight: 700,
+                  color: "var(--color-foreground)",
+                  margin: 0,
+                  marginBottom: "6px",
+                }}
+              >
+                {r.label}
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-body), sans-serif",
+                  fontSize: "0.8125rem",
+                  lineHeight: 1.5,
+                  color: "var(--color-foreground)",
+                  opacity: 0.65,
+                  margin: 0,
+                  marginBottom: "16px",
+                }}
+              >
+                {r.description}
+              </p>
+
+              <div
+                style={{
+                  height: "100px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "rgba(20,20,20,0.03)",
+                  borderRadius: "var(--radius-button)",
+                  marginBottom: "12px",
+                  overflow: "hidden",
+                }}
+              >
+                <span
+                  className={r.cls}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "120px",
+                    height: "44px",
+                    background: "var(--color-card)",
+                    border: "2px solid var(--color-foreground)",
+                    borderRadius: "var(--radius-button)",
+                    boxShadow: "4px 4px 0 #141414",
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "0.8125rem",
+                    fontWeight: 700,
+                    color: "var(--color-foreground)",
+                    cursor: r.id === "press-down" || r.id === "hover-lift" ? "pointer" : "default",
+                    userSelect: "none",
+                  }}
+                >
+                  {r.id === "hover-lift" || r.id === "press-down" ? "hover me" : "demo"}
+                </span>
+              </div>
+
+              <pre
+                style={{
+                  margin: 0,
+                  padding: "12px",
+                  background: "var(--color-foreground)",
+                  color: "#e5e5e5",
+                  borderRadius: "var(--radius-button)",
+                  fontFamily: "monospace",
+                  fontSize: "0.75rem",
+                  lineHeight: 1.55,
+                  whiteSpace: "pre-wrap",
+                  overflowX: "auto",
+                }}
+              >
+                {r.snippet}
+              </pre>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── C. Motion Principles ─────────────────────────────────────────── */}
+      <section id="motion-principles" className="brand-kit-section" style={sectionStyle}>
+        <h2 style={sectionTitleStyle}>Motion Principles</h2>
+        <p style={sectionDescStyle}>
+          Three rules of thumb for adding motion on this site. Motion is a
+          signal — when everything moves, nothing reads as important.
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: "20px",
+            marginBottom: "32px",
+          }}
+        >
+          {[
+            {
+              title: "Motion confirms, not decorates",
+              body: "Animate to acknowledge an action (press-in, hover lift) or to make a state change legible (drawer slide, list reorder). If removing the animation doesn't change comprehension, don't add it.",
+              color: "var(--color-primary)",
+            },
+            {
+              title: "Fast for input, slow for context",
+              body: "Direct response to a user tap: 80–200ms. Background entrances and ambient loops: 300–600ms. Anything above ~700ms reads as sluggish on input and as theatrical on entrances.",
+              color: "var(--color-secondary)",
+            },
+            {
+              title: "Respect reduced-motion",
+              body: "Anything that loops, parallaxes, or auto-plays should opt out under prefers-reduced-motion. One-shot UI confirmations (button press, focus ring) can stay — they're informational, not decorative.",
+              color: "#F59E0B",
+            },
+          ].map((p) => (
+            <div
+              key={p.title}
+              style={{
+                background: "var(--color-card)",
+                border: "2px solid var(--color-foreground)",
+                borderRadius: "var(--radius-card)",
+                boxShadow: "var(--shadow-brutal)",
+                overflow: "hidden",
+              }}
+            >
+              <div style={{ height: "8px", background: p.color }} />
+              <div style={{ padding: "20px 22px" }}>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-display), sans-serif",
+                    fontSize: "1.0625rem",
+                    fontWeight: 700,
+                    letterSpacing: "-0.01em",
+                    color: "var(--color-foreground)",
+                    margin: 0,
+                    marginBottom: "8px",
+                  }}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "var(--font-body), sans-serif",
+                    fontSize: "0.9375rem",
+                    lineHeight: 1.6,
+                    color: "var(--color-foreground)",
+                    opacity: 0.7,
+                    margin: 0,
+                  }}
+                >
+                  {p.body}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            padding: "16px",
+            background: "rgba(28,176,246,0.04)",
+            borderRadius: "var(--radius-button)",
+            fontFamily: "monospace",
+            fontSize: "0.8125rem",
+            lineHeight: 1.8,
+            color: "var(--color-foreground)",
+          }}
+        >
+          input → response:   80–200ms<br />
+          state transitions:  200–400ms<br />
+          ambient / entrance: 300–600ms<br />
+          continuous loops:   2.4s – 6s (slow enough to ignore)
+        </div>
+      </section>
+
       {/* ── 1. Animated Hero Entrance ────────────────────────────────────── */}
       <section id="animated-hero-entrance" className="brand-kit-section" style={sectionStyle}>
         <h2 style={sectionTitleStyle}>Animated Hero Entrance</h2>

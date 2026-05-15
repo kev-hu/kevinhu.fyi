@@ -25,9 +25,9 @@ const PASSING: [number, number, number] = [0, 1, 2].map(
 const TOTAL = ROWS.length;
 
 const COHORTS = [
-  { id: "A", label: "Baseline — single global rubric" },
-  { id: "B", label: "+ Rubric granularity — per-category criteria" },
-  { id: "C", label: "+ Perplexity grounding — retrieval where coverage was thin" },
+  { id: "A", label: "Baseline — single global rubric, no anchored examples" },
+  { id: "B", label: "+ Rubric granularity — 5 criteria per category, each with anchored 1–5 examples and descriptions" },
+  { id: "C", label: "+ Perplexity grounding — retrieval where the training corpus was thin" },
 ];
 
 const BG = "#0E1117";

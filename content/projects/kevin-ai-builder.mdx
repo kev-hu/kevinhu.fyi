@@ -1,0 +1,241 @@
+---
+title: "Kevin's AI Builder Stack"
+slug: "kevin-ai-builder"
+status: active
+subtitle: "A multi-repo workspace, a portable skill library, and a memory layer connecting personal prompts, skills, agents, and notes."
+description: "A multi-repo Claude Code workspace — 6 active domains, 15 shared skills, and 12 MCP integrations connected by a memory layer. AI workflow treated as a product: skills as CLIs, lessons.md as immune system, local OSS LLMs running on-machine for classification."
+featured: true
+order: 7
+tags: ["Claude Code", "Obsidian", "MCP", "Skills", "Local LLMs", "Workflows"]
+role: "Solo"
+timeline: "Ongoing"
+metrics:
+  - label: "Active Workspaces"
+    value: "6"
+  - label: "Shared Skills"
+    value: "15"
+  - label: "MCP Integrations"
+    value: "12"
+---
+
+## Architecture
+
+```text
+              ┌────────────────────────────────────────────────────┐
+              │              BRAIN — Obsidian vault                │
+              │     notes · transcripts · references · lessons     │
+              └─────────────────────────┬──────────────────────────┘
+                                        │
+              ╔═════════════════════════▼══════════════════════════╗
+              ║ ●  ●  ●           ~/Code/                    ⌘     ║
+              ╠════════════════════════════════════════════════════╣
+              ║                                                    ║
+              ║  ├── ai-pathways/         gov DBs → AI path scores ║
+              ║  ├── career-camp/         interview prep + R&D     ║
+              ║  ├── content.main/        scripts, drafts, brands  ║
+              ║  ├── databank/            analytics + BigQuery     ║
+              ║  ├── kevinhu.fyi/         this portfolio site      ║
+              ║  └── kevinhufyi-youtube/  video pipeline           ║
+              ║                                                    ║
+              ╚═════════════════════════╤══════════════════════════╝
+                                        │
+              ┏━━━━━━━━━━━━━━━━━━━━━━━━━▼━━━━━━━━━━━━━━━━━━━━━━━━━┓
+              ┃                                                    ┃
+              ┃   ►   CLAUDE  CODE                                 ┃
+              ┃       reads files · runs tools · calls MCP         ┃
+              ┃                                                    ┃
+              ┗━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━┛
+                          │                            │
+              ┌───────────▼───────────┐    ┌───────────▼───────────┐
+              │  kj-skills plugin     │    │  12+ MCP servers      │
+              │  15 shared skills     │    │  Apify · Vercel ·     │
+              │  + memory layer       │    │  Gmail · Drive ·      │
+              │  + lessons.md         │    │  Notion · Obsidian    │
+              └───────────────────────┘    └───────────────────────┘
+```
+
+**Knowledge substrate on top.** The Obsidian vault holds every transcript, reference, post-mortem, and half-written thought. Every workspace reads from it; the load-bearing outputs get written back. Treating notes as a queryable substrate — not a destination — is what makes context portable between sessions.
+
+**Domain workspaces in the middle.** Six repos, each owning one durable domain end-to-end. New work goes *into* an existing workspace, not into a fresh one. The shape mirrors how a competent platform team is organized: domain pods that own their problem from data to interface, with shared infrastructure underneath.
+
+**Shared skills and execution underneath.** `kj-skills` is a versioned Claude Code plugin pointing at the same skill library from every workspace. A skill written for one domain ships to all the others the next session. Claude Code and a dozen MCP servers form the execution layer — the surface that actually reaches into Gmail, Drive, BigQuery, Vercel, and the file system.
+
+## Patterns
+
+### Repos as workspaces, not projects
+
+One repo per durable domain — career, content, analytics, site, video — not one per output. A new interview prep cycle, a new content sprint, a new dashboard: they go into the existing workspace as a dated folder. Workspaces accumulate; projects come and go inside them.
+
+Why this matters: project-level repos die when the project ends, taking their tooling and memory with them. Domain workspaces let CLAUDE.md, LESSONS.md, the local `bin/`, the launchd jobs, and the accumulated context survive past any single deliverable. The cost of starting a new project goes to near-zero because the substrate is already loaded.
+
+Concrete shape: `career-camp/active/<company>/` for live processes, `career-camp/archive/` for closed ones, and a `career-camp/dashboards/` Obsidian folder that aggregates across both. Same skeleton in `databank`, `content.main`, and the rest.
+
+### Skills as CLIs
+
+`kj-skills` is a Claude Code plugin holding 15 skills — each one a markdown file with a procedure, the failure modes to avoid, and the shape of the output. They're written exactly the way I'd onboard a teammate: goal first, gotchas second, examples third. When a skill is good, both the human reader and the agent reader benefit; when a skill is wrong, the same edit fixes both.
+
+The argument is simple: *the same stuff you use to train humans should be the same stuff you use to train machines.* `kj-skills` is the literal implementation. Skills like `apify-scraper`, `lessons`, `cli-tools`, and `qmd` get loaded on demand — the agent picks them up by name; I read them when I want to remember how I do something.
+
+Documentation and tooling collapse into the same artifact. Version-controlled, diff-able, reviewable.
+
+### MEMORY.md as persistent context
+
+Every workspace and every plugin has a `MEMORY.md` indexed by topic — user preferences, project history, recurring references, feedback I've already received and shouldn't need to be told twice. Claude Code reads it at session start; I read it when I'm reorienting.
+
+The discipline is *what not to save*: not code patterns (the codebase shows those), not git history (the log shows that), not transient task state (todos handle that). Save the things that won't be recoverable from the artifacts themselves — user-level preferences, the *why* behind a non-obvious decision, the names of people and tools that don't show up in code.
+
+The payoff is compounding: every session writes context the next session won't have to be told.
+
+### Lessons.md as immune system
+
+Every workspace has a `LESSONS.md`. When something fails — a bad refactor, a misread spec, a tool used wrong — one line goes in. Quarterly I prune: kill the dull entries, promote the load-bearing ones into a skill, retire what no longer applies. The file stays short on purpose; a wall of advice gets ignored.
+
+The job isn't to remember everything. It's to make sure the *same* mistake doesn't repeat — and to surface the patterns worth turning into shared tooling. Closer to a defect-tracking discipline than a journal. The `lessons` and `lessons-prune` skills in `kj-skills` automate the capture and the cleanup, so the file gets the maintenance it needs without me having to remember to do it.
+
+### Obsidian as IDE
+
+The vault is the substrate. Notes, transcripts, references, dashboards — all live as markdown files Claude Code can read directly. Dataview queries turn folders into live tables (e.g. *every active interview process, sorted by next step*). Templates standardize the shape of recurring artifacts. The graph view shows what's connected to what.
+
+Calling it an IDE is barely a metaphor. It's where I write, where context accumulates, and where the agent picks up what it needs. Markdown is durable, greppable, addressable from CLI, and free of vendor lock-in — the substrate I'd bet a decade on.
+
+## Live examples
+
+### The workspace tree
+
+```text
+~/Code/
+├── infra/
+│   └── kj-skills/                 # shared plugin: 15 skills + memory + lessons
+├── products/
+│   ├── ai-pathways/               # gov DBs → AI-scored career pathways
+│   └── kevinhu.fyi/               # this portfolio site
+└── workspaces/
+    ├── career-camp/               # interview prep + R&D
+    ├── content.main/              # scripts, drafts, brands
+    ├── databank/                  # analytics + BigQuery + RSS substrate
+    └── kevinhufyi-youtube/        # video pipeline
+```
+
+*Six domain repos under `~/Code/`, plus the shared `kj-skills` plugin underneath. Each repo owns one durable domain end-to-end and ships with its own `CLAUDE.md`, `LESSONS.md`, `MEMORY.md`.*
+
+### A real SKILL.md (the same file the human reads and the agent loads)
+
+```markdown
+---
+name: qmd
+description: Use when searching notes, finding related content, retrieving
+  documents from indexed markdown collections, or querying past chat history
+  and meeting transcripts.
+scope: global
+---
+
+# qmd — Quick Markdown Search
+
+Local search engine for Markdown notes, docs, and knowledge bases.
+Index once, search fast.
+
+## When to use (trigger phrases)
+- "search my notes / docs / knowledge base"
+- "find related notes"
+
+## Default behavior (important)
+- Prefer `qmd search` (BM25). It's typically instant.
+- Use `qmd vsearch` only when keyword search fails and you need semantic
+  similarity (can be very slow on a cold start).
+```
+
+*From `~/Code/infra/kj-skills/skills/qmd/SKILL.md`. Frontmatter is for the agent (description triggers loading, scope controls visibility). The body is for both — written like onboarding docs, not prompt engineering.*
+
+### A real MEMORY.md (preferences and decisions persisted across sessions)
+
+```markdown
+# Memory
+
+## User Preferences
+
+- **Prefer CLI tools over HTTP/web requests.** When a CLI is available
+  (apify, gh, gog), always use it rather than falling back to curl/API.
+- [evals-in-skill-folders] Keep evals.json inside skills/<name>/evals/
+- [jq-not-python] Always use jq for JSON processing, never python3
+- [no-bash-inline-comments] Use Bash tool `description` param, never `#`
+
+## Project Context
+
+- [zep-ontology-lessons] Adding adjacent entity types reduces classification
+  quality; negative descriptions hurt; extraction is non-deterministic.
+- [kj-skills-refactor-phase2-pending] Phase 2 queued after Phase 1 shipped
+  2026-04-16
+```
+
+*From the `kj-skills` plugin's `MEMORY.md`. Linked entries (`[name]`) point to longer memory files with the full reasoning. Index here is the load-on-session-start surface; the linked files are the deeper context.*
+
+### A real Obsidian Dataview surface
+
+```javascript
+// dashboards/jobs/jobs-pipeline.md
+const ROOT = "/Users/kevinhu/Code/workspaces/career-camp";
+const rawDir  = `${ROOT}/job-postings/data/raw`;
+const newDir  = `${ROOT}/job-postings/data/new`;
+
+// Walk the last 30 days of scrape runs.
+const runs = [];
+for (let i = 0; i < 30; i++) {
+  const date = ymd(daysAgo(i));
+  const raw  = tryReadJson(`${rawDir}/${date}.json`);
+  const neu  = tryReadJson(`${newDir}/${date}.json`);
+  const errs = countErrors(`${rawDir}/${date}-errors.log`);
+  runs.push({ date, raw: raw?.length ?? 0, new: neu?.length ?? 0, errors: errs });
+}
+
+// Render as a table. Catches silent breakage:
+//   raw=0     → scraper or credentials broke
+//   new=0     → regex filter broke
+//   errors>0  → query timed out
+```
+
+*A `dataviewjs` block from `career-camp/dashboards/jobs/jobs-pipeline.md`. Obsidian renders this inline as a live table — the workspace's filesystem is the database, the markdown file is the query, the rendered page is the dashboard. No separate BI tool, no service to keep alive.*
+
+![RSS dashboard — 17 feeds, 1,381 articles, classified and summarized by local OSS LLMs](/images/projects/personal-ai-studio-rss-dashboard.png)
+
+*Output of the scraping substrate + local OSS LLM pipeline: 17 feeds, 1,381 articles, classified by type (TUTORIAL · MARKETING · ANNOUNCEMENT), tagged by topic, summarized — all on-machine. No external API spend on the classification path. The dashboard is the read surface; the substrate runs the models.*
+
+## What's next
+
+Currently iterating on two fronts. First, the auto-memory layer — moving from per-workspace `MEMORY.md` files toward a small server that lets workspaces share specific memory namespaces without coupling them. Second, the evaluation surface: skills are testable artifacts, and I'm scaffolding a lightweight harness so a skill edit can run against fixture transcripts and report regressions before it ships. The studio earns its keep when it gets sharper week over week — that's the only metric that matters.
+
+<Drilldown title="Detailed repo structure">
+
+```text
+~/Code/
+├── infra/
+│   └── kj-skills/                 # Claude Code plugin — 15 shared skills
+│       ├── skills/                # apify-scraper, lessons, qmd, cli-tools, ...
+│       ├── scripts/               # bootstrap.sh, index.sh
+│       ├── CLAUDE.md
+│       └── LESSONS.md
+├── workspaces/
+│   ├── career-camp/               # interview prep + R&D
+│   │   ├── active/                # one folder per live process
+│   │   ├── archive/               # closed processes
+│   │   ├── dashboards/            # Obsidian Dataview surfaces
+│   │   ├── bin/                   # workspace-local CLIs
+│   │   └── launchd/               # scheduled jobs
+│   ├── content.main/              # scripts, drafts, brands
+│   │   ├── brands/
+│   │   ├── library/
+│   │   ├── sessions/
+│   │   └── tools/
+│   ├── databank/                  # analytics + BigQuery + RSS substrate
+│   │   ├── data/
+│   │   ├── evals/
+│   │   ├── launchd/
+│   │   └── bin/
+│   └── kevinhufyi-youtube/        # video pipeline
+└── products/
+    ├── ai-pathways/               # gov DBs → AI-scored career pathways
+    └── kevinhu.fyi/               # this portfolio site
+```
+
+Every workspace has a `CLAUDE.md`, `LESSONS.md`, and `MEMORY.md`. The 6 domain repos plus `kj-skills` are private; this portfolio repo is the one public surface.
+
+</Drilldown>

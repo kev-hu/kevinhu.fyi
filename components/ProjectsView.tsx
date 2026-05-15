@@ -116,8 +116,7 @@ export default function ProjectsView({
             <ProjectsSkeleton count={Math.min(projects.length, 6)} />
           ) : view === "grid" ? (
             <div className="project-grid">
-              {flagship && <ProjectCard project={flagship} variant="flagship" />}
-              {rest.map((p) => (
+              {projects.map((p) => (
                 <ProjectCard project={p} key={p.slug} />
               ))}
             </div>
