@@ -15,7 +15,7 @@ const HIGHLIGHTS: Highlight[] = [
     role: "Co-founder, Product & Eng",
     org: "Firstly",
     domain: "firstly.com",
-    logo: "/images/highlights/firstly.jpg",
+    logo: "/images/logos/firstly.jpg",
   },
   { role: "Product Manager", org: "DocuSign", domain: "docusign.com" },
   {

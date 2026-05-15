@@ -110,7 +110,7 @@ export default function Hero() {
           {/* ── Right column (~45%) ────────────────────────────────────────── */}
           <div className="hidden md:flex justify-center md:justify-end md:w-[45%]">
             <Image
-              src="/images/headshot.png"
+              src="/images/brand/kevin-illustration-laptop.png"
               alt="Kevin Hu"
               width={400}
               height={400}

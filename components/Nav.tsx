@@ -59,7 +59,7 @@ export default function Nav({ projects = [] }: { projects?: ProjectMeta[] }) {
             }}
           >
             <Image
-              src="/images/kevin-avatar.jpg"
+              src="/images/brand/kevin-headshot.jpg"
               alt="Kevin Hu"
               width={48}
               height={48}
