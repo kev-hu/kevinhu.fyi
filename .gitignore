@@ -49,9 +49,6 @@ LESSONS.md
 # archived content (kept locally, not shipped)
 content/archive/
 
-# temporary workspace folders (symlinks out of repo, not shipped)
-docs/working/quantifind-revamp/
-
 # session notes and working docs (kept locally, not shipped)
 sessions/
 docs/working/
