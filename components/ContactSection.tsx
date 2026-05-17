@@ -75,8 +75,8 @@ export default function ContactSection() {
                 maxWidth: "640px",
               }}
             >
-              I help teams turn ambiguous AI needs into internal tools, agents,
-              dashboards, and adoption systems people actually use.
+              Helping teams turn ambiguous AI needs into internal tools, agents,
+              and dashboards people actually use.
             </p>
 
             <div

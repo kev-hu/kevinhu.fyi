@@ -20,7 +20,7 @@ export default function Hero() {
         className="px-6 lg:px-12 lg:py-[120px]"
       >
         {/* Two-column grid on lg+, single column on mobile */}
-        <div className="flex flex-col md:flex-row md:items-center gap-12 md:gap-8">
+        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-8">
 
           {/* ── Left column (~55%) ─────────────────────────────────────────── */}
           <div className="flex flex-col gap-6 md:w-[55%]">
@@ -60,7 +60,7 @@ export default function Hero() {
                     display: "inline-block",
                   }}
                 />
-                Open to full-time roles
+                Portfolio
               </span>
             </div>
 
@@ -76,7 +76,7 @@ export default function Hero() {
                 margin: 0,
               }}
             >
-              I help teams work with AI where work already happens.
+              Hello, I'm Kevin 👋
             </h1>
 
             {/* Bio paragraph */}
@@ -91,9 +91,7 @@ export default function Hero() {
                 margin: 0,
               }}
             >
-              Product and systems operator. I do my best work close to real
-              users — turning ambiguous AI needs into systems teams actually
-              adopt. Eight years across consulting, startups, and enterprise.
+              I help teams work with AI where work already happens. I've spent the past 8 years shipping 0-to-1 solutions across enterprise software, startups, and consulting. 
             </p>
 
             {/* CTAs */}
@@ -105,6 +103,18 @@ export default function Hero() {
                 View My Work
               </Button>
             </div>
+          </div>
+
+          {/* ── Avatar — mobile only, centered below text ───────────────────── */}
+          <div className="flex md:hidden justify-center">
+            <Image
+              src="/images/brand/kevin-illustration-laptop.png"
+              alt="Kevin Hu"
+              width={200}
+              height={200}
+              style={{ borderRadius: "16px", width: "200px", height: "auto" }}
+              priority
+            />
           </div>
 
           {/* ── Right column (~45%) ────────────────────────────────────────── */}
