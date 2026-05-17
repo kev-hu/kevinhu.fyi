@@ -37,6 +37,7 @@ export function RelatedProjects({ projects }: { projects: ProjectMeta[] }) {
           <Link
             key={project.slug}
             href={`/projects/${project.slug}`}
+            className="related-card"
             style={{
               display: "flex",
               alignItems: "center",
@@ -48,6 +49,7 @@ export function RelatedProjects({ projects }: { projects: ProjectMeta[] }) {
               boxShadow: "var(--shadow-brutal-sm)",
               textDecoration: "none",
               color: "inherit",
+              transition: "transform 120ms ease, box-shadow 120ms ease",
             }}
           >
             {project.clientLogo && (

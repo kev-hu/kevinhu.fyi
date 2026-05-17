@@ -36,7 +36,7 @@ const getHydratedServerSnapshot = () => false;
 export default function ProjectsView({
   projects,
   heading = "Projects",
-  description = "AI, data, and platforms — consulting, startups, and enterprise.",
+  description = "",
 }: {
   projects: ProjectMeta[];
   heading?: string;

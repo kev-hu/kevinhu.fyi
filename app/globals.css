@@ -158,6 +158,12 @@
     }
   }
 
+  /* Related card hover lift */
+  .related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 0 #141414;
+  }
+
   /* Project nav card hover lift */
   .project-nav-card:hover {
     transform: translateY(-3px);
@@ -833,3 +839,4 @@
     aspect-ratio: 21 / 7 !important;
   }
 }
+
