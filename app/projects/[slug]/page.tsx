@@ -1,12 +1,14 @@
-import { getProjectBySlug, getProjectSlugs, getRelatedProjects } from "@/lib/projects";
+import { getProjectBySlug, getProjectSlugs, getRelatedProjects, getListedProjects } from "@/lib/projects";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 import { extractHeadings } from "@/lib/extractHeadings";
 import { TableOfContents } from "@/components/TableOfContents";
 import { ProjectHeader } from "@/components/ProjectHeader";
 import { RelatedProjects } from "@/components/RelatedProjects";
 import { Drilldown } from "@/components/Drilldown";
 import { EvalCohortPanel } from "@/components/EvalCohortPanel";
+import { StackIcon } from "@/components/StackIcon";
 import { notFound } from "next/navigation";
 
 function MdxImg({ src, alt }: { src?: string; alt?: string }) {
@@ -24,7 +26,28 @@ function MdxImg({ src, alt }: { src?: string; alt?: string }) {
   );
 }
 
-const mdxComponents = { Drilldown, EvalCohortPanel, img: MdxImg };
+function MdxLink({ href, children }: { href?: string; children?: React.ReactNode }) {
+  if (!href) return <>{children}</>;
+  const isExternal = /^https?:\/\//.test(href);
+  return (
+    <a
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      style={{
+        color: "var(--color-primary)",
+        fontWeight: 600,
+        textDecoration: "underline",
+        textDecorationThickness: "2px",
+        textUnderlineOffset: "3px",
+      }}
+    >
+      {children}
+    </a>
+  );
+}
+
+const mdxComponents = { Drilldown, EvalCohortPanel, StackIcon, img: MdxImg, a: MdxLink };
 
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
@@ -63,6 +86,10 @@ export default async function ProjectPage({
 
   const headings = extractHeadings(project.content);
   const related = getRelatedProjects(slug, 2);
+  const switcherProjects = getListedProjects().map((p) => ({
+    slug: p.slug,
+    title: p.title,
+  }));
 
   return (
     <div
@@ -81,7 +108,11 @@ export default async function ProjectPage({
           style={{ width: "220px", flexShrink: 0 }}
         >
           <div style={{ position: "sticky", top: "89px" }}>
-            <TableOfContents headings={headings} />
+            <TableOfContents
+              headings={headings}
+              projects={switcherProjects}
+              currentSlug={slug}
+            />
           </div>
         </aside>
 
@@ -94,6 +125,7 @@ export default async function ProjectPage({
               components={mdxComponents}
               options={{
                 mdxOptions: {
+                  remarkPlugins: [remarkGfm],
                   rehypePlugins: [rehypeSlug],
                 },
               }}

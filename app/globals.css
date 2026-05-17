@@ -633,6 +633,11 @@
     padding-left: 1.5rem;
     margin-bottom: 1rem;
   }
+  .prose-content ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
   .prose-content li {
     margin-bottom: 0.25rem;
     line-height: 1.6;
@@ -652,6 +657,52 @@
   .prose-content strong {
     font-weight: 700;
     color: var(--color-foreground);
+  }
+
+
+  /* GFM tables — match the brand-kit comparison table styling.
+     Uses border-collapse: separate so the table's own border-radius and
+     overflow clipping render reliably. Cell separators are drawn per-cell. */
+  .prose-content table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0;
+    font-family: var(--font-body), sans-serif;
+    font-size: 0.9375rem;
+    color: var(--color-foreground);
+    background: var(--color-card);
+    border: 2px solid var(--color-foreground);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-brutal);
+    overflow: hidden;
+  }
+  .prose-content thead tr {
+    background: var(--color-foreground);
+  }
+  .prose-content th {
+    text-align: left;
+    padding: 14px 18px;
+    font-family: var(--font-display), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .prose-content th:last-child {
+    border-right: none;
+  }
+  .prose-content td {
+    padding: 14px 18px;
+    border-top: 1px solid var(--color-muted);
+    border-right: 1px solid var(--color-muted);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .prose-content td:last-child {
+    border-right: none;
   }
 
   /* Code blocks in prose — full macOS terminal treatment for any ``` fence.

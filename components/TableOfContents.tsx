@@ -1,14 +1,25 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { Heading } from "@/lib/extractHeadings";
+
+type ProjectOption = { slug: string; title: string };
 
 type TOCProps = {
   headings: Heading[];
   isMobile?: boolean;
+  projects?: ProjectOption[];
+  currentSlug?: string;
 };
 
-export function TableOfContents({ headings, isMobile = false }: TOCProps) {
+export function TableOfContents({
+  headings,
+  isMobile = false,
+  projects,
+  currentSlug,
+}: TOCProps) {
+  const router = useRouter();
   const [activeId, setActiveId] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -81,6 +92,30 @@ export function TableOfContents({ headings, isMobile = false }: TOCProps) {
   }, [headings]);
 
   if (headings.length === 0) return null;
+
+  const projectSwitcher = projects && projects.length > 0 ? (
+    <select
+      value={currentSlug ?? ""}
+      onChange={(e) => router.push(`/projects/${e.target.value}`)}
+      style={{
+        width: "100%",
+        marginBottom: "16px",
+        padding: "8px 10px",
+        fontFamily: "var(--font-body), sans-serif",
+        fontSize: "0.875rem",
+        border: "2px solid var(--color-foreground)",
+        borderRadius: "var(--radius-button)",
+        background: "var(--color-card)",
+        cursor: "pointer",
+      }}
+    >
+      {projects.map((p) => (
+        <option key={p.slug} value={p.slug}>
+          {p.slug}
+        </option>
+      ))}
+    </select>
+  ) : null;
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -183,6 +218,7 @@ export function TableOfContents({ headings, isMobile = false }: TOCProps) {
   // ── Desktop: static sidebar list ────────────────────────────────────────────
   return (
     <div>
+      {projectSwitcher}
       <p
         style={{
           fontFamily: "var(--font-body), sans-serif",
