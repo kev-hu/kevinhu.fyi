@@ -9,13 +9,11 @@ export type ProjectMeta = {
   slug: string;
   subtitle: string;
   description: string;
-  featured: boolean;
   order: number;
   tags: string[];
   thumbnail: string;
   metrics: { label: string; value: string }[];
   status: ProjectStatus;
-  overview?: string;
   role?: string;
   timeline?: string;
   team?: string;

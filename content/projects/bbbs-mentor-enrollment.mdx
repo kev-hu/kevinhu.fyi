@@ -2,93 +2,114 @@
 title: "BBBS — SMS Agent for Mentor Enrollment"
 slug: "bbbs-mentor-enrollment"
 status: active
-subtitle: "Tool-calling SMS agent for BBBS mentor enrollment. Cut time-to-qualification from 13 days to 15 minutes and absorbed 70% of inbound calls."
-description: "Big Brothers Big Sisters' mentor enrollment was bottlenecked at the intake team — a 13-day phone-tag cycle that made mentor recruitment their biggest expense. Scoped the project with WOO (Workflow / Outcome / Owner), shipped a tool-calling SMS agent that handled routing and scheduling, ran a voice variant in parallel, and killed it when the data showed it was increasing call volume from frustrated users."
-overview: "Big Brothers Big Sisters is the largest mentorship nonprofit in the US, and mentor recruitment is their largest cost center. Interested volunteers were waiting an average of 13 days of phone tag before anyone called them back. The intake team was severely understaffed; their week was 60–70 inquiries per person and almost no time left for the high-touch relationship work that actually decides whether a volunteer becomes a mentor."
-featured: true
+subtitle: "SMS and voice agent piloted for BBBS mentor enrollment. Cut time-to-qualification from 13 days to 15 minutes and absorbed 70% of inbound enrollment volume."
+description: "Big Brothers Big Sisters' mentor enrollment was bottlenecked at the intake team: a 13-day phone-tag cycle made mentor recruitment their biggest cost center. Shipped an SMS flow for inquiry routing and scheduling, ran a voice variant alongside it, and killed voice after 3 days when inbound caseload to the enrollment team spiked."
 order: 2
-tags: ["SMS Automation", "ElevenLabs", "Lead Qualification", "ROI Calculator"]
+tags: ["SMS Automation", "Voice Agents", "ElevenLabs", "Twilio", "Zapier", "Lead Qualification", "ROI Calculator"]
 thumbnail: /images/logos/big-brothers-big-sisters.png
 bannerBg: "#000000"
 hideBanner: true
 clientLogo: "https://www.google.com/s2/favicons?domain=bbbs.org&sz=128"
 role: "Co-Founder, Product & Engineering"
-timeline: "~6 months (during Firstly, 2024)"
-team: "Engineer (1), BBBS Intake Team, BBBS CPO"
+timeline: "4 months (Oct 2024 – Feb 2025)"
+team: "Chief Program Officer, Enrollment Manager"
 metrics:
   - label: "Inbound Calls Cut"
     value: "70%"
   - label: "Time to Qualification"
     value: "13d → 15m"
-  - label: "Annual Youth Impact"
-    value: "+200"
 ---
 
 ## Business Context
 
-Big Brothers Big Sisters is the largest mentorship nonprofit in the US. Their mentor enrollment team faced high call volumes, frequent turnover, and a complex intake process requiring several manual touchpoints. On average, it would take 13 days to qualify a volunteer inquiry and schedule an onsite interview.
+Big Brothers Big Sisters is the largest mentorship nonprofit in the US. Their mentor enrollment team was their biggest cost center: high call volumes, frequent turnover, and a 13-day phone-tag cycle to qualify a volunteer lead and book an interview. By the time staff reached someone, the momentum was gone.
 
-Staff were spending most of their time on repetitive intake and scheduling tasks, leaving less time for the high-touch relationship building that actually makes mentorship programs work.
+I pitched real-time SMS as the fix. Catch volunteers while they're still motivated, automate the repetitive intake, and free staff for the relationship work of mentorship. The numbers held up: median time-to-qualification dropped from 13 days to 15 minutes, and SMS absorbed 70% of inbound volume.
 
-## Solution
+I also ran a voice variant alongside SMS, built on ElevenLabs and Twilio, aimed at the older-volunteer cohort with a phone preference. I killed it after 3 days. The escalation paths were funneling callers back to the enrollment team, adding to their caseload instead of relieving it.
 
-Built an SMS-based automation platform that handled the repetitive front-end of the enrollment process: initial acknowledgment, document collection, scheduling, and status updates.
+## Role
 
-Key components:
-- **SMS automation** using n8n workflows triggered by new inquiry submissions
-- **Document collection** flow guiding volunteers through required paperwork via conversational SMS
-- **Scheduling integration** connecting to staff calendars for background check and interview appointments
-- **Escalation logic** routing complex cases to staff while automating standard ones
+| Area | What I owned |
+|---|---|
+| Pilot Discovery | Pitched SMS for retention, pivoted to enrollment when the CPO surfaced the real cost center, closed the MOU in 2-3 weeks |
+| Requirements | Mapped intake workflows, intents, scheduling rules, and routing logic with the Enrollment Manager |
+| Salesforce workaround | Built a Google Sheets layer to simulate the CRM integration so the pilot satisfied the logging policy without new integration work |
+| SMS | Twilio + headless cloud functions, Firstly SMS platform, Zapier orchestration, follow-up automation |
+| Voice | Voice agent on ElevenLabs + OpenAI + Twilio, wired into the existing SMS flow for a parallel pilot |
+| Iteration | Weekly check-ins with the enrollment team, real-time inbox notifications, follow-ups for incomplete flows |
 
-## How I Build
+## System
 
-1. **Got close to the actual users first.** Asked the Chief Program Officer for a direct line to the intake team and sat in on inquiry calls. The shape of the bottleneck wasn't volume — it was the latency between every stage of the funnel. That kind of pattern doesn't survive translation through a Slack summary; you have to hear three callers in a row to see it.
+The SMS pilot ran as part of Firstly, with Twilio handling messaging, Bubble.io powering the admin portal, and cloud functions executing the tool calls. Zapier orchestrated the Salesforce, Google Sheets, and Twilio handoffs.
 
-2. **Built a tool-calling SMS agent for routing and scheduling.** Volunteer responds to inbound interest → agent qualifies, captures the required fields, books the volunteer into the intake team's calendar based on geography and time-zone. Tool-calling, not chat-only, because the agent had to actually write into the team's scheduling system — a chatbot that says *"someone will follow up"* is the failure mode it was meant to eliminate.
+![Architecture: Bubble admin portal driving Twilio Studio flows, Functions, and link tracking against the SMS audience](/images/projects/mentor-enrollment-diagram.png)
 
-3. **Ran a voice variant in parallel.** A subset of the older-volunteer cohort got a voice agent built on ElevenLabs + OpenAI + Twilio instead of SMS. On paper this was the *"right"* answer — older volunteers preferred phone, the cohort-channel fit argued for voice, and it was the more impressive build. I ran it anyway, against my own intuition, because the only way to know which channel actually worked was to measure both.
+The voice variant used ElevenLabs' builder for prompts and orchestration, OpenAI for the model, and Twilio's voice channel for the calls. It ran alongside the SMS pilot without disrupting it, and we combined link-tracking metrics from SMS with voice metrics from ElevenLabs.
 
-4. **Killed voice when the metric said to.** The voice variant *increased* call volume from frustrated users — the signal that picked up volunteers escalating off the agent and calling the office anyway. SMS was reducing that signal; voice was spiking it. The data made the call obvious. The operator move was being willing to throw away the voice prototype after it shipped, not before — and to admit publicly that my on-paper intuition had been wrong.
+**Stack:**
 
-![Inbound call volume by channel during the test — voice variant spiking, SMS variant declining](/images/projects/mentor-enrollment-channel-volume.png)
+- Twilio Studio + headless cloud functions for SMS routing and tool calls
+- Firstly platform for building and managing SMS journeys, with Bubble.io admin portal
+- Zapier orchestrating Salesforce, Google Sheets, and Twilio handoffs
+- Google Sheets as a Salesforce integration shim (per the workaround)
+- ElevenLabs voice agents + OpenAI + Twilio Voice for the voice variant
+- Salesforce as system of record for volunteer inquiries
 
-*The frustration signal that picked up volunteers escalating off the agent. Voice variant in red — increasing inbound load. SMS variant in blue — reducing it. The data was clean enough that the kill decision didn't need a debate.*
+## Act 1: Discovery & Pilot
 
-5. **Doubled down on SMS, closed the loop with the enrollment team.** Weekly check-ins with the intake team — the people watching every conversation and every escalation. Adjusted the qualification flow based on what they were manually correcting. The enrollment team was the user; the CPO was the buyer. Treating them as different audiences kept the agent honest.
+I went into the first meeting pitching SMS for mentorship scaffolding and retention. The Chief Program Officer was polite but uninterested. Halfway through the demo she stopped me: "what if we used this for mentor enrollment?" Enrollment was their biggest cost center, and she was already asking about integrations we didn't have. I knew the deal was real once those questions started.
 
-## What it proved
+The roadblock surfaced in the next meeting with the Enrollment Manager. Their Salesforce footprint was governed by an org-wide policy: every mentor and mentee interaction had to land in the CRM. We didn't have a Salesforce integration, and I didn't want to build integrations without validating the solution first. 
 
-- **70% reduction in inbound calls.** The intake team's load came down by more than two-thirds, with the same headcount.
-- **Time-to-first-contact: 13 days → 15 minutes.** What was a phone-tag chain became a same-session SMS round trip.
-- **~200 additional youth matched annually** as the second-order effect of catching more qualified volunteers before they cooled.
-- **Trust earned with the customer.** BBBS agreed to publish the work as a public case study — uncommon for a trust-sensitive nonprofit, and the durable signal that the system had crossed their internal bar.
+So I pitched a Google Sheet workaround. Volunteer inquiries from Salesforce would flow into the sheet via Zapier, the solution would run against the sheet, and responses would flow back to Salesforce the same way. It satisfied the policy without new integration work on either side.
 
-![Before/after timeline — 13-day phone-tag chain compressed to a single 15-minute SMS exchange](/images/projects/mentor-enrollment-timeline.png)
+We got the MOU signed and confirmed the pilot dates.
 
-*The bottleneck wasn't a stage in the funnel — it was the latency between every stage. SMS collapsed the latency without the frustration spike voice introduced.*
+## Act 2: Shipping SMS
 
-**Structural insight:** the operator move wasn't building the SMS agent — it was running both variants and killing the more impressive one when the data demanded it. Intuition told me voice was right for the cohort; the metric told me SMS was right for the workflow. WOO discipline plus parallel variants plus willingness to kill is how AI projects survive past launch.
+The SMS solution handled the repetitive front-end of enrollment. Inquiries from Salesforce triggered the flow, and from there the system:
 
-## What I'd do differently now
+- Acknowledged the volunteer and qualified the lead against eligibility criteria
+- Routed each volunteer to the intake staff responsible for their location
+- Booked the interview into the right calendar based on geography and time zone
+- Wrote status back into the Salesforce integration along the way
 
-BBBS shipped and earned trust, but a year later I'd instrument it differently. A follow-on voice-AI prototype for a regulated-industry contact center surfaced the language for what I'd had to invent at BBBS:
+![Inquiry-to-interview journey in the Firstly builder: opening SMS, qualification survey, and live message thread on the right](/images/projects/mentor-enrollment-journey.png)
 
-- **Instrument false containment from day one.** The frustration signal that drove the BBBS kill decision was *exactly* a false-containment metric — calls the agent "handled" that the caller had to call back about. I caught it by accident at BBBS by looking at total call volume; I'd now build the explicit counter on day one so the kill criterion is pre-committed, not surfaced after the fact.
-- **Write the not-automated list before the prompt.** Trust-sensitive contexts have categories the agent shouldn't touch — emotional distress, complex eligibility, anything with liability or duty-of-care exposure. I made these escalations *implicit* at BBBS. I now treat the not-automated list as a deliverable, reviewed with the team that owns the workflow before the prompt exists.
-- **Phased rollout with pre-committed kill criteria.** BBBS's voice kill happened reactively, after the spike. A staged 10% → 50% → 100% with kill criteria written *before* the test gives you the same outcome without the lag — and lets you expand confidently when the data works in your favor, not just retreat when it doesn't.
-- **ROI model with sensitivity, not point estimates.** "+200 youth annually" is a real outcome but it's a point estimate. Modeling the inputs (containment rate, frustration delta, FTE freed) with ranges makes the case defensible to a finance partner and forces you to know which input you're betting on hardest.
+Before the pilot started, I sat with the Enrollment Manager to map workflows, intents, scheduling rules, and escalation paths. I built a demo flow against the spec and got her sign-off.
 
-If I were rebuilding BBBS today, the shape would look more like [vapi-voice-agent](https://github.com/kev-hu/vapi-voice-agent) — a recent voice-AI prototype for an insurance contact center where I made each of these moves explicit on the way in. Voice was the right call in that context, for reasons the BBBS test would have surfaced — different cohort, different intent, different failure modes.
+The first month was the richest part of the engagement. Weekly check-ins with the Enrollment Manager gave us real-time read on what was landing and what was missing, and the pilot kept surfacing edge cases the spec hadn't covered. Two changes from those sessions:
 
-## What carries forward
+- **Added:** an automatic follow-up for volunteers who started the flow but dropped before completing qualification, so warm leads got re-engaged without staff effort.
+- **Scoped back:** the Enrollment Manager leaned on the Salesforce integration sheet for day-to-day visibility, which told us the admin-portal reporting wasn't an MVP feature.
 
-Most AI projects fail at launch-plus-six-weeks because nobody can answer Workflow, Outcome, or Owner cleanly — the workflow doesn't fit, the outcome isn't measured, or no one's left to operate the system. The pattern from BBBS is general: scope with WOO before building, run variants when intuition disagrees with the obvious answer, instrument the metric that would force you to kill your own work, and act on the data when it disagrees with you. The same shape applies in financial-services compliance, agentic case disposition, internal AI enablement — anywhere AI has to land inside a real team's workflow and survive past launch.
+The pilot worked. Median time-to-qualification dropped from 13 days to 15 minutes. SMS absorbed 70% of inbound enrollment volume.
 
-<Drilldown title="The voice kill decision">
 
-- **The metric that actually mattered.** Time-to-first-contact made the SMS agent look great in either variant. *Call volume from frustrated users* was the signal that distinguished them — and it wasn't on the original dashboard.
-- **What the voice variant got wrong.** Older volunteers preferred phone for first contact, but the agent's voice latency and rigidity broke the rhythm of how a real phone conversation flows. The robocall pattern-match landed in seconds; what felt right on paper read as a worse experience than the 13-day phone-tag baseline.
-- **Why killing it was the cheaper move.** The voice prototype was the more expensive build and the more impressive demo. Killing it was a writedown. Keeping it would have been a much larger writedown — every confused older volunteer was a board-level story waiting to happen.
-- **What the WOO test didn't catch.** Workflow and Owner were aligned for both variants. Outcome's *primary* metric (time-to-contact) was aligned. The Outcome's *secondary* metric (frustration signal) is what made the difference — and it's the metric the framework now insists on naming up front.
+## Act 3: Voice Experiment
 
-</Drilldown>
+Older volunteers preferred phone. The Enrollment Manager flagged a cohort she called the "empty nesters" who kept calling the office instead of using the SMS flow. They were eating the staff capacity the pilot was supposed to free up.
+
+Voice looked like the obvious next move, and I was excited to add more agentic capabilities to our solution. I'd been prototyping with ElevenLabs agents in parallel, so I took this on to see if it was viable. I built the voice variant on ElevenLabs' agent builder, with OpenAI as the model layer and Twilio for the voice channel. It slotted into the existing SMS flow without disrupting it.
+
+In production, the cohort assumption fell apart. The SMS flow served volunteers who submitted forms, and the voice flow served volunteers who picked up the phone. We added a fallback: if a caller hung up or the agent fumbled the flow, the system sent a follow-up SMS to recover the lead. But these were callers who preferred phone in the first place. Instead of responding to the SMS, they called the enrollment team back. The flow looked right on paper for a phone-preferring cohort, but in practice it routed inbound calls back into the staff capacity SMS was already saving.
+
+I killed the voice variant after 3 days. The metric driving the call wasn't on the original dashboard: time-to-first-contact made both surfaces look fine, but inbound caseload to the enrollment team was the real signal, and SMS was reducing it while voice was spiking it. We reverted to SMS.
+
+
+## Results
+
+| Result | Why it mattered |
+|---|---|
+| 13 days → 15 minutes median time-to-qualification | The momentum hypothesis held. Volunteers self-scheduled in the same session, before the lead went cold |
+| 70% of inbound enrollment volume handled by SMS | The intake team got back the capacity the pilot was designed to free |
+| Voice variant killed in 3 days | Off-dashboard metric (inbound caseload to enrollment) drove the call, not the dashboard's time-to-first-contact |
+
+## My Takeaways
+
+- **Tie pilot value to dollars, not capacity.** I pitched this on time-to-qualification and staff capacity, which mapped to cost reduction but I never made the math explicit. Knowing what I know now about contact center economics, I'd open with an ROI model: cost per inquiry today, cost per inquiry under the SMS flow, payback period. Same pitch, sharper anchor for procurement. See [the ROI calculator I built later](https://github.com/kev-hu/vapi-voice-agent/blob/main/demo/roi-calculator.md).
+
+- **Voice pilots need months, not weeks.** A one-week voice trial was the wrong instrument for the question. AI voice agents take time to calibrate against real conversational rhythms, and containment rates ramp slowly. If I ran this again, I'd start with high-volume, low-complexity intents on a multi-month runway, and let the team build trust with the technology before expanding scope. See [vapi-voice-agent](https://github.com/kev-hu/vapi-voice-agent) for what I'd build today.
+
+- **What works in SMS doesn't port to voice.** SMS was working, so I took a shortcut and reused the same qualification flow, escalation paths, and fallback logic on the voice channel. The voice surface turned out to be a different system: different cohort, different intents, different failure modes. The shortcut cost us the experiment.

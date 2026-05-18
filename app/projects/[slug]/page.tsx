@@ -7,8 +7,13 @@ import { TableOfContents } from "@/components/TableOfContents";
 import { ProjectHeader } from "@/components/ProjectHeader";
 import { RelatedProjects } from "@/components/RelatedProjects";
 import { Drilldown } from "@/components/Drilldown";
+import { Card } from "@/components/Card";
 import { EvalCohortPanel } from "@/components/EvalCohortPanel";
+import { LicensingDecision } from "@/components/LicensingDecision";
+import { PipelineBranches } from "@/components/PipelineBranches";
+import { PartnerDashboard } from "@/components/PartnerDashboard";
 import { StackIcon } from "@/components/StackIcon";
+import { ImageWithLink } from "@/components/ImageWithLink";
 import { notFound } from "next/navigation";
 
 function MdxImg({ src, alt }: { src?: string; alt?: string }) {
@@ -47,7 +52,7 @@ function MdxLink({ href, children }: { href?: string; children?: React.ReactNode
   );
 }
 
-const mdxComponents = { Drilldown, EvalCohortPanel, StackIcon, img: MdxImg, a: MdxLink };
+const mdxComponents = { Drilldown, Card, EvalCohortPanel, LicensingDecision, PipelineBranches, PartnerDashboard, StackIcon, ImageWithLink, img: MdxImg, a: MdxLink };
 
 export async function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));

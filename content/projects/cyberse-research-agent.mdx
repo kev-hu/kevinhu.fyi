@@ -2,10 +2,8 @@
 title: Cyberse — Cybersecurity Marketplace and Research Agent
 slug: cyberse-research-agent
 status: active
-subtitle: Cybersecurity research agent with category-scored, grounded outputs. I built a rating and rationale eval spreadsheet that diagnosed score compression.
-overview: "As technical consultant, I pushed back on the build order: ship distribution and product as one artifact. The agent's category-scored vendor outputs published directly as PSEO pages, the pages rank on Google, inbound leads get sold to distributor partners as qualified referrals (hundreds to a few thousand per match). When scores started hedging, I built a rating + rationale eval harness in Airtable to diagnose what was actually happening."
-description: "Cyberse needed inbound lead flow to monetize through distributor partners. I pushed back on the build order: ship distribution first via PSEO, with the agent's scored vendor outputs as the page content. Built a rating + rationale eval harness when scores started compressing — revealed the model was honestly reporting its training-cut coverage, not failing the rubric."
-featured: true
+subtitle: Cybersecurity research agent with category-scored, grounded outputs. I built a rating and rationale eval spreadsheet that identified score compression.
+description: "Cyberse needed inbound to monetize through distributor partners. I pushed back on the build order, arguing to ship distribution first via PSEO with the agent's scored vendor pages as the content. Built an eval spreadsheet when scores compressed, then routed retrieval at the categories the training data couldn't reach."
 order: 1
 tags:
   - AI Agents
@@ -18,96 +16,107 @@ bannerBg: "#141432"
 clientLogo: /images/logos/cyberse.jpg
 hideBanner: true
 role: Technical Consultant
-timeline: 7 months (May – Nov '25)
-team: CEO, Design (1), Engineering (1)
+timeline: 7 months (May – Nov 2025)
+team: Founder, Design, Engineering
 metrics:
   - label: Vendor Pages Live
-    value: "200"
-  - label: Inbound Leads
-    value: 200 (RB2B)
-  - label: Reseller Deal
-    value: $200K (TryHackMe)
+    value: "200+"
+  - label: Scoring Fixed
+    value: 11 of 12 categories
 ---
 
 ## Business Context
 
-I joined Cyberse in learning mode. The project had been in motion for months and was stalling. The agent's outputs lived in Supabase, engineering-only. The founder was pitching investors on a supply-side MVP he couldn't show anyone.
+Cyberse helps SMB buyers find the right cybersecurity vendor and makes money by referring qualified leads to distributor partners. I joined as Technical Consultant and shipped an MVP for the marketplace's supply side.
 
-The business model needed inbound. Cyberse monetizes by referring qualified buyer leads to distributor partners — hundreds to a few thousand dollars per match. No inbound, no referrals, no revenue. The founder's framing: build the agent, the leads come. But the agent was a Supabase table one person could read.
+The business needed inbound. The founder wanted to build the agent first and trust the leads would follow, but he was pitching investors on an MVP he couldn't show anyone. 
 
-My first move wasn't the agent. It was visibility. I stood up a lightweight Airtable layer alongside Supabase — no migration, framed as a personal tool — and showed the founder he could open it and see every vendor score directly. Within a week he was editing rationales and flagging anomalies himself.
+7 months later the agent was powering 200 vendor pages and a reseller deal with TryHackMe out of a Singapore accelerator. The eval spreadsheet I built for score compression is what got the agent good enough to publish and rank on search.
 
-## Phase 1: Resequenced — PSEO as the agent's first deployment (Month 1)
+![The three buyer-facing tools on Cyberse: Peer Benchmark, Explore Solutions, and Compare Products. The agent's scored vendor outputs power Explore Solutions and feed Compare Products.](/images/projects/cyberse-product-tools.png)
 
-The CEO's original plan was sequential: build the agent, then build distribution on top of it. That path produces an agent with no buyer-intent signal and no leads to put in front of distributor partners. The agent gets technically sharper in a vacuum while the revenue side waits.
+## Role
 
-I proposed the opposite. Couple them: every agent run produces a vendor page; every page is the distribution surface; every page that ranks generates a buyer-intent lead the distributor side can monetize. PSEO isn't a separate marketing workstream — it's where the agent lives in production. The agent can't drift from the product because it is the product.
+A lot of this was GTM-engineering work: PSEO pages, vendor templates, the lead capture funnel. The rest was prototyping the agent and the eval spreadsheet that ran underneath.
 
-The sell to the CEO wasn't that SEO mattered more than the agent. It was: shipping the deployment surface first buys real organic signal, real leads, and real partnership leverage at the same time. The agent gets sharper *because* it's running in production, not in spite of.
+| Artifact | What I delivered |
+|---|---|
+| Data taxonomy | 12 categories with per-criterion rubrics, calibrated weekly with experts |
+| Vendor research agent | Tool-calling against Perplexity, web-grounded scoring per query |
+| Eval spreadsheet | Airtable + Google Sheets, cohort A/B tests to refine prompts |
+| Vendor pages | Templates for 200+ PSEO pages, agent outputs as page content |
+| Founder visibility | Airtable layer over Supabase, weekly demos of outputs |
+
+## Act 1: The Real Bottlenecks
+
+The agent had been in motion for months and stalled. I spent the first weeks figuring out why, and the blocker wasn't the agent itself. The agent lived inside a Supabase table only engineering could read. The founder couldn't see outputs, the design lead couldn't sanity-check rationales, and domain experts couldn't flag bad ratings. It was a black box to everyone except engineering.
+
+So I built an Airtable layer alongside Supabase (framed as a personal tool), and the founder could open it and see every vendor score directly. Within a week he was editing rationales and flagging anomalies himself. Design and domain experts started weighing in too. The project unstalled because more people could touch it.
+
+Once the team was unblocked, I pitched a sequencing change. The founder wanted to build the agent first, then bolt distribution on top. I pitched the opposite: couple them. Every agent run produces a vendor page. Every page that ranks becomes an inbound lead distributors can monetize. **I framed building the agent and building distribution as the same thing.**
 
 ![A rendered vendor page on Cyberse: the agent's scores, rationales, cost considerations, and category metadata published directly as the buyer-facing PSEO page](/images/projects/cyberse-pseo-page.png)
 
-## Phase 2: Category-specific criteria, not a global rubric (Months 1–2)
+## Act 2: Score Compression
 
-Before writing a single prompt, I sat with the CEO and founding team to map solution categories: SIEM, EDR, ZTNA, IAM, compliance platforms, and more. Buyers compare SIEMs on different axes than they compare IAM platforms or compliance tooling. A global rubric would have made every page read the same — and Google rewards depth and specificity, not generic vendor blurbs. The lead-qualification side was the same problem: distributors only pay for leads with the right profile match, and the profile depends entirely on category.
+The founder flagged that scores felt off. I felt it too, so I built an eval spreadsheet in Airtable and Google Sheets. Each row was a vendor-criterion pair with a 1–5 rating and a short rationale. 
 
-The unit was a set of criteria *inside* a category, not across the whole landscape. That's what would let pages rank against long-tail buyer queries, and what would let referrals carry enough context to be worth a few thousand dollars.
+Here's a real cell from the **functionality** row on Drata:
 
-## Phase 3: Citation-mandatory scoring (Month 2)
+```
+5 | "Drata lets teams author or upload policies, keeps version history,
+     and links them to framework controls. Over 75 integrations feed
+     automated evidence into pre-mapped controls and an auditor-facing
+     Audit Hub, reducing manual collection. The risk module scores threats
+     in real time, pairs them with controls, and guides treatment plans
+     within the same workflow."
+```
 
-Built the agent with tool-calling against Perplexity so every rating cited its source. I chose per-query retrieval over fine-tuning: at roughly $0.005 per query, retrieval was cheaper, and it kept every score auditable.
+I was iterating on the prompts and model parameters, but the spotchecks were only helpful until failures became non-obvious. Seeing the score distribution, filtering by category, and reading rationales side-by-side made failures visible.
 
-An ungrounded score is a liability for a lead-gen funnel specifically. If a distributor questions why a vendor got a 4, "the model said so" is a dead end. A citation lets you trace a wrong score back to a misread source and fix it. The retrieval surface and the eval surface had to be the same surface from day one.
+![The Google Sheets eval spreadsheet. Cohort columns (avg_a / a_5_percent, avg_b / b_5_percent, avg_c / c_5_percent) by category. Pink rows flag failing categories. Green cells flag where retrieval grounding lifted the row past threshold.](/images/projects/cyberse-eval-gsheet.png)
 
-## Phase 4: The eval harness — rating + rationale, per vendor × criterion (Month 3)
+The agent failed to identify 5s and often defaulted to 3-4. I proceeded to run cohort experiments against the same vendor set. 
 
-The CEO flagged that scores felt off. I felt it too. Built a lightweight eval harness in Airtable and Google Sheets — same pattern as the Phase 0 visibility layer, no migration, anyone could open it.
+In the following tests, I'd evaluate whether agents could identify 5s in 10% of a particular category. If so, the agent would "pass" for that category. 
 
-The atomic unit was a rating plus a rationale, one cell per vendor × category-criterion. A typical cell looked like `4 | "Strong native log-source coverage for cloud workloads. Weaker on legacy on-prem integrations based on customer case studies."` — a number anchored by two sentences a human could sanity-check against the citation.
+## Act 3: Cohort A/B Tests
 
-That shape let me do what the Supabase setup couldn't. Pivot by category and see the distribution. Filter by criterion and read the rationales side-by-side. Sort by score and read the model's own hedging language where it appeared. The harness wasn't a dashboard; it was a reading surface. The founder could open it. I could open it. The diagnosis came from reading it.
+**Cohort B: Rubric Granularity** 
 
-![The actual Google Sheets eval harness — cohort columns (avg_a / a_5_percent, avg_b / b_5_percent, avg_c / c_5_percent) by category. Pink rows flag failing categories; green cells flag where retrieval grounding lifted the row past threshold](/images/projects/cyberse-eval-gsheet.png)
+- 5 criteria per category, each scored 1 to 5, every rating level with its own anchor description. 
+- 25 cells per category, 300 across the set, which I prototyped in Airtable first. 
+- Cohort B doubled the pass rate (3 of 12 → 7 of 12). 
 
-## Phase 5: Two cohorts to separate rubric problems from coverage problems (Month 4)
+Endpoint security, managed security, identity security, and vulnerability management, all categories with deep public material, climbed sharply. The rubric was the bottleneck for those rows.
 
-Pivoting the harness by category made the compression legible inside an afternoon, but legible isn't diagnosed. Rows were bunching at 3s across most categories. Two distinct hypotheses fit: either the rubric was too coarse to separate vendors (rubric-limited), or the model didn't have enough training corpus on those categories to score them confidently (coverage-limited). Same surface symptom, opposite fixes. I ran them as cohorts against the same vendor set.
+But GRC platforms came back at 0%, which was a surprise. Drata and Vanta are recent enough that the model didn't have the source material to score them, no matter how tight the rubric got.
 
-**Cohort B — rubric granularity.** Tightened to five criteria per category, with anchored examples and descriptions for each 1–5 rating level. A 4 on "log-source coverage" for SIEMs reads as a different concrete bar than a 4 on "policy enforcement granularity" for IAM platforms. Cohort B doubled the pass rate (3/12 categories → 7/12). Endpoint security, managed security, identity security, vulnerability management — all categories with deep public material — climbed sharply. The rubric *was* the bottleneck for those rows.
 
-**Cohort C — retrieval grounding.** The rows that didn't move in B were the tell. Data security, third-party risk, network security — newer or fragmented categories — barely budged on rubric granularity alone, because the model didn't have the source material to use the finer-grained criteria against. SIEM has decades of analyst reports, customer reviews, and vendor documentation in every training corpus that exists. A category like "third-party risk" as a named SaaS segment is recent. The model wasn't being lazy. It was honestly reporting where its training data ran out.
+**Cohort C: Retrieval Grounding** 
 
-Cohort C routed under-covered categories through Perplexity for real-time context. Pass rate climbed to 11/12. The categories that lifted under C were exactly the ones that didn't lift under B — coverage-limited rows resolved when the retrieval surface filled the gap the training cut couldn't.
+Data security and network security barely budged under B either, for the same reason as GRC: thin training corpora. Categories like Endpoint Security have decades of analyst reports, customer reviews, and vendor docs in every training corpus that exists. GRC as a named SaaS segment is recent.
 
-The judgment call was walking the CEO through why we weren't normalizing the distribution to begin with. Score compression in under-covered categories is the model telling you exactly where to route more retrieval. Flattening would have destroyed that signal. Routing followed it.
+Cohort C grounded the ratings and rationale using Perplexity. Pass rate climbed to 11 of 12. 
+
+The categories that lifted under C were exactly the ones that didn't lift under B.
 
 <EvalCohortPanel />
 
-*Three cohorts against the same vendor set. Cohort B isolates how much of the compression was a rubric problem (per-category criteria with anchored 1–5 examples). Cohort C isolates how much was a coverage problem (retrieval grounding for categories where the training corpus was thin). The rows that lift under B vs. C tell you which bottleneck each category had.*
+- Cohort B tests whether tighter per-category rubrics fix the compression. 
+- Cohort C tests whether web grounding fixes it. 
+- The rows that lift under B vs. C tell you which bottleneck each category had.
 
-## What it proved
+## Results
 
-- **200 vendor and solution pages live**, covering long-tail buyer queries the enterprise side couldn't easily reach
-- **200 inbound leads** attributed via RB2B from organic traffic, captured as qualified referrals for distributor partners
-- **$200K TryHackMe reseller partnership** — closed on the back of the organic supply-side proof
-- **Category pass rate climbed from 3/12 to 11/12** across the cohort sweep — rubric granularity fixed the rows the rubric was limiting, retrieval grounding fixed the rows the training corpus was limiting
+| Result | Why it mattered |
+|---|---|
+| Scoring pass rate 3/12 → 11/12 | Rubric granularity fixed rubric-limited rows. Retrieval routing fixed coverage-limited rows |
+| 200+ vendor and solution pages live | Pages ranked on Google and gave the agent a deployment surface it could be evaluated against |
+| TryHackMe reseller partnership | PSEO vendor pages generated the traffic and leads that helped closed this deal post accelerator |
 
-When the agent's output is the product surface, eval and distribution share one workstream. Every rationale improvement is an SEO improvement. Every page that ranks tells you which categories the lead-gen funnel cares about next. The two halves don't drift because they're the same artifact.
+## My Takeaways
 
-## What carries forward
-
-The transferable instinct is this: when an agent's output is the user-facing surface, the eval surface and the distribution surface are the same artifact. Don't build sophisticated eval infrastructure off to the side of the deployment — make the deployment readable, and read it.
-
-For Quantifind's feedback-loop priorities: the same logic applies to name-screening. Entities with thin training coverage will hedge the same way Cyberse's compliance vendors did. The right response is to route more retrieval at the under-covered slice, not to normalize the signal away. Score compression isn't a bug; it's the model telling you exactly where its corpus runs out.
-
-And the scrappier the eval surface, the more it gets used. A `rating | rationale` cell in Airtable that the founder can read and edit beats a sophisticated eval dashboard nobody opens.
-
-<Drilldown title="How the eval harness was structured">
-
-- **Atomic unit: vendor × category-criterion.** One row per pairing. Each cell held a 1–5 rating and a two-sentence rationale grounded in the agent's citation.
-- **Category-specific criteria.** Buyers compare SIEMs on different axes than IAM or compliance platforms. The harness reflected that — criteria changed by category, not just rubric weights.
-- **Citation-traceable.** The rationale referenced the same source the agent retrieved during scoring. A wrong rating traced back to a misread source, not an opaque model state.
-- **Diagnosis tool, not a dashboard.** Pivoting by category surfaced compression. Filtering by criterion surfaced systematic mis-reads. Sorting by score with the rationale visible exposed the model's hedging language directly.
-- **Open to the founder.** Same pattern as the Phase 0 visibility layer. The CEO could open it, flag anomalies, and stay in the outputs without engineering being a bottleneck.
-
-</Drilldown>
+- **Not every stuck project is a resourcing problem.** The agent had been stalled for months because only engineering had direct access. Airtable let the founder, design, and domain experts see what the agent was producing, and this unstalled the project. This was more of a team and tooling problem than a technical challenge.
+- **When one artifact serves both product and distribution, priorities become clear.** Coupling the agent to PSEO meant every rationale improvement was an SEO improvement, and every page that ranked told us which categories the lead-gen funnel cared about next. If you ever find yourself unsure whether to spend the next sprint on product or distribution, your two halves aren't aligned yet.
+- **Understand your evals before you fix them.** I thought something was seriously wrong when the new rubrics and grounding resulted in 40% of Endpoint security solutions scoring 5s. Reading the rationales and speaking with experts helped me see that this was a mature category with commoditized features, and that the 40% was NOT unreasonable. 

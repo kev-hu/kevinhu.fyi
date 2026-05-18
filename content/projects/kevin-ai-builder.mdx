@@ -1,10 +1,9 @@
 ---
-title: Kevin — Here's How I Build and Prototype with AI
+title: Kevin — Here's How I Build and Prototype with AI (2026)
 slug: kevin-ai-builder
 status: active
 subtitle: My build process, workspace setup, and the local-first stack I use to create working prototypes locally.
-description: Most of my portfolio is about WHAT I've built. This page is about HOW I'm building in the AI-era. These are my evolving strategies and practices from projects, customers, and deployments throughout my career.
-featured: true
+description: Most of my portfolio is about WHAT I've built. This page is about HOW I'm building in the AI-era. These are the evolving strategies and practices from projects, customers, and deployments throughout my career.
 order: 7
 clientLogo: /images/brand/kevin-headshot.jpg
 thumbnail: /images/brand/kevin-illustration-laptop.png
@@ -16,62 +15,64 @@ tags:
   - Context Engineering
   - CLI
   - Obsidian
-role: Personal
-timeline: "2026"
+role:
+timeline:
 metrics: []
 ---
-## Overview
 
-Most of my portfolio is about `WHAT` I've built. This page is about `HOW` I'm building in the AI-era. These are my evolving strategies and practices from projects, customers, and deployments throughout my career. 
+After 1,170 GitHub commits this year and trying every vibe-coding tool under the sun, I've landed on a local-first stack built around Claude Code. This setup is great for agentic coding because the agent works where your context lives: directly on your computer. This page is about how I approach building products, what tools I'm using, and where I think AI is going. 
 
-## 1. Process
 
-Tools change fast, but pattern recognition accumulates over years of wins and painful lessons. With what I know today, here is my process: 
+<ImageWithLink
+  src="/images/projects/kevin-ai-builder-github-contributions.png"
+  alt="1,170 GitHub contributions in the last year on github.com/kev-hu"
+  href="https://github.com/kev-hu"
+  label="View on GitHub"
+  variant="github"
+/>
+
+## 1. My Build Process
+
+Here's an overview of the steps I take when I am building with teams or customers.
 
 | Step | Principle                    | What it means                                                                                                                                                                                                                                              |
 | ---- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 01   | **Measure value first**      | **If you can't quantify WHY and HOW MUCH it matters, you're not ready to build it.**<br/><br/>Building starts once you know the problem well enough to create an [ROI spreadsheet](https://github.com/kev-hu/vapi-voice-agent/blob/main/demo/roi-calculator.md) that the customer believes.                                               |
-| 02   | **Prototype to communicate** | **Versioned HTML prototypes beat PRDs.**<br/><br/>Spin them up with LLMs and mock data — shareable in an email, quick to create, and they convey way more than a spec.                                                                                     |
-| 03   | **Build the crappy version** | **Your MVP is the set of features that answer NO to: "would this still be useful without it?"**<br/><br/>Auth, reporting, and other infra-feeling work can feel like progress without moving the needle. The crappy version keeps you on the real problem. |
-| 04   | **Design the loop**          | **Run the cheapest experiment that tests whether it actually matters.**<br/><br/>If it doesn't, no one will use it. If it does, people will complain. A good loop is a feedback cycle.                                                                     |
-| 05   | **Infrastructure is earned** | **Repeated mistakes and painful workarounds show you what deserves to be infra.**<br/><br/>Skip the reps and you risk building the wrong thing. That's why you need the loop to show you.                                                                  |
+| 01   | **Measure value first**      | **If you can't articulate why and how much your idea matters, you're not ready to build it yet.**<br/>I've spent time building the wrong thing, so now I apply a stronger filter. If I can't model the [ROI](https://github.com/kev-hu/vapi-voice-agent/blob/main/demo/roi-calculator.md) of an idea, then I don't know enough to start building.
+| 02   | **Prototype to communicate** | **Clickable prototypes and artifacts beat PRDs.**<br/>You can prototype UI with ChatGPT, or simulate data schemas with Google Sheets. Create the artifact, then iterate with peers. That's how prototypes become specs.                                                                                       |
+| 03   | **Build the crappy version** | **Your MVP is the set of features that answer NO to: "Would this still be useful without it?"**<br/>Early on, auth, reporting, and other infra-ish work can feel like progress without moving the needle. The crappy version keeps you on the real problem. |
+| 04   | **Design the loop**          | **Run the cheapest experiment producing a learning signal.**<br/>If no one uses it, you have your answer. If people complain, you have your next feature. The loop helps you see the next decision.                                                                     |
+| 05   | **Infrastructure is earned** | **A workaround becomes infrastructure once you've felt the same pain three times.**<br/>It takes discipline to First time it's a one-off, second time it's a coincidence, third time it's a pattern worth promoting. Skip the reps and you risk building infra for problems you don't have.                                                                  |
 
 ## 2. Workspace
 
-### Context
+### Context is Code
 
  Context is code. It should be versioned, reviewable, and testable. I've come to see the git repo as a shared workspace between humans and agents. A well-structured repo gives agents the context needed to contribute meaningfully. This context lives in the docs, prompts, history, etc. 
 
-Every workspace / repo should have these three files:
+Every workspace / repo should have these files:
 
 ```text
 your-workspace/
 ├── CLAUDE.md     # repo-specific agent instructions: conventions, setup, what to never do
-├── MEMORY.md     # non-obvious context not recoverable from code or git history
 └── LESSONS.md    # frequent mistakes the agent can't seem to remember
 ```
 
-### Slash Commands
 
-The tricky part about context engineering is that your context needs to keep up with what's happening: new features, new models, and new launches. 
+### Plugins, Skills, and Slash Commands
 
-Slash commands help a lot. I run these after every chat session to manage my context fresh:
-
-- `/lessons` — captures what broke
-- `/playbook` — codifies what's working
-- `/prune` — removes what you don't need to know
-
-### Plugins 
-
-This is my core building workflow. Plugins scaffold the full lifecycle, and each step produces real artifacts. I shape specs, plans, and tests while reviewing output from the coding agent to ensure nothing drifts. 
+This is the actual Claude Code loop I use most often: clarify the intent, turn it into a plan, execute in scoped chunks, review the output, then promote repeated mistakes into context.
 
 - `/brainstorming` — pressure-tests intent before any code is written
 - `/writing-plans` — turns a spec into a reviewable, step-by-step plan
 - `/subagent-driven-development` — parallelizes execution across independent subagents
+- `/lessons` — captures what broke so the same mistake becomes repo context
+- `/lessons-prune` — removes stale instructions so the context stays useful
+
+Lessons help your coding agent get smarter each session. 
 
 ## 3. Walkthrough: `databank`
 
-`databank` is a local CLI that brokers data from social platforms, RSS feeds, and pretty much any webpage. It scrapes, caches, and cleans data for every downstream repo.
+`databank` is a local CLI that brokers data from social platforms, RSS feeds, and pretty much any webpage. It scrapes, caches, and cleans data for every downstream repo. I built it after rewriting the same scraping logic across social, news, and job-posting projects too many times. Repeated pain is what makes something infrastructure (Step 5).
 
 ```text
 ~/Code/workspaces/databank/
@@ -95,11 +96,11 @@ This is my core building workflow. Plugins scaffold the full lifecycle, and each
 
 ### Why CLI?
 
-I default to CLIs over MCP servers or APIs. They keep the agent's context window lean — nothing loads until the agent invokes it. Better agent experience, too:
+My CLI tools let me retrieve, analyze, and populate each of the data sources, just by chatting with Claude in the terminal. These features improve the agent experience, too:
 
 - **Progressive disclosure** — `--help` is the contract. The agent reads it before guessing.
 - **Self-correcting errors** — failures list valid options and the next command to try.
-- **Composable** — pipe into `jq`, `awk`, or another CLI. No glue code.
+- **Composable** — pipe into `jq` or another CLI. No glue code.
 
 ```text
 $ databank yt --help
@@ -117,7 +118,7 @@ $ databank yt fetch --channel @kev
 
 ## 4. Obsidian as IDE
 
-Obsidian is less a notes app than an IDE for context, and it's great for prototyping internal tools quickly. It's local-first, free for commercial use, and it runs directly on your computer without hosting or auth.
+I use Obsidian because it lets me organize my context easily, and you can prototype clickable  prototyping internal tools quickly. It's local-first, free for commercial use, and you never have to worry about hosting or auth. That's a fast cycle.
 
 - Markdown = filesystem-as-database
 - Frontmatter = schema you can query
@@ -127,29 +128,32 @@ You don't need a frontend, a database, or a deploy pipeline to prototype somethi
 
 ![RSS dashboard — 17 feeds, 1,381 articles, classified and summarized by local OSS LLMs](/images/projects/personal-ai-studio-rss-dashboard.png)
 
-*17 feeds, 1,381 articles, classified and summarized by local LLMs. The dashboard is one markdown file; the data is per-source folders; the substrate runs the models. No service to keep alive.*
+17 feeds, 1,381 articles, classified and summarized by local LLMs. The dashboard is one markdown file, and the data is per-source folders.
 
 The query is just a code block that gets evaluated when the page renders:
 
 ```javascript
-// dashboards/jobs/jobs-pipeline.md
-const ROOT = "/Users/kevinhu/Code/workspaces/career-camp";
-const rawDir = `${ROOT}/job-postings/data/raw`;
-const newDir = `${ROOT}/job-postings/data/new`;
+// 2_Dashboards/RSS Dashboard.md
+const ROOT      = "/Users/kevinhu/Code/workspaces/databank";
+const FEEDS_DIR = `${ROOT}/data/rss/feeds`;
+const manifest  = JSON.parse(fs.readFileSync(`${ROOT}/state/manifest.json`));
 
-const runs = [];
-for (let i = 0; i < 30; i++) {
-  const date = ymd(daysAgo(i));
-  const raw  = tryReadJson(`${rawDir}/${date}.json`);
-  const neu  = tryReadJson(`${newDir}/${date}.json`);
-  const errs = countErrors(`${rawDir}/${date}-errors.log`);
-  runs.push({ date, raw: raw?.length ?? 0, new: neu?.length ?? 0, errors: errs });
+// Walk per-feed folders, load each articles.json
+const all = [];
+for (const slug of fs.readdirSync(FEEDS_DIR)) {
+  const ap = `${FEEDS_DIR}/${slug}/articles.json`;
+  if (fs.existsSync(ap)) all.push(...JSON.parse(fs.readFileSync(ap)));
 }
 
-// Render as a table. Catches silent breakage:
-//   raw=0     → scraper or credentials broke
-//   new=0     → regex filter broke
-//   errors>0  → query timed out
+// Banner across the top — catches silent breakage:
+//   feeds ok drops      → feed URL changed or 404'd
+//   articles flat       → fetcher hasn't run
+//   last sweep > 2h     → launchd job died
+//   per-article errors  → LLM extraction failed on a post
+const feeds   = Object.entries(manifest).filter(([k]) => k.startsWith("rss/feeds/"));
+const okFeeds = feeds.filter(([,v]) => v.status === "ok").length;
+const errArts = Object.values(manifest).filter(v => v.status === "error").length;
+const latest  = Math.max(...feeds.map(([,v]) => Date.parse(v.last_fetched)));
 ```
 
 You don't need a frontend, a database, or a deploy pipeline to prototype something useful. Obsidian is the fastest path from "I have data" to actually using it.
@@ -163,15 +167,16 @@ This is the local-first stack I use to work with coding agents nowadays. My past
 | Hosting               | <StackIcon name="vercel" /> Vercel                                              |
 | Web/product surfaces  | <StackIcon name="nextjs" /> Next.js / <StackIcon name="vercel" /> Vercel        |
 | Agent execution       | <StackIcon name="claude" /> Claude Code, local                                  |
-| Knowledge substrate   | <StackIcon name="markdown" /> Markdown / <StackIcon name="obsidian" /> Obsidian |
+| Knowledge   | <StackIcon name="markdown" /> Markdown / <StackIcon name="obsidian" /> Obsidian |
 | Data collection       | Local CLIs + <StackIcon name="apify" /> Apify                                   |
 | Analytics / warehouse | <StackIcon name="bigquery" /> BigQuery                                          |
 | Automation            | <StackIcon name="launchd" /> launchd                                            |
 | External integrations | <StackIcon name="mcp" /> MCP servers / APIs                                     |
 
-![1,170 GitHub contributions in the last year on github.com/kev-hu](/images/projects/kevin-ai-builder-github-contributions.png)
+## 6. Currently Testing
 
-<div style={{ textAlign: 'right', marginTop: '-1.5rem', marginBottom: '2rem', fontStyle: 'italic', fontSize: '0.875rem' }}>
-  → [github.com/kev-hu](https://github.com/kev-hu)
-</div>
+The three things I'm testing right now are all about creating feedback loops between what an agent produces and whether it's actually valuable:
 
+- **Self-improving context loops.** Short-form content is the best testbed for self-improving agents. The feedback signal (views, watch time, completion rate) arrives in hours. Most agentic systems generate but never learn from what shipped. I'm running a faceless TikTok account as the experiment, applying [ACE](https://arxiv.org/abs/2510.04618) (e.g. agents update their own context from outcomes). <br/>**The bet:** the agents that win will be the ones with the tightest, cheapest ground-truth loop.
+
+- **Temporal graph retrieval for relevant context.** It uses vector search and temporal graphs to assemble queryable context. I built [zep-mcp](https://github.com/kev-hu/zep-mcp) to do this. You can surfaces content gaps, e.g. topics frequently mentioned in my comments that I haven't posted about. <br/>**The bet:** This seems like a promising way to extract fresh context from a corpus of data.

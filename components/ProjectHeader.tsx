@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Project } from "@/lib/projects";
 
 export function ProjectHeader({ project }: { project: Project }) {
-  const { title, subtitle, tags, metrics, thumbnail, clientLogo, overview, role, timeline, team, hideBanner } = project;
+  const { title, tags, metrics, thumbnail, clientLogo, role, timeline, team, hideBanner } = project;
   const showCreditsRow = Boolean(role || timeline || team);
 
   return (
@@ -65,9 +65,6 @@ export function ProjectHeader({ project }: { project: Project }) {
       >
         {title}
       </h1>
-
-      {/* Subtitle + overview hidden on the detail page — both still live in
-          frontmatter for the homepage card and SEO metadata respectively. */}
 
       {/* Credits row — Role / Timeline / Team */}
       {showCreditsRow && (

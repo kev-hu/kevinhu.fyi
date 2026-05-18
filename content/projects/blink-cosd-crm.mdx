@@ -1,10 +1,9 @@
 ---
-title: B-LINK — CRM and Mobile App for Benefits Fraud Investigations
+title: B-LINK — Shared CRM for Benefits-Fraud Investigations Across 3 Agencies
 slug: blink-cosd-crm
 status: active
 subtitle: Cross-agency benefits-fraud CRM for 2,000 government users. Shared D365 tenant, Azure functions, and a custom Document Management integration.
-description: Cross-agency CRM for the County of San Diego serving 2,000 case managers across three agencies on one shared D365 tenant. Designed weekly demos and shared roadmaps from kickoff, knowing scope would move on a two-year build. When a doc-management requirement surfaced and the SaaS vendor was blocked by procurement, a year of transparency turned a doubling change order into shared scope discovery, not a relationship blowup.
-featured: true
+description: Cross-agency CRM for the County of San Diego serving 2,000 case managers across three agencies on one shared D365 tenant. Designed weekly demos and shared roadmaps from kickoff, knowing scope would move on a two-year build. When a doc-management requirement surfaced and the SaaS vendor was blocked by procurement, a year of transparency turned a doubling change order into shared scope discovery.
 order: 5
 tags:
   - Case Management
@@ -16,103 +15,135 @@ thumbnail: /images/logos/county-of-san-diego.png
 bannerBg: "#FFFFFF"
 hideBanner: true
 clientLogo: https://www.google.com/s2/favicons?domain=sandiegocounty.gov&sz=128
-role: PM + Delivery Lead (RSM)
-timeline: ~2 years (2018 – 2019)
-team: Developers (5), Prime contractor (Perspecta), County PMO + 3 agencies
+role: Supervisor, Delivery Lead (RSM)
+timeline: 2 years (2018 – 2019)
+team: Developers (5), Product Owner, Business Analyst, Systems Architect, PM
 metrics:
   - label: Revenue Growth
     value: $600K → $2M+
-  - label: Licensing Saved
-    value: ~$150K/year
   - label: Case Managers
     value: 2,000+
+  - label: Licensing Saved
+    value: ~$150K/year
 ---
 
-## Scope
+B-LINK was a two-year Dynamics 365 implementation for the County of San Diego, connecting three agencies into one shared benefits-fraud investigation system for 2,000+ case managers.
 
-B-LINK is a case management system spanning the full public benefits lifecycle for the County of San Diego. Eligibility through data integrations with state systems like CMIPs. Field investigations on mobile apps for BPAI investigators. Adjudication of cross-agency evidence and fraud determinations. Before B-LINK, each stage lived in a separate system at a separate agency. The two-year engagement consolidated all three onto one shared Microsoft Dynamics 365 tenant.
+I led the project as PM and delivery lead, owning the roadmap, client demos, scope management, engineering coordination, and rollout planning from kickoff through launch.
 
-- Parties: County PMO plus three agencies. IHSS (In-Home Supportive Services), BPAI (Bureau of Public Assistance Investigations), and a third adjudication-focused agency. Perspecta as prime contractor, RSM as subcontractor.
-- Scale: 2,000 case managers. $600K original contract grew to $2M+ over the engagement. Roughly $150K per year saved on licensing.
-- Stack: D365 CE tenant with role-based partitioning, D365 Portals (SAML/SSO) for external users, Azure Functions for state-system integrations like CMIPs, custom Adobe Sign integration for doc-management, Power BI agency-scoped reporting.
+The engagement became the largest West Region CRM project in RSM’s practice at the time and helped establish the delivery model we reused on later public-sector CRM work.
 
-![B-LINK architecture: three agencies routed through SSO and role-based access into a shared D365 CE tenant running the Eligibility → Investigation → Adjudication workflow, with Azure Functions syncing state databases, custom Adobe Sign + document storage, and agency-scoped Power BI reporting on top](/images/projects/blink-crm-diagram5.png)
+## Role
 
-## Problem
+My work included both client-facing delivery and internal execution.
 
-Four quarters into the engagement, a requirement surfaced no one had scoped. Case managers needed to attach, sign, and route documents through the fraud-adjudication workflow. Sensitive evidence flowing across agency lines, on state-funded timelines that didn't bend.
+| Area | What I owned |
+|---|---|
+| Delivery | Roadmap, sprint cadence, backlog management, risk tracking |
+| Client alignment | Weekly demos, PMO communication, scope tradeoff conversations, reporting |
+| Scope management | Change-order, named deliverables, tracking burndown, sequencing dependencies |
+| Team coordination | Daily scrum, led engineering team plus engineers pulled from other RSM regions |
+| Architecture | Worked with Microsoft/Perspecta stakeholders on licensing, access, and integration approach |
+| Rollout | Train-the-trainer sessions, documentation, phased agency onboarding |
 
-The SaaS doc-management vendor we'd planned to use (PandaDoc, DocuSign) wasn't on the county's approved-vendor list. We discovered this on a call where, after months of trying to lock down a procurement contact, we finally got the answer: no.
+- **Stakeholders Managed:**
+  - IHSS — In-Home Supportive Services
+  - BPAI — Bureau of Public Assistance Investigations
+  - HHSA — Health & Human Services Agency
+  - County PMO (client), Perspecta (prime), RSM (developer)
 
-There were a few f-bombs from the product owner on that call. I was in LA, on a remote, watching it happen.
+## System
 
-When the dust settled, the move was straightforward: be transparent about what the custom path would require, then bring scoped work back to the table. That worked because of an architectural decision made at kickoff a year earlier. The entire engagement ran on weekly cycles with live customer demos and a shared roadmap. We weren't using weekly demos only to deliver scope on time. We used them to discover scope as we built, and to align expectations as new scope surfaced.
+B-LINK covered the full public benefits lifecycle: eligibility through data integrations with state systems, field investigations on mobile apps for BPAI investigators, and adjudication of cross-agency evidence and fraud determinations.
 
-By the time the doc-management surprise hit, the PMO had spent a year watching us surface tradeoffs, name unknowns, and explain hurdles. By then we'd spent twelve months in shared scope-discovery. The procurement block landed as the next item in that conversation, not as a screw-up to forgive. The change order was the artifact of that prior work, not the moment of bravery.
+![B-LINK architecture: three agencies routed through SSO and role-based access into a shared D365 CE tenant running the Eligibility → Investigation → Adjudication workflow, with Azure Functions syncing state databases, custom certificate-based document signing + government storage handoff, and agency-scoped Power BI reporting on top](/images/projects/blink-crm-diagram5.png)
 
-The operator move was engineering transparency from kickoff, knowing scope would move on a two-year build. The customer relationship that survived a doubling change order was the receipt that the upfront design worked.
+- **Stack:**
+  - D365 CE tenant with bespoke plugins
+  - D365 Portals (SAML/SSO) for external users
+  - Azure Functions for state-system integrations (e.g. CMIPS)
+  - Custom Certificate Signature integration for doc-management
+  - Power BI for agency-scoped reporting
+  - Azure DevOps for backlog management
 
-## Phase 1: Designed for scope discovery (Month 1)
 
-{/* IMAGE PLACEHOLDER — engagement timeline: 2-year horizontal timeline showing Phases 1–5 with month markers and the doc-management surprise point. Optional but high-leverage; orients the reader on the full arc before diving into phase details. */}
 
-Started with entity discovery and mapping documents between county systems and state databases like CMIPs. Built the project plan IHSS-first, knowing the shape would replicate to the other agencies. Locked the weekly sprint and customer demo cadence at kickoff. Not as a process retrofit. A two-year cross-agency build with ambiguous requirements would bury scope surprises under any waterfall plan.
+## Key Decisions
 
-The cost architecture was the other Phase 1 decision. Standard D365 CRM licensing for 2,000 users would have run around $192K per year, well past what the county's budget would absorb. We sat down with Microsoft to model alternatives. The fix was routing the bulk of users (case workers and external-facing program staff) through D365 Portals as SAML/SSO-authenticated external users. Standard CRM seats stayed reserved for admins and adjudicators who needed full access. Total licensing landed around $40K per year. Roughly $150K saved per year, or $300K across the engagement. The Portals decision also simplified the security layer (external users couldn't access CRM data unless explicitly granted), which happened to be the access posture we wanted anyway.
+Three agencies had never shared a system, cross-agency adjudication needed evidence to flow across boundaries, and a key dependency lived inside our prime contractor's other team. The decisions below are how we responded to the complex project and stakeholder environment.
 
-![Licensing decision: standard D365 CRM seats for 2,000 users at ~$192K/year vs the Portals SAML/SSO architecture at ~$40K/year, saving ~$150K/year](/images/projects/blink-licensing-decision.png)
+<Card title="1. Weekly Demo as Discovery">
 
-## Phase 2: Built IHSS-first, then replicated the shape (Months 2–8)
+Documentation was thin and cross-agency workflows weren't fully mapped. Weekly demos, shared backlog access, and named deliverables on a public roadmap let the county watch the system take shape as requirements moved.
 
-Shipped the IHSS instance cleanly: shared D365 CE tenant with role-based partitioning (business units per agency, teams for shared support staff and cross-case investigators), the Portals layer for the external-user majority, and Azure Functions handling the state-system integrations. Once IHSS was working, BPAI and the third agency layered on with the same shape. Less novel architecture, more applied discipline.
+</Card>
 
-## Phase 3: Doc-management requirement surfaces, vendor path blocked (Q4–Q5)
+<Card title="2. Shared Case Model">
 
-The doc-management requirement came late. Case managers needed to securely accept documents into the CRM, sign them in a way that would invalidate the signature if anyone tampered with the document afterward, store originals in an archaic government document-storage system, and surface the same documents back inside CRM for adjudication review.
+Four separate D365 instances would have meant rebuilding the same entity model four times plus integrations between them. One shared tenant with agency-level business units, teams, and custom security roles handled the cross-agency adjudication flow without that surface area.
 
-We'd been planning on a SaaS e-signature vendor for most of this work. After months of chasing procurement, we got the answer on that LA call: the SaaS path was dead. The only approved vendor was Adobe Sign, which would require significant custom integration to do what the workflow needed.
+</Card>
 
-## Phase 4: Change order signed, custom build shipped (Months 16–18)
+<Card title="3. Portals for Most Users">
 
-{/* IMAGE PLACEHOLDER — Adobe Sign integration flow OR change-order structure: either (a) a flow diagram showing CRM → Adobe Sign → tamper-invalidation → archaic government storage → re-surface in CRM, or (b) a redacted screenshot/mockup of how the change order itemized named deliverables vs labor hours. Either makes the "custom build" claim concrete instead of abstract. */}
+Full CRM seats for 2,000 users would have run roughly $192K/year. Admins, investigators, and adjudicators got full CRM access. Case managers routed through D365 Portals with SAML/SSO, cutting annual licensing by roughly $150K. See the [licensing comparison](#licensing-comparison) in the appendix.
 
-Scoped the custom doc-management module against named deliverables — module scope, integration points, security model, workflow features — not labor hours. Itemized deliverables let the PMO defend the spend internally; they were buying a thing, not buying time. Signed at ~$600K of incremental scope, doubling the original contract.
+</Card>
 
-To ship in 2–3 months with five engineers on the local team, I in-sourced engineers from other RSM regions to add capacity without compromising the existing IHSS and BPAI work. The integration itself was nightmare-tier: tamper-invalidating signing flows, secure handoff to the county's document-storage system, and re-surfacing signed documents inside CRM for adjudication — all of it threaded through the Portals authorization layer that made every step harder.
+<Card title="4. External Document Storage">
 
-## Phase 5: Staggered rollout and train-the-trainer (Months 18–24)
+Sensitive case documents couldn't live directly in CRM, but case workers still needed to see status, signatures, and adjudication context inside D365. Government storage held the document, CRM held the case context and reference, and the integration brought signed originals back into the case workflow.
 
-Onboarded the three agencies in sequence rather than all at once, starting with IHSS where operational confidence was highest. Trained ~20 county leaders — trainers, executives, and program managers — across two on-site sessions and two virtual rounds, shipping documentation and training artifacts that the county's internal trainers used to scale the rollout to the full 2,000 case managers.
+</Card>
 
-## What it proved
+## Act 1: Project Setup
 
-- **$600K → $2M+ in signed scope** across the engagement: original $600K + ~$600K doc-management change order + ~$600K migrations support + additional work over the renewal
-- **Three agencies on one shared tenant**, a posture the county hadn't done before
-- **~$150K/year saved** on D365 licensing via the Portals architecture
-- **2,000 case managers** onboarded across agency lines
-- **Customer renewed for a support contract** after the original two-year scope completed, citing that the system shipped faster than expected — *despite* the doc-management surprise
+B-LINK started before the West Region CRM practice had a mature delivery playbook. No shared tooling, no inherited engagement model, and B-LINK was the largest project the team had taken on.
 
-Structural insight: customers don't react to scope surprises in isolation. They react relative to the trust capital already built. A doubling change order lands as shared scope discovery after a year of weekly transparency. The same change order lands as "you screwed up" without it. The trust has to already be there. The moment of the surprise is too late to earn it.
+I set up Azure DevOps from scratch and trained the team on how we would use it: backlog structure, sprint cadence, work-item conventions, and delivery dashboards. The delivery model was being built while the project was being delivered, and B-LINK became the testbed for how our public-sector CRM work would run.
 
-## What carries forward
+Weekly customer demos were locked in from kickoff as the discovery vehicle for a two-year cross-agency build. Shared roadmaps, named deliverables, and tradeoff conversations ran on the same cadence.
 
-This is the pattern for internal AI rollout. AI work surfaces surprises mid-engagement: compliance edge cases, token cost overruns, vendor approval blockers, model behavior drift. The team's reaction depends on the visibility they had before the surprise hit.
+The build work started with entity discovery, agency workflow mapping, and data mapping between county systems and state databases. Milestones built on each other from there: core case model, contact model, role-based access, state-system integrations, Portals access, and reporting.
 
-The discipline isn't running an approved-vendor check at the start. It's structuring weekly visibility into the work so when the next surprise hits, it lands as shared discovery instead of a screwup. I run a version of this for my own building: a lessons doc per project, extracted weekly, surfacing what worked and what didn't. When something breaks, the team has already been talking about the surface area.
+By month eight, the cadence I'd set up was holding. The PMO came to demos engaged, tradeoffs got named in the room, and the foundation milestones kept building on each other.
 
-The CMMC, SOC2, and tier-one-bank-bar conversations have the same shape. The upfront work isn't the documentation. It's the rhythm of conversation that makes a compliance pivot survivable. Naming the constraint also earns the credibility to push back on it next time.
 
-<Drilldown title="Architecture, security model, and the Adobe Sign integration">
+## Act 2: Surprise Scope
 
-{/* IMAGE PLACEHOLDER — security model detail (optional): business units (one per agency) + teams (shared support staff, cross-case investigators) + custom security roles. Visualizes the data partitioning that made one shared tenant work. Optional, since the primary architecture diagram in the Scope section may already cover this. */}
+The first real stress test came from a document-management dependency we did not control.
 
-- **Why one shared tenant beat three federated ones.** Three tenants would have meant three security postures, three audit surfaces, three integration projects to stitch the cross-agency adjudication handoff together. Adjudication routinely needed Agency A's evidence alongside Agency B's case context. One tenant with role-based partitioning gave case workers the workflow surface without standing up custom inter-agency middleware.
-- **Custom Adobe Sign integration inside D365 CE, not as a sidecar.** The module needed to participate in existing case-record relationships, audit trails, and security roles. A sidecar app would have doubled the compliance surface for no benefit. Building inside D365 CE kept document artifacts inside the same record model case workers were already using. The integration handled tamper-invalidation on signed documents, async handoff to the county's archaic document-storage system, and re-surfacing signed originals back in CRM for adjudication review.
-- **D365 Portals SAML/SSO for the external-user majority.** About 2,000 case managers authenticated as external Portals users via the county's existing identity provider — scoped by default, with no CRM data access unless explicitly granted. The scoped-by-default model meant security role design got *less* complex, not more: fewer roles to maintain, fewer places to misconfigure access.
-- **Security model: business units + teams.** Each agency was a business unit, isolating case data by default. Teams layered on top for shared support staff (admins, system maintainers) and cross-case investigators who legitimately needed access across business units. Custom security roles defined what each persona could see and do; standard D365 audit logging tracked it all.
-- **Azure Functions for state-system integrations.** Eligibility lookups against CMIPs and other state systems ran through event-driven Azure Functions with retry logic and audit-grade logging. A failed eligibility transaction could be re-queued without blocking the case worker's day, and the integration surface was small enough to audit per agency requirements.
-- **Data migration with mapping documents + plugin-based tooling.** Owned the mapping documents that translated each agency's legacy data shape into the shared tenant's schema. Used a migration plugin with checksum-validated cutover, then parallel-run testing before each agency went live.
-- **Change order structured against named deliverables, not labor hours.** Itemized deliverables (module scope, integration points, security model, workflow features) made the spend defensible to county leadership. They were buying a thing, not buying time. Same structure applied to the migrations and support change orders later.
-- **Power BI on top, agency-scoped.** Reporting layer respected the same role partitioning as the tenant. Agency leadership saw their own cases by default; cross-agency views required an explicit role grant.
+Perspecta's other team owned the government storage system that case documents would eventually need to flow through. We were subcontracted under Perspecta, so visibility into that team was limited. For months the dependency moved quietly, with no early signal it would become a scope issue.
 
-</Drilldown>
+We later learned that county restrictions blocked the standard SaaS e-signature path. The documents at stake carried financial, legal, and health information tied to government benefit programs, so the county required a custom certificate-based signing approach with no third-party SaaS in the chain. The signing layer had to be built from scratch.
+
+The storage model wasn't what we'd assumed either. Documents could not live in CRM. They had to live in the government storage system Perspecta's other team owned. CRM would hold the reference and case context, the document itself would live elsewhere, and the integration had to re-surface signed originals back inside the case record for adjudication review.
+
+Both constraints landed hardest on Portals, which required significant rework mid-engagement. I scoped the custom path with my developers and worked with PMO to defend the spend. The change order landed at roughly $600K of incremental scope, doubling the original contract.
+
+To ship in 4 months without breaking BPAI or IHSS delivery, I pulled in engineers from other RSM regions.
+
+The integration spanned certificate-based signing flows, secure handoff to the government storage system, signed-document resurfacing inside CRM, and a reworked Portals authorization layer threaded through every step.
+
+
+## Act 3: Rollout & Adoption
+
+- **Train-the-trainer:** One month before go-live, I trained ~20 county leaders (trainers, executives, and program managers) across two on-site sessions and weekly virtual office hours. The county's internal trainers scaled the rollout to the full 2,000 case managers. 
+
+- **Deployment:** After validating the data mapping documents, iterating on SSIS packcages, and confirming data integrity with the client, B-LINK was approved and ready to deploy. The agencies had a parallel-run window where the legacy systems and B-LINK ran side by side against the same cases before the cutover. 
+
+## Results
+
+| Result | Why it mattered |
+|---|---|
+| $600K → $2M in signed scope | The original CRM implementation expanded into multiple change orders and renewal work |
+| 2,000+ case managers onboarded | The system scaled across three county agencies |
+| ~$150K/year licensing saved | The Portals/SAML architecture avoided full CRM licensing for every user |
+| Custom doc-management module shipped | The team absorbed a blocked vendor path without derailing the rollout |
+| Support contract renewed | The client continued the relationship after the original two-year scope completed |  
+
+## Appendix
+
+### Licensing Comparison
+
+<LicensingDecision />
